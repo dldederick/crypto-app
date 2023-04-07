@@ -5,36 +5,19 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Nav from './components/Nav';
 
 export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+        <Nav />
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/coins">
+            <Coins />
           </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
+          <Route path="/portfolio">
+            <Portfolio />
           </Route>
         </Switch>
       </div>
