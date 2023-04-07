@@ -6,6 +6,8 @@ import {
   Link
 } from "react-router-dom";
 import Nav from './components/Nav';
+import Coins from './pages/Coins';
+import Portfolio from './pages/Portfolio';
 
 export default function App() {
   return (
@@ -13,26 +15,10 @@ export default function App() {
       <div>
         <Nav />
         <Switch>
-          <Route path="/coins">
-            <Coins />
-          </Route>
-          <Route path="/portfolio">
-            <Portfolio />
-          </Route>
+          <Route exact path="/coins" component={Coins} />
+          <Route exact path="/portfolio" component={Portfolio} />
         </Switch>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
