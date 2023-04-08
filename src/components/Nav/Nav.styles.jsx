@@ -21,4 +21,5 @@ justify-content: flex-end;
 align-items: center;
 gap: 10px;
 width: 50%;
+padding-right: 15px;
 `

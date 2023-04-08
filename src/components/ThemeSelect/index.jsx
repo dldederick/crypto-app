@@ -1,9 +1,10 @@
 import React from 'react';
+import { StyledThemeButton } from './ThemeSelect.styles'
 
 export default function ThemeSelect() {
     return (
-        <div>
+        <StyledThemeButton>
             <img></img>
-        </div>
+        </StyledThemeButton>
     )
 }
