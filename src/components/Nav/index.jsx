@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledNav, NavPages, NavOptions } from "./Nav.styles";
+import { StyledNav, NavPages, NavOptions, StyledLink } from "./Nav.styles";
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from '../CurrencySelect';
 import SearchBar from "../SearchBar";
@@ -13,10 +13,10 @@ export default class Nav extends React.Component {
       <StyledNav>
         <NavPages>
             <div>
-              <Link to="/coins">Coins</Link>
+              <StyledLink to="/coins">Coins</StyledLink>
             </div>
             <div>
-              <Link to="/portfolio">Portfolio</Link>
+              <StyledLink to="/portfolio">Portfolio</StyledLink>
             </div>
         </NavPages>
         <NavOptions>
