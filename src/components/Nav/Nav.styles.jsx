@@ -17,7 +17,8 @@ width: 50%;`
 
 export const NavOptions = styled.div`
 display: flex;
-justify-contents: flex-end;
+justify-content: flex-end;
 align-items: center;
+gap: 10px;
 width: 50%;
 `
