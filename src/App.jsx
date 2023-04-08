@@ -8,17 +8,18 @@ import {
 import Nav from './components/Nav';
 import Coins from './pages/Coins';
 import Portfolio from './pages/Portfolio';
+import { AppDesign } from "./App.styles";
 
 export default function App() {
   return (
     <Router>
-      <div>
+      <AppDesign >
         <Nav />
         <Switch>
           <Route exact path="/coins" component={Coins} />
           <Route exact path="/portfolio" component={Portfolio} />
         </Switch>
-      </div>
+      </AppDesign>
     </Router>
   );
 }
