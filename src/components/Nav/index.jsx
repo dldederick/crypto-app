@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledNav, NavPages, NavOptions, StyledLink } from "./Nav.styles";
+import { StyledNav, TopNav, BottomNav, NavPages, NavOptions, StyledLink } from "./Nav.styles";
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from '../CurrencySelect';
 import SearchBar from "../SearchBar";
@@ -11,6 +11,7 @@ export default class Nav extends React.Component {
   render() {
     return (
       <StyledNav>
+        <TopNav>
         <NavPages>
             <div>
               <StyledLink to="/coins">Coins</StyledLink>
@@ -24,6 +25,15 @@ export default class Nav extends React.Component {
           <CurrencySelect />
           <ThemeSelect />
         </NavOptions>
+        </TopNav>
+        <BottomNav>
+          <div>Coins {this.props.activeCryptoCurrencies}</div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </BottomNav>
       </StyledNav>
     );
   }

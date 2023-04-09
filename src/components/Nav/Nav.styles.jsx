@@ -1,12 +1,29 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.div`
-//   border: 1px yellow solid;
-  display: flex;
+  border: 1px yellow solid;
+//   display: flex;
+// margin: 0 auto;
   width: 100%;
-  height: 100px;
-  margin: 5px;
-`;
+//   height: 100px;
+  margin: 5px;`
+
+export const TopNav = styled.div`
+display: flex;
+width: 100%;
+height: 100px;`
+
+export const BottomNav = styled.div`
+display: flex;
+color: white;
+justify-content: center;
+align-items: center;
+width: 50%;
+height: 40px;
+margin: 0 auto;
+border: 1px pink solid;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;`
 
 export const NavPages = styled.div`
   display: flex;
