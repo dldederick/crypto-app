@@ -8,7 +8,7 @@ export default class Coins extends React.Component {
     
     render(){
         return(
-        <div>Coins Page</div>
+        <div></div>
         )
     }
 }

@@ -9,6 +9,7 @@ export const CurrencySelectStyles = styled.div`
   align-items: center;
   background-color: #2c2f36;
   border-radius: 5px;
+  position: relative;
 `;
 
 export const MoneyImage = styled.div`
@@ -19,7 +20,6 @@ export const MoneyImage = styled.div`
   text-align: center;
   background-color: #191b1f;
   border-radius: 50%;
-
   width: 22px;
   height: 22px;
 `;
