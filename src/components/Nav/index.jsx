@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import {
   StyledNav,
@@ -29,7 +30,7 @@ export default class Nav extends React.Component {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
       const markets = data.data.markets;
-      const currencies = Object.keys(data.data.total_market_cap);
+      const currencies = Object.keys(data.data.total_market_cap).map(key => key.toUpperCase());
       this.setState({
         activeCryptoCurrencies,
         markets,
@@ -41,17 +42,18 @@ export default class Nav extends React.Component {
     }
   };
 
-  // componentDidMount() {
-  //   this.getActiveCryptoCurrencies();
-  // }
+  componentDidMount() {
+    this.getActiveCryptoCurrencies();
+  }
 
   render() {
+    console.log(this.state.currencies)
     return (
       <StyledNav>
         <TopNav>
           <NavPages>
             <div>
-              <StyledLink to="/coins">Coins</StyledLink>
+              <StyledLink to="/">Coins</StyledLink>
             </div>
             <div>
               <StyledLink to="/portfolio">Portfolio</StyledLink>

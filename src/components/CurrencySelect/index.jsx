@@ -4,7 +4,8 @@ import DropDownMenu from '../DropDownMenu';
 
 export default class CurrencySelect extends React.Component {
   state = {
-    isClicked: false
+    isClicked: false,
+    selectedCurrency: 'USD',
   }
 
   handleClick = (e) => {
@@ -13,14 +14,20 @@ export default class CurrencySelect extends React.Component {
     }))
   }
 
+  handleSelect = (key) => {
+    this.setState({ selectedCurrency: key });
+    this.handleClick()
+  }
+
   render() {
+    console.log(this.props.currencies)
     return (
       <CurrencySelectStyles>
         <MoneyImage>$</MoneyImage>
-        <MoneyOptionsContainer>
-          <span>USD</span>
+        <MoneyOptionsContainer >
+          <span onClick={this.handleClick}>{this.state.selectedCurrency}</span>
           <DropdownVector onClick={this.handleClick}></DropdownVector>
-          {this.state.isClicked && <DropDownMenu currencyType={this.props.currenctType} currencies={this.props.currencies} />}
+          {this.state.isClicked && <DropDownMenu handleSelect={this.handleSelect} currencyType={this.props.currencyType} currencies={this.props.currencies}  />}
         </MoneyOptionsContainer>
       </CurrencySelectStyles>
     );
