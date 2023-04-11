@@ -10,3 +10,7 @@ export const readableNum = (num) => {
   const roundedNum = Math.round(num * 100) / 100;
   return roundedNum + suffixes[suffixIndex];
 }
+
+export const roundedNum = (num) => {
+  return Math.round(num * 100) / 100
+}

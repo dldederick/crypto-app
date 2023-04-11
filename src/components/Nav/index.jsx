@@ -1,10 +1,9 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   StyledNav,
   TopNav,
-  BottomNav,
   NavPages,
   NavOptions,
   StyledLink,
@@ -12,7 +11,8 @@ import {
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from "../CurrencySelect";
 import SearchBar from "../SearchBar";
-import { readableNum } from '../../Utils';
+
+import BottomNav from "../BottomNav";
 
 export default class Nav extends React.Component {
   state = {
@@ -24,6 +24,7 @@ export default class Nav extends React.Component {
     activeCryptoCurrencies: 0,
     markets: 0,
     totalMarketCap: 0,
+    totalVolume: 0,
   };
 
   getActiveCryptoCurrencies = async () => {
@@ -32,8 +33,11 @@ export default class Nav extends React.Component {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
       const markets = data.data.markets;
-      const currencies = Object.keys(data.data.total_market_cap).map(key => key.toUpperCase());
-      const totalMarketCap = data.data.total_market_cap[this.state.selectedCurrency];
+      const currencies = Object.keys(data.data.total_market_cap).map((key) =>
+        key.toUpperCase()
+      );
+      const totalMarketCap =
+        data.data.total_market_cap[this.state.selectedCurrency];
       const totalVolume = data.data.total_volume[this.state.selectedCurrency];
       const dominance = data.data.market_cap_percentage.btc;
       this.setState({
@@ -52,12 +56,12 @@ export default class Nav extends React.Component {
 
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
-    this.setState({ selectedCurrency: lowerCase })
-  }
+    this.setState({ selectedCurrency: lowerCase });
+  };
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.selectedCurrency !== prevState.selectedCurrency) {
-      this.getActiveCryptoCurrencies()
+    if (this.state.selectedCurrency !== prevState.selectedCurrency) {
+      this.getActiveCryptoCurrencies();
     }
   }
 
@@ -87,14 +91,13 @@ export default class Nav extends React.Component {
             <ThemeSelect />
           </NavOptions>
         </TopNav>
-          <BottomNav>
-            <div>Coins {this.state.activeCryptoCurrencies}</div>
-            <div>Markets {this.state.markets}</div>
-            <div>Total Market Cap {readableNum(this.state.totalMarketCap)}</div>
-            <div>Total Volume {readableNum(this.state.totalVolume)}</div>
-            <div>Dominance {this.state.dominance}</div>
-            <div></div>
-          </BottomNav>
+        <BottomNav
+          coins={this.state.activeCryptoCurrencies}
+          exchange={this.state.markets}
+          marketCap={this.state.totalMarketCap}
+          volume={this.state.totalVolume}
+          dominance={this.state.dominance}
+        />
       </StyledNav>
     );
   }
