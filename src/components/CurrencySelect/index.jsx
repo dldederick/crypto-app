@@ -16,7 +16,8 @@ export default class CurrencySelect extends React.Component {
 
   handleSelect = (key) => {
     this.setState({ selectedCurrency: key });
-    this.handleClick()
+    this.handleClick();
+    this.props.handleSelect(key);
   }
 
   render() {

@@ -15,13 +15,14 @@ export default class DropDownMenu extends React.Component {
   };
 
     handleChange = (e) => {
-        this.setState({ filteredValue: e.target.value})
+        const upperCase = e.target.value.toUpperCase();
+        this.setState({ filteredValue: upperCase })
   }
 
   render() {
     const filteredList = this.state.filteredValue
     ? this.props.currencies.filter((item) =>
-        item.toLowerCase().includes(this.state.filteredValue.toLowerCase())
+        item.includes(this.state.filteredValue)
       )
     : this.props.currencies;
   

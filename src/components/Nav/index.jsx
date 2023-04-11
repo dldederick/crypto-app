@@ -17,7 +17,7 @@ export default class Nav extends React.Component {
   state = {
     isLoading: false,
     hasError: false,
-    currencyType: "usd",
+    selectedCurrency: "usd",
     currencies: [],
     activeCryptoCurrencies: 0,
     markets: 0,
@@ -31,10 +31,12 @@ export default class Nav extends React.Component {
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
       const markets = data.data.markets;
       const currencies = Object.keys(data.data.total_market_cap).map(key => key.toUpperCase());
+      const totalMarketCap = data.data.total_market_cap[this.state.selectedCurrency];
       this.setState({
         activeCryptoCurrencies,
         markets,
         currencies,
+        totalMarketCap,
         isLoading: false,
       });
     } catch (error) {
@@ -42,12 +44,22 @@ export default class Nav extends React.Component {
     }
   };
 
+  handleSelect = (key) => {
+    const lowerCase = key.toLowerCase();
+    this.setState({ selectedCurrency: lowerCase })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.selectedCurrency !== prevState.selectedCurrency) {
+      this.getActiveCryptoCurrencies()
+    }
+  }
+
   componentDidMount() {
     this.getActiveCryptoCurrencies();
   }
 
   render() {
-    console.log(this.state.currencies)
     return (
       <StyledNav>
         <TopNav>
@@ -64,6 +76,7 @@ export default class Nav extends React.Component {
             <CurrencySelect
               currencyType={this.state.currencyType}
               currencies={this.state.currencies}
+              handleSelect={this.handleSelect}
             />
             <ThemeSelect />
           </NavOptions>
@@ -71,7 +84,7 @@ export default class Nav extends React.Component {
           <BottomNav>
             <div>Coins {this.state.activeCryptoCurrencies}</div>
             <div>Markets {this.state.markets}</div>
-            <div>Total Market Cap</div>
+            <div>Total Market Cap {this.state.totalMarketCap} </div>
             <div>Total Volume</div>
             <div>Market Cap %</div>
             <div></div>
