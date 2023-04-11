@@ -12,12 +12,14 @@ import {
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from "../CurrencySelect";
 import SearchBar from "../SearchBar";
+import { readableNum } from '../../Utils';
 
 export default class Nav extends React.Component {
   state = {
     isLoading: false,
     hasError: false,
     selectedCurrency: "usd",
+    dominance: "btc",
     currencies: [],
     activeCryptoCurrencies: 0,
     markets: 0,
@@ -32,11 +34,15 @@ export default class Nav extends React.Component {
       const markets = data.data.markets;
       const currencies = Object.keys(data.data.total_market_cap).map(key => key.toUpperCase());
       const totalMarketCap = data.data.total_market_cap[this.state.selectedCurrency];
+      const totalVolume = data.data.total_volume[this.state.selectedCurrency];
+      const dominance = data.data.market_cap_percentage.btc;
       this.setState({
         activeCryptoCurrencies,
         markets,
         currencies,
         totalMarketCap,
+        totalVolume,
+        dominance,
         isLoading: false,
       });
     } catch (error) {
@@ -84,9 +90,9 @@ export default class Nav extends React.Component {
           <BottomNav>
             <div>Coins {this.state.activeCryptoCurrencies}</div>
             <div>Markets {this.state.markets}</div>
-            <div>Total Market Cap {this.state.totalMarketCap} </div>
-            <div>Total Volume</div>
-            <div>Market Cap %</div>
+            <div>Total Market Cap {readableNum(this.state.totalMarketCap)}</div>
+            <div>Total Volume {readableNum(this.state.totalVolume)}</div>
+            <div>Dominance {this.state.dominance}</div>
             <div></div>
           </BottomNav>
       </StyledNav>
