@@ -4,10 +4,12 @@ export const StyledBottomNav = styled.div`
 display: flex;
 justify-content: space-around;
 color: white;
+font-size: 13px;
+background-color: #191B1F;
 align-items: center;
 width: 50%;
 height: 40px;
 margin: 0 auto;
-border: 1px pink solid;
+// border: 1px pink solid;
 border-bottom-left-radius: 10px;
 border-bottom-right-radius: 10px;`

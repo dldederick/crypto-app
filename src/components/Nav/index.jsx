@@ -27,7 +27,7 @@ export default class Nav extends React.Component {
     totalVolume: 0,
   };
 
-  getActiveCryptoCurrencies = async () => {
+  getGlobalCryptCurrencyData = async () => {
     this.setState({ isLoading: true });
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
@@ -61,12 +61,12 @@ export default class Nav extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.selectedCurrency !== prevState.selectedCurrency) {
-      this.getActiveCryptoCurrencies();
+      this.getGlobalCryptCurrencyData();
     }
   }
 
   componentDidMount() {
-    this.getActiveCryptoCurrencies();
+    this.getGlobalCryptCurrencyData();
   }
 
   render() {

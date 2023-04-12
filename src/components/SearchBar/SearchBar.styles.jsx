@@ -12,4 +12,4 @@ background-repeat: no-repeat;
 background-position: 10px;
 text-indent: 38px;
 font-size: 15px;
-}`
+outline: none;`

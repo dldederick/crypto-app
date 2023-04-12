@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.div`
-  border: 1px yellow solid;
-  width: 100%;
+  // border: 1px yellow solid;
+  width: 99%;
   height: 100px;
-  margin: 5px;
+  background-color: #191B1F;
+  margin: auto;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  z-index: 100;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;`
 
@@ -20,8 +26,8 @@ export const NavPages = styled.div`
   align-items: center;
   gap: 20px;
   padding-left: 50px;
-//   border: 1px blue solid;
   width: 50%;
+  }
 
   div {
     display: flex;
@@ -29,6 +35,11 @@ export const NavPages = styled.div`
     align-items: center;
     width: 120px;
     height: 45px;
+    border-radius: 5px;
+  }
+
+  div:hover {
+    background-color: #2C2F36;
   }
 `;
 

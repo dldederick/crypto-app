@@ -21,7 +21,6 @@ export default class CurrencySelect extends React.Component {
   }
 
   render() {
-    console.log(this.props.currencies)
     return (
       <CurrencySelectStyles>
         <MoneyImage>$</MoneyImage>
