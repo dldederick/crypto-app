@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { render } from 'react-dom';
-import { StyledCoinsPage, CoinsCont1, CoinsCont2, Cont1Wrapper, Chart1, Chart2, TopCryptoCurrencies } from './Coins.styles'
+import { StyledCoinsPage, CoinsCont1, CoinsCont2, Cont1Wrapper, Chart1, Chart2, Overview } from './Coins.styles';
+import TopCryptoCurrencies from '../../components/TopCryptCurrencies';
 
 export default class Coins extends React.Component {
     state = {
@@ -26,19 +27,19 @@ export default class Coins extends React.Component {
     }
     
     render(){
-        console.log(this.state.topCryptoCurrencies)
+        console.log(this.state.topCryptoCurrencies[1])
         return(
         <StyledCoinsPage>
             <CoinsCont1>
-                <div>Your Overview</div>
+                <Overview>Your Overview</Overview>
                 <Cont1Wrapper>
                     <Chart1></Chart1>
                     <Chart2></Chart2>
                 </Cont1Wrapper>
             </CoinsCont1>
             <CoinsCont2>
-                <div>Your Overview</div>
-                <TopCryptoCurrencies></TopCryptoCurrencies>
+                <Overview>Market Overview</Overview>
+                <TopCryptoCurrencies topCoinsData={this.state.topCryptoCurrencies} />
             </CoinsCont2>
         </StyledCoinsPage>
         )

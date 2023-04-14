@@ -39,8 +39,6 @@ export const DropdownVector = styled.div`
   background-image: url(https://i.postimg.cc/SxHdpyJ6/Polygon-4.png);
   background-position: center;
   background-repeat: no-repeat;
-  outline: none;
-  border: none;
   width: 15px;
   height: 8px;
 `;

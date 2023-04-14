@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledNav = styled.div`
   // border: 1px yellow solid;
-  width: 99%;
+  width: calc(100% - 20px);
   height: 100px;
   background-color: #191B1F;
   margin: auto;
