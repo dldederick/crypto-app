@@ -18,21 +18,6 @@ display: flex;
 justify-content: space-between;
 align-items: center;`
 
-export const Chart1 = styled.div`
-width: 45%;
-height: 450px;
-background-color: #191B1F;
-border-radius: 10px;
-border-top-left-radius: 0px;
-padding: 10px 20px 10px 20px;
-box-sizing: border-box;`
-
-export const Chart2 = styled.div`
-width: 45%;
-height: 450px;
-background-color: #191B1F;
-border-radius: 10px;`
-
 export const CoinsCont2 = styled.div`
 width: 90%;
 height: 600px;

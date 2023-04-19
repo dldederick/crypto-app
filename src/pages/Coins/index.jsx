@@ -1,29 +1,16 @@
 import React from "react";
 import axios from "axios";
-import {
-  Chart as ChartJS,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Legend,
-  Filler
-} from "chart.js";
-import { Line } from "react-chartjs-2";
 import TopCryptoCurrencies from "../../components/TopCryptCurrencies";
 import {
   StyledCoinsPage,
   CoinsCont1,
   CoinsCont2,
   Cont1Wrapper,
-  Chart1,
-  Chart2,
   Overview,
 } from "./Coins.styles";
-import { formatTimestamp } from "../../Utils";
 import { withTheme } from "styled-components";
-
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Filler);
+import CurrencyPriceChart from "../../components/CurrencyPriceChart";
+import CurrencyVolumeChart from "../../components/CurrencyVolumeChart";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -31,6 +18,7 @@ export default class Coins extends React.Component {
     topCryptoCurrencies: [],
     coinsMarketPriceArray: [],
     coinsMarketDateArray: [],
+    coinsMarketVolumeArray: [],
   };
 
   getTopCryptoCurrencies = async () => {
@@ -51,9 +39,11 @@ export default class Coins extends React.Component {
       );
       const coinsMarketPriceArray = data.prices.map((item) => item[1]);
       const coinsMarketDateArray = data.prices.map((item) => item[0]);
+      const coinsMarketVolumeArray = data.total_volumes.map(item => item[1]);
       this.setState({
         coinsMarketDateArray,
         coinsMarketPriceArray,
+        coinsMarketVolumeArray,
         isLoading: false,
       });
     } catch (error) {
@@ -68,54 +58,13 @@ export default class Coins extends React.Component {
   }
 
   render() {
-    console.log(this.state.coinsMarketPriceArray);
-    const data = {
-      labels: this.state.coinsMarketDateArray.map((date) =>
-        formatTimestamp(date)
-      ),
-      datasets: [
-        {
-          label: 'BTC',
-          data: this.state.coinsMarketPriceArray,
-          fill: true,
-          backgroundColor: 'rgb(102, 153, 255, .5)',
-          borderColor: "rgb(75, 192, 192, .5)",
-          tension: 0.1,
-          pointRadius: 0,
-        },
-      ],
-    };
-
-    const options = {
-      scales: {
-        x: {
-          grid: {
-            display: false
-          }
-        },
-        y: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            beginAtZero: false,
-            callback: function (value) {
-              return (value / 1000).toFixed(0) + "K";
-            },
-          },
-        },
-      },
-    };
-    
     return (
       <StyledCoinsPage>
         <CoinsCont1>
           <Overview>Your Overview</Overview>
           <Cont1Wrapper>
-            <Chart1>
-              <Line data={data} options={options} />
-            </Chart1>
-            <Chart2></Chart2>
+            <CurrencyPriceChart prices={this.state.coinsMarketPriceArray} dates={this.state.coinsMarketDateArray} />
+            <CurrencyVolumeChart volumes={this.state.coinsMarketVolumeArray} dates={this.state.coinsMarketDateArray} />
           </Cont1Wrapper>
         </CoinsCont1>
         <CoinsCont2>
