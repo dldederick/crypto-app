@@ -1,6 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Legend,
+  Filler
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 import TopCryptoCurrencies from "../../components/TopCryptCurrencies";
 import {
@@ -12,15 +20,17 @@ import {
   Chart2,
   Overview,
 } from "./Coins.styles";
+import { formatTimestamp } from "../../Utils";
+import { withTheme } from "styled-components";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend);
+ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Filler);
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
     hasError: false,
     topCryptoCurrencies: [],
     coinsMarketPriceArray: [],
-    marketPrice: {}
+    coinsMarketDateArray: [],
   };
 
   getTopCryptoCurrencies = async () => {
@@ -38,14 +48,18 @@ export default class Coins extends React.Component {
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily`
-        );
-      const coinsMarketPriceArray = data.price.map(item => item[1][1]);
-      const marketPrice = data;
-      this.setState({ marketPrice, coinsMarketPriceArray, isLoading: false })
-    } catch(error) {
-      this.setState({ hasError: true, isLoading: false })
+      );
+      const coinsMarketPriceArray = data.prices.map((item) => item[1]);
+      const coinsMarketDateArray = data.prices.map((item) => item[0]);
+      this.setState({
+        coinsMarketDateArray,
+        coinsMarketPriceArray,
+        isLoading: false,
+      });
+    } catch (error) {
+      this.setState({ hasError: true, isLoading: false });
     }
-  }
+  };
 
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -56,30 +70,43 @@ export default class Coins extends React.Component {
   render() {
     console.log(this.state.coinsMarketPriceArray);
     const data = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: this.state.coinsMarketDateArray.map((date) =>
+        formatTimestamp(date)
+      ),
       datasets: [
         {
-          label: "My First Dataset",
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: "rgb(75, 192, 192)",
+          label: 'BTC',
+          data: this.state.coinsMarketPriceArray,
+          fill: true,
+          backgroundColor: 'rgb(102, 153, 255, .5)',
+          borderColor: "rgb(75, 192, 192, .5)",
           tension: 0.1,
+          pointRadius: 0,
         },
       ],
     };
 
     const options = {
-      // scales: {
-      //   yAxes: [
-      //     {
-      //       ticks: {
-      //         beginAtZero: true,
-      //       },
-      //     },
-      //   ],
-      // },
+      scales: {
+        x: {
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: false,
+            callback: function (value) {
+              return (value / 1000).toFixed(0) + "K";
+            },
+          },
+        },
+      },
     };
-
+    
     return (
       <StyledCoinsPage>
         <CoinsCont1>

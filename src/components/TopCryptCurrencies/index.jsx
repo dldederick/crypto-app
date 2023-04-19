@@ -44,7 +44,7 @@ export default function TopCryptoCurrencies(props) {
       </TopCurrencyHeader>
       {props.topCoinsData.map((obj, index) => {
         return (
-          <TopCurrencyCont>
+          <TopCurrencyCont key={index}>
             <TopIndex>{index + 1}</TopIndex>
             <TopId image={obj.image}>
               {capitalize(obj.id)} ({obj.symbol.toUpperCase()})
