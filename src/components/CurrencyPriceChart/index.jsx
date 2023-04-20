@@ -4,7 +4,7 @@ import {
   CategoryScale,
   LinearScale,
   Filler,
-//   Title,
+  PointElement
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Chart1 } from './CurrencyPriceChart.styles'
@@ -14,6 +14,8 @@ ChartJS.register(
   LineElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  Filler
 );
 
 export default function CurrencyPriceChart(props) {

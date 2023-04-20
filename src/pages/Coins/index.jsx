@@ -5,12 +5,16 @@ import {
   StyledCoinsPage,
   CoinsCont1,
   CoinsCont2,
-  Cont1Wrapper,
+  Wrapper1,
+  Wrapper2,
   Overview,
+  PriceOverview,
+  VolumeOverview
 } from "./Coins.styles";
-import { withTheme } from "styled-components";
+// import { withTheme } from "styled-components";
 import CurrencyPriceChart from "../../components/CurrencyPriceChart";
 import CurrencyVolumeChart from "../../components/CurrencyVolumeChart";
+import { currentDate, readableNum } from "../../Utils";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -39,7 +43,7 @@ export default class Coins extends React.Component {
       );
       const coinsMarketPriceArray = data.prices.map((item) => item[1]);
       const coinsMarketDateArray = data.prices.map((item) => item[0]);
-      const coinsMarketVolumeArray = data.total_volumes.map(item => item[1]);
+      const coinsMarketVolumeArray = data.total_volumes.map((item) => item[1]);
       this.setState({
         coinsMarketDateArray,
         coinsMarketPriceArray,
@@ -58,14 +62,28 @@ export default class Coins extends React.Component {
   }
 
   render() {
+    const bitcoinObj = this.state.topCryptoCurrencies.filter(
+      (obj) => obj.id === "bitcoin"
+    );
+    const bitcoinPrice = bitcoinObj[0]?.current_price;
+    const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
     return (
       <StyledCoinsPage>
         <CoinsCont1>
-          <Overview>Your Overview</Overview>
-          <Cont1Wrapper>
-            <CurrencyPriceChart prices={this.state.coinsMarketPriceArray} dates={this.state.coinsMarketDateArray} />
-            <CurrencyVolumeChart volumes={this.state.coinsMarketVolumeArray} dates={this.state.coinsMarketDateArray} />
-          </Cont1Wrapper>
+          <Wrapper1>
+            <PriceOverview>Bitcoin (BTC) Price: ${bitcoinPrice} </PriceOverview>
+            <CurrencyPriceChart
+              prices={this.state.coinsMarketPriceArray}
+              dates={this.state.coinsMarketDateArray}
+            />
+          </Wrapper1>
+          <Wrapper2>
+            <VolumeOverview>Bitcoin (BTC) Volume: ${bitcoinVolume} </VolumeOverview>
+            <CurrencyVolumeChart
+              volumes={this.state.coinsMarketVolumeArray}
+              dates={this.state.coinsMarketDateArray}
+            />
+          </Wrapper2>
         </CoinsCont1>
         <CoinsCont2>
           <Overview>Market Overview</Overview>

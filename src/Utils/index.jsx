@@ -38,3 +38,13 @@ export const formatChartPrices = (num) => {
       return num.toString();
     }
 }
+
+export function currentDate() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthAbbreviation = monthNames[date.getMonth()];
+  const day = String(date.getDate()).padStart(2, '0');
+  const formattedDate = `${monthAbbreviation} ${day} ${year}`;
+  return formattedDate
+}
