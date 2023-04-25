@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import TopCryptoCurrencies from "../../components/TopCryptCurrencies";
+import TopCryptoCurrencies from "../../components/TopCryptoCurrencies";
 import {
   StyledCoinsPage,
   CoinsCont1,
@@ -9,7 +9,8 @@ import {
   Wrapper2,
   Overview,
   PriceOverview,
-  VolumeOverview
+  VolumeOverview,
+  VolumeOverviewWrapper
 } from "./Coins.styles";
 // import { withTheme } from "styled-components";
 import CurrencyPriceChart from "../../components/CurrencyPriceChart";
@@ -67,18 +68,22 @@ export default class Coins extends React.Component {
     );
     const bitcoinPrice = bitcoinObj[0]?.current_price;
     const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
+    const bitcoinImage = bitcoinObj[0]?.image;
+    // console.log(this.state.topCryptoCurrencies)
     return (
       <StyledCoinsPage>
         <CoinsCont1>
           <Wrapper1>
-            <PriceOverview>Bitcoin (BTC) Price: ${bitcoinPrice} </PriceOverview>
+            <PriceOverview img={bitcoinImage}>Bitcoin (BTC) Price: ${bitcoinPrice} </PriceOverview>
             <CurrencyPriceChart
               prices={this.state.coinsMarketPriceArray}
               dates={this.state.coinsMarketDateArray}
             />
           </Wrapper1>
           <Wrapper2>
-            <VolumeOverview>Bitcoin (BTC) Volume: ${bitcoinVolume} </VolumeOverview>
+            <VolumeOverviewWrapper>
+              <VolumeOverview img={bitcoinImage} >Bitcoin (BTC) Volume: ${bitcoinVolume} </VolumeOverview>
+            </VolumeOverviewWrapper>
             <CurrencyVolumeChart
               volumes={this.state.coinsMarketVolumeArray}
               dates={this.state.coinsMarketDateArray}

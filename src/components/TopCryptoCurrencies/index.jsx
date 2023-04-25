@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   StyledTopCurrencies,
   TopCurrencyHeader,
@@ -12,9 +12,9 @@ import {
   Top1h,
   Top24h,
   Top7d,
+  Top7dChart,
   TopVolumeMarketCap,
   TopSupply,
-  Top7dChart,
   VolumeMarketCapValues,
   VolumeValue,
   MarketCapValue,
@@ -25,6 +25,7 @@ import {
   SupplyValue,
   CirculatingSupplyPercentageBar,
 } from "./TopCryptoCurrencies.styles";
+import Sparkline from '../Sparklines';
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {
@@ -84,7 +85,7 @@ export default function TopCryptoCurrencies(props) {
                 ></CirculatingSupplyPercentageBar>
               </TotalBar>
             </TopSupply>
-            <Top7dChart></Top7dChart>
+            <Sparkline data={obj.sparkline_in_7d.price} num={index} />
           </TopCurrencyCont>
         );
       })}

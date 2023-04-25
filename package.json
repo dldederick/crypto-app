@@ -17,7 +17,6 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
-    "react-sparklines": "^1.7.0",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
