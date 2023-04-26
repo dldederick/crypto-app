@@ -22,10 +22,10 @@ export default class CurrencySelect extends React.Component {
 
   render() {
     return (
-      <CurrencySelectStyles>
+      <CurrencySelectStyles onClick={this.handleClick}>
         <MoneyImage>$</MoneyImage>
         <MoneyOptionsContainer >
-          <span onClick={this.handleClick}>{this.state.selectedCurrency}</span>
+          <span >{this.state.selectedCurrency}</span>
           <DropdownVector onClick={this.handleClick}></DropdownVector>
           {this.state.isClicked && <DropDownMenu handleSelect={this.handleSelect} currencyType={this.props.currencyType} currencies={this.props.currencies}  />}
         </MoneyOptionsContainer>

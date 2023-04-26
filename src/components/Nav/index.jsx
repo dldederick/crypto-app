@@ -19,16 +19,18 @@ export default class Nav extends React.Component {
     isLoading: false,
     hasError: false,
     selectedCurrency: "usd",
+    searchedCoin: '',
     dominance: "btc",
     currencies: [],
     activeCryptoCurrencies: 0,
     markets: 0,
     totalMarketCap: 0,
     totalVolume: 0,
+    coinsList: []
   };
 
-  getGlobalCryptCurrencyData = async () => {
-    this.setState({ isLoading: true });
+  getGlobalCryptoCurrencyData = async () => {
+    // this.setState({ isLoading: true });
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
@@ -54,22 +56,39 @@ export default class Nav extends React.Component {
     }
   };
 
+  getCoinsList = async () => {
+    try {
+      const { data } = await axios(`https://api.coingecko.com/api/v3/coins/list`);
+      const coinsList = data.map(obj => obj.name);
+      this.setState({ coinsList, isLoading: false })
+    } catch(error) {
+      this.setState({ hasError: false, isLoading: false })
+    }
+  }
+
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
     this.setState({ selectedCurrency: lowerCase });
   };
 
+  handleSubmit = (item) => {
+    this.setState({ searchedCoin: item })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.selectedCurrency !== prevState.selectedCurrency) {
-      this.getGlobalCryptCurrencyData();
+      this.getGlobalCryptoCurrencyData();
     }
   }
 
   componentDidMount() {
-    this.getGlobalCryptCurrencyData();
+    this.setState({ isLoading: true });
+    this.getGlobalCryptoCurrencyData();
+    this.getCoinsList();
   }
 
   render() {
+    // console.log(this.state.currencies)
     return (
       <StyledNav>
         <TopNav>
@@ -82,7 +101,7 @@ export default class Nav extends React.Component {
             </div>
           </NavPages>
           <NavOptions>
-            <SearchBar />
+            <SearchBar coinsList={this.state.coinsList} handleSubmit={this.handleSubmit} />
             <CurrencySelect
               currencyType={this.state.currencyType}
               currencies={this.state.currencies}

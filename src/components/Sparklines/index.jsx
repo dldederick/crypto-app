@@ -17,14 +17,13 @@ import {
   export default function Sparkline(props) {
     const days = props.data.filter((value, index) => index % 24 === 0).map((value, index) => index);
     const amount = props.data.filter((value, index) => index % 24 === 0).map((value, index) => value);
-    console.log('howdy', days, amount)
     
     const data = {
         labels: days,
         datasets: [
           {
             data: amount,
-            borderColor: amount[0] < amount[amount.length-1] ? "#00ff5f" : 'red',
+            borderColor: amount[0] < amount[amount.length-1] ? "#00ff5f" : '#D9123A',
             tension: 0.1,
             pointStyle: false,
           },

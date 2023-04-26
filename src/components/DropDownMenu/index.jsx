@@ -6,33 +6,40 @@ import {
 } from "./DropDownMenu.styles";
 
 export default class DropDownMenu extends React.Component {
-    state = {
-        filteredValue: ''
-    }
+  state = {
+    filteredValue: "",
+  };
 
   handleSelect = (key) => {
     this.props.handleSelect(key);
   };
 
-    handleChange = (e) => {
-        const upperCase = e.target.value.toUpperCase();
-        this.setState({ filteredValue: upperCase })
-  }
+  handleChange = (e) => {
+    const upperCase = e.target.value.toUpperCase();
+    this.setState({ filteredValue: upperCase });
+  };
 
   render() {
     const filteredList = this.state.filteredValue
-    ? this.props.currencies.filter((item) =>
-        item.includes(this.state.filteredValue)
-      )
-    : this.props.currencies;
-  
+      ? this.props.currencies.filter((item) =>
+          item.includes(this.state.filteredValue)
+        )
+      : this.props.currencies;
+
     return (
       <StyledDropDown>
-        <input placeholder="Search" onChange={this.handleChange} value={this.state.filteredValue} ></input>
+        <input
+          placeholder="Search"
+          onChange={this.handleChange}
+          value={this.state.filteredValue}
+        ></input>
         <CurrencyList>
           {filteredList.map((key) => {
             return (
-              <CurrencyListItems key={key} onClick={() => this.handleSelect(key)}>
+              <CurrencyListItems
+                key={key}
+                onClick={() => this.handleSelect(key)}
+              >
                 {key}
               </CurrencyListItems>
             );
@@ -41,5 +48,4 @@ export default class DropDownMenu extends React.Component {
       </StyledDropDown>
     );
   }
-  
 }

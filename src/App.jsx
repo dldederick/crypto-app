@@ -10,6 +10,7 @@ export default class App extends React.Component {
   state = {
     selectedCurrency: 'usd'
   }
+  
   render() {
     return (
       <Router>

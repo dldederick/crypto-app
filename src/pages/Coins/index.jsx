@@ -15,7 +15,7 @@ import {
 // import { withTheme } from "styled-components";
 import CurrencyPriceChart from "../../components/CurrencyPriceChart";
 import CurrencyVolumeChart from "../../components/CurrencyVolumeChart";
-import { currentDate, readableNum } from "../../Utils";
+import { readableNum } from "../../Utils";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -66,10 +66,10 @@ export default class Coins extends React.Component {
     const bitcoinObj = this.state.topCryptoCurrencies.filter(
       (obj) => obj.id === "bitcoin"
     );
-    const bitcoinPrice = bitcoinObj[0]?.current_price;
+    const bitcoinPrice = readableNum(bitcoinObj[0]?.current_price);
     const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
     const bitcoinImage = bitcoinObj[0]?.image;
-    // console.log(this.state.topCryptoCurrencies)
+    console.log(this.state.topCryptoCurrencies)
     return (
       <StyledCoinsPage>
         <CoinsCont1>

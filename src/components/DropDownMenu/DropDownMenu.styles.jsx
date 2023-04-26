@@ -43,7 +43,6 @@ export const CurrencyList = styled.div`
   overflow-y: scroll;
   display: flex;
   align-items: center;
-//   padding-top: 5px;
   flex-direction: column;
 
   ::-webkit-scrollbar {
