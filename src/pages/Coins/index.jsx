@@ -1,21 +1,7 @@
 import React from "react";
 import axios from "axios";
-import TopCryptoCurrencies from "../../components/TopCryptoCurrencies";
-import {
-  StyledCoinsPage,
-  CoinsCont1,
-  CoinsCont2,
-  Wrapper1,
-  Wrapper2,
-  Overview,
-  PriceOverview,
-  VolumeOverview,
-  VolumeOverviewWrapper
-} from "./Coins.styles";
-// import { withTheme } from "styled-components";
-import CurrencyPriceChart from "../../components/CurrencyPriceChart";
-import CurrencyVolumeChart from "../../components/CurrencyVolumeChart";
-import { readableNum } from "../../Utils";
+import { StyledCoinsPage } from "./Coins.styles";
+import ChartOverview from "../../components/ChartOverview";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -24,6 +10,7 @@ export default class Coins extends React.Component {
     coinsMarketPriceArray: [],
     coinsMarketDateArray: [],
     coinsMarketVolumeArray: [],
+    coinClicked: false,
   };
 
   getTopCryptoCurrencies = async () => {
@@ -63,37 +50,15 @@ export default class Coins extends React.Component {
   }
 
   render() {
-    const bitcoinObj = this.state.topCryptoCurrencies.filter(
-      (obj) => obj.id === "bitcoin"
-    );
-    const bitcoinPrice = readableNum(bitcoinObj[0]?.current_price);
-    const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
-    const bitcoinImage = bitcoinObj[0]?.image;
-    console.log(this.state.topCryptoCurrencies)
+    // console.log(this.state.topCryptoCurrencies)
     return (
       <StyledCoinsPage>
-        <CoinsCont1>
-          <Wrapper1>
-            <PriceOverview img={bitcoinImage}>Bitcoin (BTC) Price: ${bitcoinPrice} </PriceOverview>
-            <CurrencyPriceChart
-              prices={this.state.coinsMarketPriceArray}
-              dates={this.state.coinsMarketDateArray}
-            />
-          </Wrapper1>
-          <Wrapper2>
-            <VolumeOverviewWrapper>
-              <VolumeOverview img={bitcoinImage} >Bitcoin (BTC) Volume: ${bitcoinVolume} </VolumeOverview>
-            </VolumeOverviewWrapper>
-            <CurrencyVolumeChart
-              volumes={this.state.coinsMarketVolumeArray}
-              dates={this.state.coinsMarketDateArray}
-            />
-          </Wrapper2>
-        </CoinsCont1>
-        <CoinsCont2>
-          <Overview>Market Overview</Overview>
-          <TopCryptoCurrencies topCoinsData={this.state.topCryptoCurrencies} />
-        </CoinsCont2>
+        <ChartOverview
+          topCryptoCurrencies={this.state.topCryptoCurrencies}
+          coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
+          coinsMarketDateArray={this.state.coinsMarketDateArray}
+          coinsMarketPriceArray={this.state.coinsMarketPriceArray}
+        />
       </StyledCoinsPage>
     );
   }

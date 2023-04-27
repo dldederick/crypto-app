@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
 import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
 import Portfolio from "./pages/Portfolio";
@@ -10,7 +9,7 @@ export default class App extends React.Component {
   state = {
     selectedCurrency: 'usd'
   }
-  
+
   render() {
     return (
       <Router>

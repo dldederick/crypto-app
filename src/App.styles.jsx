@@ -8,4 +8,3 @@ display: flex;
 position: relative;
 border-radius: 10px;
 justify-contents: center;`
-// border: 1px red solid;`
