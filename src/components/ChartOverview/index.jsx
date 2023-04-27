@@ -15,6 +15,10 @@ import {
   import { readableNum } from "../../Utils";
 
 export default class ChartOverview extends React.Component {
+    handleClick = () => {
+        this.props.handleClick()
+    }
+    
   render() {
     const bitcoinObj = this.props.topCryptoCurrencies.filter(
         (obj) => obj.id === "bitcoin"
@@ -22,6 +26,7 @@ export default class ChartOverview extends React.Component {
       const bitcoinPrice = readableNum(bitcoinObj[0]?.current_price);
       const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
       const bitcoinImage = bitcoinObj[0]?.image;
+
     return (
       <>
         <CoinsCont1>
@@ -48,7 +53,7 @@ export default class ChartOverview extends React.Component {
         </CoinsCont1>
         <CoinsCont2>
           <Overview>Market Overview</Overview>
-          <TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies} />
+          <TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies} handleClick={this.handleClick} />
         </CoinsCont2>
       </>
     );

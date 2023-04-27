@@ -29,6 +29,9 @@ import Sparkline from '../Sparklines';
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {
+  // function handleClick() {
+  //   props.handleClick()
+  // }
   return (
     <StyledTopCurrencies>
       <TopCurrencyHeader>
@@ -44,7 +47,7 @@ export default function TopCryptoCurrencies(props) {
       </TopCurrencyHeader>
       {props.topCoinsData.map((obj, index) => {
         return (
-          <TopCurrencyCont key={index}>
+          <TopCurrencyCont key={obj.id} onClick={props.handleClick}>
             <TopIndex>{index + 1}</TopIndex>
             <TopId image={obj.image}>
               {capitalize(obj.id)} ({obj.symbol.toUpperCase()})

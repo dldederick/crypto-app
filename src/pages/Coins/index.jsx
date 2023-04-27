@@ -49,8 +49,16 @@ export default class Coins extends React.Component {
     this.getCoinsMarketChart();
   }
 
+  handleClick = () => {
+    this.setState((prevState) => ({
+      coinClicked: !prevState.coinClicked
+    })
+    )
+  }
+
   render() {
     // console.log(this.state.topCryptoCurrencies)
+    console.log(this.state.coinClicked)
     return (
       <StyledCoinsPage>
         <ChartOverview
@@ -58,6 +66,7 @@ export default class Coins extends React.Component {
           coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
           coinsMarketDateArray={this.state.coinsMarketDateArray}
           coinsMarketPriceArray={this.state.coinsMarketPriceArray}
+          handleClick={this.handleClick}
         />
       </StyledCoinsPage>
     );
