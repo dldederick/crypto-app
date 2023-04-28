@@ -21,6 +21,10 @@ export const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }
 
+export function capitalLetter(str) {
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
 export const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
   const month = date.toLocaleString('default', {month: 'short'});

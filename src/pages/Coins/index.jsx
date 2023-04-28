@@ -78,7 +78,7 @@ export default class Coins extends React.Component {
   };
 
   render() {
-    console.log(this.state.coinInfo);
+    // console.log(this.state.coinInfo);
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
