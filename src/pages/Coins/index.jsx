@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { StyledCoinsPage } from "./Coins.styles";
 import ChartOverview from "../../components/ChartOverview";
+import CoinInfoPage from "../../components/CoinInfoPage";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -10,7 +11,9 @@ export default class Coins extends React.Component {
     coinsMarketPriceArray: [],
     coinsMarketDateArray: [],
     coinsMarketVolumeArray: [],
-    coinClicked: false,
+    coinIsClicked: false,
+    coinClicked: "",
+    coinInfo: {}
   };
 
   getTopCryptoCurrencies = async () => {
@@ -43,31 +46,52 @@ export default class Coins extends React.Component {
     }
   };
 
+  getCoinInfo = async (id) => {
+    // id = this.state.coinClicked;
+    try {
+      const { data } = await axios(
+        `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`
+      );
+      this.setState({ coinInfo: data, isLoading: false });
+    } catch (error) {
+      this.setState({ hasError: true, isLoading: false });
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.coinClicked !== prevState.coinClicked) {
+      this.getCoinInfo(this.state.coinClicked);
+    }
+  }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getTopCryptoCurrencies();
     this.getCoinsMarketChart();
   }
 
-  handleClick = () => {
+  handleClick = (id) => {
     this.setState((prevState) => ({
-      coinClicked: !prevState.coinClicked
-    })
-    )
-  }
+      coinIsClicked: !prevState.coinIsClicked,
+      coinClicked: id,
+    }));
+  };
 
   render() {
-    // console.log(this.state.topCryptoCurrencies)
-    console.log(this.state.coinClicked)
+    console.log(this.state.coinInfo);
     return (
       <StyledCoinsPage>
-        <ChartOverview
-          topCryptoCurrencies={this.state.topCryptoCurrencies}
-          coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
-          coinsMarketDateArray={this.state.coinsMarketDateArray}
-          coinsMarketPriceArray={this.state.coinsMarketPriceArray}
-          handleClick={this.handleClick}
-        />
+        {this.state.coinIsClicked ? (
+          <CoinInfoPage coinInfo={this.state.coinInfo} />
+        ) : (
+          <ChartOverview
+            topCryptoCurrencies={this.state.topCryptoCurrencies}
+            coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
+            coinsMarketDateArray={this.state.coinsMarketDateArray}
+            coinsMarketPriceArray={this.state.coinsMarketPriceArray}
+            handleClick={this.handleClick}
+          />
+        )}
       </StyledCoinsPage>
     );
   }
