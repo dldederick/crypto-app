@@ -15,17 +15,17 @@ import {
   Top7dChart,
   TopVolumeMarketCap,
   TopSupply,
-  VolumeMarketCapValues,
-  VolumeValue,
-  MarketCapValue,
-  TotalBar,
-  VolumeMarketCapPercentageBar,
   CirculatingSupplyValues,
   CirculatingValue,
   SupplyValue,
   CirculatingSupplyPercentageBar,
+  VolumeMarketCapPercentageBar,
+  VolumeMarketCapValues,
+  VolumeValue,
+  MarketCapValue,
+  TotalBar
 } from "./TopCryptoCurrencies.styles";
-import Sparkline from '../Sparklines';
+import Sparkline from "../Sparklines";
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {
@@ -44,7 +44,10 @@ export default function TopCryptoCurrencies(props) {
       </TopCurrencyHeader>
       {props.topCoinsData.map((obj, index) => {
         return (
-          <TopCurrencyCont key={obj.id} onClick={(e) => props.handleClick(obj.id)}>
+          <TopCurrencyCont
+            key={obj.id}
+            onClick={(e) => props.handleClick(obj.id)}
+          >
             <TopIndex>{index + 1}</TopIndex>
             <TopId image={obj.image}>
               {capitalize(obj.id)} ({obj.symbol.toUpperCase()})

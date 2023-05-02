@@ -52,3 +52,12 @@ export function currentDate() {
   const formattedDate = `${monthAbbreviation} ${day} ${year}`;
   return formattedDate
 }
+
+export function convertDate(date) {
+const isoDate = date;
+const newDate = new Date(isoDate);
+const formattedDate = newDate.toLocaleDateString();
+const formattedTime = newDate.toLocaleTimeString().replace(/:\d\d\s/,' ');
+const formattedDateTime = `${formattedDate} ${formattedTime}`;
+return formattedDateTime;
+}

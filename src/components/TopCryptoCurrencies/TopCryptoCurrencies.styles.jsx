@@ -97,46 +97,19 @@ export const TopVolumeMarketCap = styled.div`
   width: 180px;
 `;
 
-export const VolumeMarketCapValues = styled.div`
-  width: 100%;
-  height: 22px;
-  display: flex;
-  font-size: 13px;
-  justify-content: space-between;
-`;
-
-export const VolumeValue = styled.div`
-  text-align: left;
-`;
-
-export const MarketCapValue = styled.div`
-  text-align: right;
-`;
-
 export const Top1hHeader = styled.div`
-width: 40px;
-text-indent: 19px;`
+  width: 40px;
+  text-indent: 19px;
+`;
 
 export const Top24hHeader = styled.div`
-width: 40px;
-text-indent: 19px;`
-
-export const Top7dHeader = styled.div`
-width: 40px;
-text-indent: 19px;`
-
-export const TotalBar = styled.div`
-  width: 100%;
-  height: 8px;
-  background-color: #2c2f36;
-  border-radius: 5px;
+  width: 40px;
+  text-indent: 19px;
 `;
 
-export const VolumeMarketCapPercentageBar = styled.div`
-  height: 8px;
-  width: ${(props) => props.volumePercentage * 100}%;
-  background-color: #6699ff;
-  border-radius: 5px;
+export const Top7dHeader = styled.div`
+  width: 40px;
+  text-indent: 19px;
 `;
 
 export const CirculatingSupplyValues = styled.div`
@@ -168,4 +141,34 @@ export const TopSupply = styled.div`
 
 export const Top7dChart = styled.div`
   width: 80px;
+`;
+
+export const VolumeMarketCapValues = styled.div`
+  width: 100%;
+  height: 22px;
+  display: flex;
+  font-size: 13px;
+  justify-content: space-between;
+`;
+
+export const VolumeValue = styled.div`
+  text-align: left;
+`;
+
+export const MarketCapValue = styled.div`
+  text-align: right;
+`;
+
+export const TotalBar = styled.div`
+  width: 100%;
+  height: 8px;
+  background-color: #2c2f36;
+  border-radius: 5px;
+`;
+
+export const VolumeMarketCapPercentageBar = styled.div`
+  height: 8px;
+  width: ${(props) => props.volumePercentage * 100}%;
+  background-color: #6699ff;
+  border-radius: 5px;
 `;

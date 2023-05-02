@@ -11,8 +11,9 @@ export const StyledNav = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;`
+  // border-top-right-radius: 10px;
+  // border-top-left-radius: 10px;
+  border-radius: 10px;`
 
 export const TopNav = styled.div`
 display: flex;

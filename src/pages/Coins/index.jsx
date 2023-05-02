@@ -46,23 +46,11 @@ export default class Coins extends React.Component {
     }
   };
 
-  getCoinInfo = async (id) => {
-    // id = this.state.coinClicked;
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`
-      );
-      this.setState({ coinInfo: data, isLoading: false });
-    } catch (error) {
-      this.setState({ hasError: true, isLoading: false });
-    }
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.coinClicked !== prevState.coinClicked) {
-      this.getCoinInfo(this.state.coinClicked);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.coinIsClicked !== prevState.coinIsClicked) {
+  //     this.setState({ coinIsClicked: !prevState.coinIsClicked })
+  //   }
+  // }
 
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -82,7 +70,7 @@ export default class Coins extends React.Component {
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
-          <CoinInfoPage coinInfo={this.state.coinInfo} />
+          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} />
         ) : (
           <ChartOverview
             topCryptoCurrencies={this.state.topCryptoCurrencies}

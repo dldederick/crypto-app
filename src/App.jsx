@@ -11,9 +11,11 @@ export default class App extends React.Component {
   }
 
   render() {
+
     // handleSelect = (key) => {
     //   this.setState({ selectedCurrency: key })
     // }
+    
     return (
       <Router>
         <AppDesign>

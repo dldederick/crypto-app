@@ -6,9 +6,9 @@ export const StyledCoinInfo = styled.div`
   flex-direction: column;
   gap: 50px;
   padding: 20px;
-  justify-content: center;
+  //   justify-content: center;
   margin: 0 auto;
-  padding-top: 200px;
+  //   padding-top: 200px;
 `;
 export const SummaryWrapper = styled.div`
   width: 100%;
@@ -17,20 +17,23 @@ export const SummaryWrapper = styled.div`
 `;
 
 export const CoinCont = styled.div`
-  width: 30%;
-  height: 100%;
+  width: 20%;
+  height: 60%;
+  background: #1f2128;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-//   justify-content: space-around;
-  border: 1px pink solid;
+  //   justify-content: space-around;
+  // border: 1px pink solid;
 
   div {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
     align-items: center;
+    // border: 1px blue solid;
   }
 `;
 
@@ -40,12 +43,14 @@ export const CoinImage = styled.div`
   background-image: url(${(props) => props.image});
   background-size: 50px 50px;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center;
+  //   border: 1px pink solid;
 `;
 
 export const CoinName = styled.div`
   width: 100%;
-  height: 70%;
+  height: 80px;
+  //   border: 1px red solid;
 `;
 
 export const CoinLink = styled.div`
@@ -53,31 +58,97 @@ export const CoinLink = styled.div`
 margin: 0 auto;
   height: 20%;
   background-image: url('https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png');
-  background-size: 15px 15px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
   text-indent 25px;
 `;
 
 export const CoinHighlights = styled.div`
-  width: 30%;
-  height: 100%;
-  border: 1px blue solid;
+  width: 20%;
+  height: 60%;
+  background: #1f2128;
+  border-radius: 10px;
+  //   border: 1px blue solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
 `;
 
-export const CoinSpecfics = styled.div`
-  width: 30%;
-  height: 100%;
-  border: 1px orange solid;
+export const CoinPriceData = styled.div`
+    display: flex;
+    gap: 20px;
+    
+    > div:nth-child(2) {
+        text-indent: 19px;
+        color: ${(props) => (props.value > 0 ? " #00ff5f" : "#D9123A")};
+        background-image: url(${(props) =>
+          props.value > 0
+            ? "https://i.postimg.cc/bJxz2MGv/Polygon-2.png"
+            : "https://i.postimg.cc/xCqJqzr1/Polygon-3-1.png"});
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: 10px 4px;  
+    })`;
+
+export const CoinSupplyData = styled.div`
+  width: 20%;
+  height: 60%;
+  background: #1f2128;
+  border-radius: 10px;
+  //   border: 1px orange solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const CoinMarketVolumeData = styled.div`
+  width: 20%;
+  height: 60%;
+  background: #1f2128;
+  border-radius: 10px;
+  //   border: 1px orange solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 `;
 
 export const DescriptionWrapper = styled.div`
+  padding: 50px;
   background-color: #191b1f;
+  border-radius: 10px;
 `;
 
-export const LinkWrapper = styled.div``;
+export const LinkWrapper = styled.div`
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
 
-export const ConvertCont = styled.div``;
+  //   div {
+  //     width: 25%;
+  //     border-radius: 10px;
+  //     background: #191b1f;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
+  //     background-size: 20px 20px;
+  //     background-repeat: no-repeat;
+  //     background-position: left 20px center;
+  //   }
+`;
 
 export const CoinInfoHeader = styled.div`
   display: flex;
@@ -113,8 +184,11 @@ export const CoinInfoCont = styled.div`
   height: 300px;
   width: 100%;
   border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const Circle = styled.div`
@@ -129,4 +203,261 @@ export const Period = styled.div`
   justify-content: center;
   gap: 15px;
   align-items: center;
+`;
+
+export const CoinSupplyPercent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+`;
+
+export const CoinSupplyBar = styled.div`
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+`;
+
+export const CoinSupplyBars = styled.div`
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #191B1F;
+
+  > div:nth-child(1) {
+    width: ${(props) => props.supplyPercent}%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #6699ff;
+  }
+`;
+
+export const CoinMarketVolumePercent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+`;
+
+export const CoinMarketVolumeBar = styled.div`
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+`;
+
+export const CoinMarketVolumeBars = styled.div`
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #191B1F;
+
+  > div:nth-child(1) {
+    width: ${(props) => props.supplyPercent}%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #6699ff;
+  }
+`;
+
+export const CoinAth = styled.div`
+  text-align: center;
+  //   margin: auto 0;
+`;
+
+export const CoinAtl = styled.div`
+  text-align: center;
+  //   margin: auto 0;
+`;
+
+export const ConvertCont = styled.div`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  align-items: center;
+`;
+
+export const ConvertIcon = styled.div`
+  width: 50px;
+  height: 100%;
+  background-image: url("https://i.postimg.cc/zfxZRZrh/Icon-awesome-exchang.png");
+  background-repeat: no-repeat;
+  background-size: 35px 35px;
+  background-position: center;
+`;
+
+export const ConvertCurrencyOne = styled.div`
+  width: 45%;
+  height: 100%;
+  display: flex;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    background-color: #00ff5f;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #191b1f;
+    font-size: boldest;
+  }
+
+  input {
+    width: 70%;
+    height: 100%;
+    background-color: #191b1f;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+  }
+`;
+
+export const ConvertCurrencyTwo = styled.div`
+  width: 45%;
+  height: 100%;
+  display: flex;
+  border-radius: 10px;
+
+  input {
+    width: 70%;
+    height: 100%;
+    background-color: #191b1f;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    outline: none;
+    border: none;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    background-color: #00ff5f;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #191b1f;
+    font-size: boldest;
+  }
+`;
+
+export const Link1 = styled.div`
+  width: 25%;
+  border-radius: 10px;
+  background: #191b1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div:nth-child(1) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  > div:nth-child(2) {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  > div:nth-child(3) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
+
+export const Link2 = styled.div`
+  width: 25%;
+  height: 100%
+  border-radius: 10px;
+  background: #191b1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div:nth-child(1) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  > div:nth-child(2) {
+    width: 60%;
+    height: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  }
+
+  > div:nth-child(3) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
+
+export const Link3 = styled.div`
+  width: 25%;
+  height: 100%;
+  border-radius: 10px;
+  background: #191b1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div:nth-child(1) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  > div:nth-child(2) {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  > div:nth-child(3) {
+    width: 20%;
+    height: 100%;
+    background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 `;
