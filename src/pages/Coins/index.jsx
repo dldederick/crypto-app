@@ -66,11 +66,11 @@ export default class Coins extends React.Component {
   };
 
   render() {
-    // console.log(this.state.coinInfo);
+    console.log(this.state.coinsMarketPriceArray, this.state.coinsMarketDateArray);
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
-          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} />
+          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} marketPrices={this.state.coinsMarketPriceArray} marketPriceDates={this.state.coinsMarketDateArray} />
         ) : (
           <ChartOverview
             topCryptoCurrencies={this.state.topCryptoCurrencies}

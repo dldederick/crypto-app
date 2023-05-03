@@ -13,8 +13,10 @@ export const StyledCoinInfo = styled.div`
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
+  height: 480px;
   flex-direction: column;
-  border: 1px red solid;
+//   border: 1px red solid;
+  overflow: hidden;
 `;
 
 export const CoinCont = styled.div`

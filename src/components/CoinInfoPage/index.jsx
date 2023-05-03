@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import CoinDataChart from "../CoinDataChart";
+import CoinDataChart from "../CoinDataChart";
 import {
   StyledCoinInfo,
   SummaryWrapper,
@@ -212,7 +212,7 @@ handleClick = (id) => {
                 </Period>
               ))}
             </TimePeriod>
-            {/* <CoinDataChart coinInfo={info}/> */}
+            <CoinDataChart coinInfo={info} marketPrices={this.props.marketPrices} marketPriceDates={this.props.marketPriceDates} />
           </CoinInfoCont>
         </SummaryWrapper>
         <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
