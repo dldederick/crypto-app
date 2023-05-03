@@ -70,7 +70,7 @@ export default class Coins extends React.Component {
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
-          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} marketPrices={this.state.coinsMarketPriceArray} marketPriceDates={this.state.coinsMarketDateArray} />
+          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} />
         ) : (
           <ChartOverview
             topCryptoCurrencies={this.state.topCryptoCurrencies}

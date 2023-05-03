@@ -13,9 +13,10 @@ export const StyledCoinInfo = styled.div`
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
-  height: 480px;
+  height: 482px;
   flex-direction: column;
 //   border: 1px red solid;
+border-radius: 10px;
   overflow: hidden;
 `;
 
@@ -190,7 +191,7 @@ export const CoinInfoCont = styled.div`
   width: 100%;
   border-radius: 10px;
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-right-radius: 10px;
   display: flex;
   padding-top: 50px;
   flex-direction: column;
@@ -210,6 +211,7 @@ export const Circle = styled.div`
   height: 12px;
   border: 1px solid green;
   border-radius: 50%;
+  background-color: ${(props) => props.item === props.isSelected ? 'green' : 'none' }
 `;
 
 export const Period = styled.div`

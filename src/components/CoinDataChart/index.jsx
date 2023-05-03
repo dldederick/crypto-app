@@ -21,7 +21,7 @@ import {
 
 export default function CoinDataChart(props) {
     const data = {
-        labels: props.marketPriceDates.map((date) => formatTimestamp(date)),
+        labels: props.marketDates.map((date) => formatTimestamp(date)),
         datasets: [
           {
             data: props.marketPrices,
