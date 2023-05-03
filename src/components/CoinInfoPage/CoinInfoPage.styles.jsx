@@ -8,17 +8,18 @@ export const StyledCoinInfo = styled.div`
   padding: 20px;
   //   justify-content: center;
   margin: 0 auto;
-  //   padding-top: 200px;
+    // padding-top: 100px;
 `;
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px red solid;
 `;
 
 export const CoinCont = styled.div`
   width: 20%;
-  height: 60%;
+  height: 170px;
   background: #1f2128;
   border-radius: 10px;
   display: flex;
@@ -66,7 +67,7 @@ margin: 0 auto;
 
 export const CoinHighlights = styled.div`
   width: 20%;
-  height: 60%;
+  height: 170px;
   background: #1f2128;
   border-radius: 10px;
   //   border: 1px blue solid;
@@ -101,7 +102,7 @@ export const CoinPriceData = styled.div`
 
 export const CoinSupplyData = styled.div`
   width: 20%;
-  height: 60%;
+  height: 170px;
   background: #1f2128;
   border-radius: 10px;
   //   border: 1px orange solid;
@@ -114,7 +115,7 @@ export const CoinSupplyData = styled.div`
 
 export const CoinMarketVolumeData = styled.div`
   width: 20%;
-  height: 60%;
+  height: 170px;
   background: #1f2128;
   border-radius: 10px;
   //   border: 1px orange solid;
@@ -154,6 +155,7 @@ export const CoinInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  
 `;
 
 export const CoinInfoSummary = styled.div`
@@ -176,19 +178,29 @@ export const TimePeriod = styled.div`
   height: 40px;
   line-height: 40px;
   gap: 20px;
+  margin-top: 20px;
   align-items: center;
 `;
 
 export const CoinInfoCont = styled.div`
   background-color: #191b1f;
-  height: 300px;
+  height: 400px;
   width: 100%;
   border-radius: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   display: flex;
-  justify-content: space-around;
+  padding-top: 50px;
+  flex-direction: column;
+//   justify-content: center;
   align-items: center;
+
+  > div:nth-child(1) {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 `;
 
 export const Circle = styled.div`
@@ -289,7 +301,7 @@ export const ConvertIcon = styled.div`
   height: 100%;
   background-image: url("https://i.postimg.cc/zfxZRZrh/Icon-awesome-exchang.png");
   background-repeat: no-repeat;
-  background-size: 35px 35px;
+  background-size: 25px 25px;
   background-position: center;
 `;
 
@@ -390,7 +402,7 @@ export const Link1 = styled.div`
 
 export const Link2 = styled.div`
   width: 25%;
-  height: 100%
+  height: 100%;
   border-radius: 10px;
   background: #191b1f;
   display: flex;

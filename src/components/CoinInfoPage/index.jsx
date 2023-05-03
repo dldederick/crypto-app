@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+// import CoinDataChart from "../CoinDataChart";
 import {
   StyledCoinInfo,
   SummaryWrapper,
@@ -42,6 +43,7 @@ export default class CoinsInfoPage extends React.Component {
     coinInfo: {},
     isLoading: false,
     hasError: false,
+    periodSelected: ''
   };
 
   getCoinInfo = async (id) => {
@@ -55,6 +57,14 @@ export default class CoinsInfoPage extends React.Component {
     }
   };
 
+//   handleConversion() {
+//     this
+//   }
+
+handleClick = (id) => {
+    this.setState({ periodSelected: id })
+}
+
   componentDidMount() {
     this.getCoinInfo(this.props.coinClicked);
   }
@@ -65,19 +75,24 @@ export default class CoinsInfoPage extends React.Component {
     console.log(info);
     return (
       <StyledCoinInfo>
+        <ConvertCont>
+          <ConvertCurrencyOne>
+            <div>USD</div>
+            <input></input>
+          </ConvertCurrencyOne>
+          <ConvertIcon onClick={this.handleConversion}></ConvertIcon>
+          <ConvertCurrencyTwo>
+            <input></input>
+            <div>BTC</div>
+          </ConvertCurrencyTwo>
+        </ConvertCont>
         <SummaryWrapper>
           <CoinInfoHeader>
             <CoinInfoSummary>Coin Summary</CoinInfoSummary>
-            <TimePeriod>
-              {timePeriods.map((item) => (
-                <Period key={item}>
-                  <Circle></Circle>
-                  <p>{item}</p>
-                </Period>
-              ))}
-            </TimePeriod>
+            
           </CoinInfoHeader>
           <CoinInfoCont>
+            <div>
             <CoinCont>
               <div>
                 <CoinImage image={info.image?.large}></CoinImage>
@@ -128,7 +143,7 @@ export default class CoinsInfoPage extends React.Component {
               </div>
               <CoinMarketVolumeBar>
                 <CoinMarketVolumePercent>
-                  <div>{readableNum(info.market_data?.circulating_supply)}</div>
+                  <div>{readableNum(info.market_data?.market_cap?.btc)}</div>
                   <div>
                     {readableNum(
                       info.market_data?.total_volume?.btc /
@@ -136,13 +151,13 @@ export default class CoinsInfoPage extends React.Component {
                     )}
                     %
                   </div>
-                  <div>{readableNum(info.market_data?.max_supply)}</div>
+                  <div>{readableNum(info.market_data?.total_volume?.btc)}</div>
                 </CoinMarketVolumePercent>
                 <CoinMarketVolumeBars
                   supplyPercent={
                     roundedPercentage(
-                      info.market_data?.circulating_supply /
-                        info.market_data?.max_supply
+                        info.market_data?.total_volume?.btc /
+                        info.market_data?.market_cap?.btc
                     ) * 100
                   }
                 >
@@ -188,6 +203,16 @@ export default class CoinsInfoPage extends React.Component {
                 </CoinSupplyBars>
               </CoinSupplyBar>
             </CoinSupplyData>
+            </div>
+            <TimePeriod>
+              {timePeriods.map((item) => (
+                <Period key={item}>
+                  <Circle onClick={() => this.handleClick(item)}></Circle>
+                  <p>{item}</p>
+                </Period>
+              ))}
+            </TimePeriod>
+            {/* <CoinDataChart coinInfo={info}/> */}
           </CoinInfoCont>
         </SummaryWrapper>
         <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
@@ -208,17 +233,6 @@ export default class CoinsInfoPage extends React.Component {
             <div></div>
           </Link3>
         </LinkWrapper>
-        <ConvertCont>
-          <ConvertCurrencyOne>
-            <div>USD</div>
-            <input></input>
-          </ConvertCurrencyOne>
-          <ConvertIcon></ConvertIcon>
-          <ConvertCurrencyTwo>
-            <input></input>
-            <div>BTC</div>
-          </ConvertCurrencyTwo>
-        </ConvertCont>
       </StyledCoinInfo>
     );
   }
