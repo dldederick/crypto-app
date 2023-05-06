@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledNav = styled.div`
   // border: 1px yellow solid;
@@ -44,7 +45,7 @@ export const NavPages = styled.div`
   }
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
 `;

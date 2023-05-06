@@ -20,8 +20,11 @@ export default class ChartOverview extends React.Component {
     }
 
   render() {
+    // console.log(this.props.topCryptoCurrencies)
+    const currency = this.props.selectedCurrency;
+    console.log(currency)
     const bitcoinObj = this.props.topCryptoCurrencies.filter(
-        (obj) => obj.id === "bitcoin"
+        (obj) => obj.symbol === currency
       );
       const bitcoinPrice = readableNum(bitcoinObj[0]?.current_price);
       const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
@@ -31,7 +34,7 @@ export default class ChartOverview extends React.Component {
         <CoinsCont1>
           <Wrapper1>
             <PriceOverview img={bitcoinImage}>
-              Bitcoin (BTC) Price: ${bitcoinPrice}{" "}
+              {bitcoinObj.id} (BTC) Price: ${bitcoinPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.props.coinsMarketPriceArray}

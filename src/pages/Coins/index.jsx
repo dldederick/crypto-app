@@ -13,13 +13,14 @@ export default class Coins extends React.Component {
     coinsMarketVolumeArray: [],
     coinIsClicked: false,
     coinClicked: "",
-    coinInfo: {}
+    coinInfo: {},
+    selectedCurrency: ''
   };
 
-  getTopCryptoCurrencies = async () => {
+  getTopCryptoCurrencies = async (currency) => {
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       this.setState({ topCryptoCurrencies: data, isLoading: false });
     } catch (error) {
@@ -27,10 +28,10 @@ export default class Coins extends React.Component {
     }
   };
 
-  getCoinsMarketChart = async () => {
+  getCoinsMarketChart = async (currency) => {
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily`
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=180&interval=daily`
       );
       const coinsMarketPriceArray = data.prices.map((item) => item[1]);
       const coinsMarketDateArray = data.prices.map((item) => item[0]);
@@ -46,16 +47,20 @@ export default class Coins extends React.Component {
     }
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.coinIsClicked !== prevState.coinIsClicked) {
-  //     this.setState({ coinIsClicked: !prevState.coinIsClicked })
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    // if (this.state.coinIsClicked !== prevState.coinIsClicked) {
+    //   this.setState({ coinIsClicked: !prevState.coinIsClicked })
+    // }
+    if (this.state.selectedCurrency !== prevState.selectedCurrency) {
+      this.getTopCryptoCurrencies(this.state.selectedCurrency);
+      this.getCoinsMarketChart(this.state.selectedCurrency);
+    }
+  }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    this.getTopCryptoCurrencies();
-    this.getCoinsMarketChart();
+    this.setState({ isLoading: true, selectedCurrency: this.props.selectedCurrency });
+    this.getTopCryptoCurrencies(this.props.selectedCurrency);
+    this.getCoinsMarketChart(this.props.selectedCurrency);
   }
 
   handleClick = (id) => {
@@ -63,10 +68,11 @@ export default class Coins extends React.Component {
       coinIsClicked: !prevState.coinIsClicked,
       coinClicked: id,
     }));
+    
   };
 
   render() {
-    console.log(this.state.coinsMarketPriceArray, this.state.coinsMarketDateArray);
+    // console.log(this.state.selectedCurrency);
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
@@ -78,6 +84,7 @@ export default class Coins extends React.Component {
             coinsMarketDateArray={this.state.coinsMarketDateArray}
             coinsMarketPriceArray={this.state.coinsMarketPriceArray}
             handleClick={this.handleClick}
+            selectedCurrency={this.state.selectedCurrency}
           />
         )}
       </StyledCoinsPage>

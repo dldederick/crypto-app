@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {
   StyledNav,
   TopNav,
@@ -11,14 +12,13 @@ import {
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from "../CurrencySelect";
 import SearchBar from "../SearchBar";
-
 import BottomNav from "../BottomNav";
 
 export default class Nav extends React.Component {
   state = {
     isLoading: false,
     hasError: false,
-    selectedCurrency: "usd",
+    selectedCurrency: "",
     searchedCoin: '',
     dominance: "btc",
     currencies: [],
@@ -69,7 +69,7 @@ export default class Nav extends React.Component {
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
     this.setState({ selectedCurrency: lowerCase });
-    this.props.handleSelect(key)
+    this.props.handleSelect(lowerCase)
   };
 
   handleSubmit = (item) => {
@@ -83,13 +83,13 @@ export default class Nav extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, selectedCurrency: this.props.selectedCurrency });
     this.getGlobalCryptoCurrencyData();
     this.getCoinsList();
   }
 
   render() {
-    // console.log(this.state.currencies)
+    // console.log(this.state.showCoinPage)
     return (
       <StyledNav>
         <TopNav>

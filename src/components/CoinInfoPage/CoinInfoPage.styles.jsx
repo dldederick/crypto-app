@@ -211,7 +211,7 @@ export const Circle = styled.div`
   height: 12px;
   border: 1px solid green;
   border-radius: 50%;
-  background-color: ${(props) => props.item === props.isSelected ? 'green' : 'none' }
+  background-color: ${(props) => props.item === props.isSelected ? '#00ff5f' : 'none' }
 `;
 
 export const Period = styled.div`
@@ -295,7 +295,8 @@ export const ConvertCont = styled.div`
   width: 50%;
   height: 50px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  gap: 15px;
   margin: 0 auto;
   align-items: center;
 `;
@@ -305,7 +306,7 @@ export const ConvertIcon = styled.div`
   height: 100%;
   background-image: url("https://i.postimg.cc/zfxZRZrh/Icon-awesome-exchang.png");
   background-repeat: no-repeat;
-  background-size: 25px 25px;
+  background-size: 20px 20px;
   background-position: center;
 `;
 
@@ -335,6 +336,8 @@ export const ConvertCurrencyOne = styled.div`
     border-bottom-right-radius: 10px;
     outline: none;
     border: none;
+    font-size: 15px;
+    text-indent: 15px;
   }
 `;
 
@@ -352,6 +355,8 @@ export const ConvertCurrencyTwo = styled.div`
     border-bottom-left-radius: 10px;
     outline: none;
     border: none;
+    font-size: 15px;
+    text-indent: 15px;
   }
 
   div {

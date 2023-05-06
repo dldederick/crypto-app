@@ -118,17 +118,17 @@ export default class CoinsInfoPage extends React.Component {
   render() {
     const info = this.state.coinInfo;
     const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
-    console.log(info);
+    // console.log(info);
     return (
       <StyledCoinInfo>
         <ConvertCont>
           <ConvertCurrencyOne>
             <div>USD</div>
-            <input></input>
+            <input value={info.market_data?.current_price?.usd}></input>
           </ConvertCurrencyOne>
           <ConvertIcon onClick={this.handleConversion}></ConvertIcon>
           <ConvertCurrencyTwo>
-            <input></input>
+            <input value={info.market_data?.current_price?.btc}></input>
             <div>BTC</div>
           </ConvertCurrencyTwo>
         </ConvertCont>
