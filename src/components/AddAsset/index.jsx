@@ -2,7 +2,7 @@ import React from "react";
 import {
   StyledAddAsset,
   AssetInfoCont,
-  AssetImage,
+  AssetImageCont,
   AssetInfo,
   SelectCoin,
   PurchaseAmount,
@@ -12,26 +12,35 @@ import {
   AddButton,
   SearchAssets,
   Assets,
+  AssetImage
 } from "./AddAsset.styles";
 
 export default class AddAsset extends React.Component {
   state = {
     inputValue: "",
-    assetName: '',
-    showDropDown: false
+    assetName: "",
+    assetAmount: 0,
+    assetPurchaseDate: null,
+    newAsset: {},
+    showDropDown: false,
   };
 
   handleClose = () => {
     this.props.handleClose();
   };
 
-  //   handleAdd = () => {
-
-  //   }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { assetName, assetAmount, assetPurchaseDate } = this.state;
+    const newAsset = { assetAmount, assetName, assetPurchaseDate };
+    this.setState({ newAsset });
+    this.props.handleClose();
+    console.log(this.state.newAsset)
+  };
 
   handleSelect = (item) => {
-    this.setState({ assetName: item, inputValue: item, showDropDown: false })
-  }
+    this.setState({ assetName: item, inputValue: item, showDropDown: false });
+  };
 
   handleChange = (e) => {
     const value = e.target.value;
@@ -39,38 +48,53 @@ export default class AddAsset extends React.Component {
   };
 
   render() {
-    // const coins = this.props.cryptoInfo.find(obj => obj.name === this.state.assetName);
     const filteredItems = this.props.cryptoNames?.filter((obj) =>
       obj[0].toUpperCase().includes(this.state.inputValue[0]?.toUpperCase())
     );
+    const imageUrl = this.props.cryptoInfo.filter(item => item.name === this.state.assetName);
+    console.log(imageUrl)
     return (
-      <StyledAddAsset>
-        <AssetInfoCont>
-          <AssetImage>
-            <div></div>
-            <div></div>
-          </AssetImage>
-          <AssetInfo>
-            <SelectCoin
-              placeholder="Enter coin purchased:"
-              onChange={this.handleChange}
-              value={this.state.inputValue}
-            ></SelectCoin>
-            {this.state.showDropDown && (
-              <SearchAssets>
-                {filteredItems.map((item) => (
-                  <Assets key={item} onClick={() => this.handleSelect(item)}>{item}</Assets>
-                ))}
-              </SearchAssets>
-            )}
-            <PurchaseAmount placeholder="Enter purchased amount:"></PurchaseAmount>
-            <PurchaseDate placeholder="Enter date purchased: mm/dd/yyy"></PurchaseDate>
-          </AssetInfo>
-        </AssetInfoCont>
-        <ButtonCont>
-          <CloseButton onClick={this.handleClose}>Close</CloseButton>
-          <AddButton onClick={this.handleAdd}>Add</AddButton>
-        </ButtonCont>
+      <StyledAddAsset onSubmit={this.handleSubmit}>
+          <AssetInfoCont>
+            <AssetImageCont>
+              {this.state.assetName.length > 0 && imageUrl.map(obj => (
+              <React.Fragment key={this.state.assetName}>
+              <AssetImage image={obj.image}></AssetImage>
+              <div>{this.state.assetName}</div>
+              </React.Fragment>))}
+            </AssetImageCont>
+            <AssetInfo>
+              <SelectCoin
+                type="text"
+                placeholder="Enter coin purchased:"
+                onChange={this.handleChange}
+                value={this.state.inputValue}
+              ></SelectCoin>
+              {this.state.showDropDown && (
+                <SearchAssets>
+                  {filteredItems.map((item) => (
+                    <Assets key={item} onClick={() => this.handleSelect(item)}>
+                      {item}
+                    </Assets>
+                  ))}
+                </SearchAssets>
+              )}
+              <PurchaseAmount
+                placeholder="Enter purchased amount:"
+                onChange={(e) => this.setState({ assetAmount: e.target.value })}
+              ></PurchaseAmount>
+              <PurchaseDate
+                placeholder="Enter date purchased: mm/dd/yyy"
+                onChange={(e) =>
+                  this.setState({ assetPurchaseDate: e.target.value })
+                }
+              ></PurchaseDate>
+            </AssetInfo>
+          </AssetInfoCont>
+          <ButtonCont>
+            <CloseButton onClick={this.handleClose}>Close</CloseButton>
+            <AddButton type='submit'>Add</AddButton>
+          </ButtonCont>
       </StyledAddAsset>
     );
   }

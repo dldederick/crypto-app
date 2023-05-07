@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAddAsset = styled.div`
+export const StyledAddAsset = styled.form`
   width: 600px;
   height: 350px;
   background: #2c2f36;
@@ -33,16 +33,27 @@ justify-content: center;
 align-items: center;
 justify-content: space-between;`
 
-export const AssetImage = styled.div`
+export const AssetImageCont = styled.div`
 width: 35%;
 height: 100%;
 display: flex;
+gap: 15px;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: #191B1F;
-border-radius: 10px;`
+border-radius: 10px;
 
+`
+
+export const AssetImage = styled.div`
+    height: 60px;
+    width: 60px;
+    background-image: url(${(props) => props.image});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+`
 export const SelectCoin = styled.input`
 width: 300px;
 height: 50px;
@@ -68,7 +79,8 @@ background-color: #191B1F;
 border: none;
 outline: none;
 font-size: 13px;
-text-indent: 10px;`
+text-indent: 10px;
+`
 
 export const PurchaseDate = styled.input`
 width: 300px;
@@ -81,7 +93,8 @@ background-color: #191B1F;
 border: none;
 outline: none;
 font-size: 13px;
-text-indent: 10px;`
+text-indent: 10px;
+`
 
 export const ButtonCont = styled.div`
 width: 100%;

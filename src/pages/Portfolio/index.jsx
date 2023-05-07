@@ -12,7 +12,7 @@ export default class Coins extends React.Component {
     hasError: false,
     isLoading: false,
     cryptoCurrencies: [],
-    cryptoNames: []
+    cryptoNames: [],
   };
 
   getCryptoCurrencies = async () => {
