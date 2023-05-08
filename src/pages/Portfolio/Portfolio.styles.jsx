@@ -34,7 +34,3 @@ export const ZeroAssets = styled.div`
   text-align: center;
   line-height: 50px;
 `;
-
-export const ListOfAssets = styled.div`
-width: 80%;
-border: 1px red solid;`
