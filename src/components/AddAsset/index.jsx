@@ -34,6 +34,8 @@ export default class AddAsset extends React.Component {
     const { assetName, assetAmount, assetPurchaseDate } = this.state;
     const newAsset = { assetAmount, assetName, assetPurchaseDate };
     this.setState({ newAsset });
+    const asset = this.state.newAsset;
+    this.props.addAsset(asset);
     this.props.handleClose();
     console.log(this.state.newAsset)
   };

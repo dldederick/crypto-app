@@ -1,8 +1,9 @@
 import React from "react";
 import axios from 'axios';
 import { render } from "react-dom";
+// import ActiveAssets from '.'
 import { StyledPortfolioPage } from "./Portfolio.styles";
-import { ZeroAssets, AddAssetButton } from "./Portfolio.styles";
+import { ZeroAssets, NewAssetButton, ListOfAssets } from "./Portfolio.styles";
 import AddAsset from "../../components/AddAsset";
 
 export default class Coins extends React.Component {
@@ -13,6 +14,7 @@ export default class Coins extends React.Component {
     isLoading: false,
     cryptoCurrencies: [],
     cryptoNames: [],
+    newAsset: {}
   };
 
   getCryptoCurrencies = async () => {
@@ -25,7 +27,7 @@ export default class Coins extends React.Component {
     }
   }
 
-  handleAddAsset = () => {
+  handleNewAsset = () => {
     this.setState({ addIsClicked: true });
   };
 
@@ -33,9 +35,13 @@ export default class Coins extends React.Component {
     this.setState({ addIsClicked: false })
   }
 
-//   handleAdd = () => {
-
-//   }
+  addAsset = (asset) => {
+    this.setState({ newAsset: asset, isLoading: true });
+    const createAsset = this.state.cryptoCurrencies.map(obj => obj.name === this.state.newAsset.name);
+    const { assetList } = this.state;
+    const newList = [...assetList, createAsset ];
+    this.setState({ assetList: newList, newAsset: {}})
+  }
 
 componentDidMount(){
     this.setState({ isLoading: true });
@@ -46,12 +52,14 @@ componentDidMount(){
     console.log(this.state.cryptoNames, this.state.cryptoCurrencies)
     return (
       <StyledPortfolioPage>
-        <AddAssetButton onClick={this.handleAddAsset}>Add Asset</AddAssetButton>
-        {this.state.addIsClicked && <AddAsset handleClose={this.handleClose} handleAdd={this.handleAdd} cryptoNames={this.state.cryptoNames} cryptoInfo={this.state.cryptoCurrencies} />}
-        {this.state.assetList.length < 1 ? (
+        <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>
+        {this.state.addIsClicked && <AddAsset handleClose={this.handleClose} handleAdd={this.handleAdd} cryptoNames={this.state.cryptoNames} cryptoInfo={this.state.cryptoCurrencies} addAsset={this.addAsset} />}
+        {this.state.assetList?.length < 1 ? (
           <ZeroAssets>You currently have 0 assets.</ZeroAssets>
         ) : (
-          <div>hello</div>
+            <ListOfAssets>
+            {this.state.assetList.map(obj => (<div key={obj.name}>{obj.name}</div>))}
+        </ListOfAssets>
         )}
       </StyledPortfolioPage>
     );

@@ -13,7 +13,7 @@ export const StyledPortfolioPage = styled.div`
   position: relative;
 `;
 
-export const AddAssetButton = styled.div`
+export const NewAssetButton = styled.div`
   width: 200px;
   height: 50px;
   text-align: center;
@@ -35,13 +35,6 @@ export const ZeroAssets = styled.div`
   line-height: 50px;
 `;
 
-// export const AddAsset = styled.div`
-//   width: 600px;
-//   height: 400px;
-//   background: #2c2f36;
-//   position: absolute;
-//   top: 45%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   border-radius: 10px;
-// `;
+export const ListOfAssets = styled.div`
+width: 80%;
+border: 1px red solid;`

@@ -72,7 +72,7 @@ export default class Coins extends React.Component {
   };
 
   render() {
-    // console.log(this.state.selectedCurrency);
+    console.log(this.state.selectedCurrency);
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (
