@@ -53,7 +53,6 @@ export default class AddAsset extends React.Component {
       obj[0].toUpperCase().includes(this.state.inputValue[0]?.toUpperCase())
     );
     const imageUrl = this.props.cryptoInfo.filter(item => item.name === this.state.assetName);
-    console.log(this.state.newAsset, 'welcome')
     return (
       <StyledAddAsset onSubmit={this.handleSubmit}>
           <AssetInfoCont>

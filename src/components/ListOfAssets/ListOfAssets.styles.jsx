@@ -3,12 +3,18 @@ import styled from 'styled-components';
 export const StyledAssetList = styled.div`
 width: 80%;
 // height: 200px;
-border: 1px red solid;`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+background-color: #191b1f;
+border-radius: 10px;
+`
 
 export const ActiveAsset = styled.div`
-width: 100%;
+width: 98%;
 height: 250px;
-border: 1px blue solid;
 display: flex;
 justify-content: space-around;
 align-items: center;
@@ -25,6 +31,7 @@ justify-content: center;
 align-items: center;
 background-color: #1f2128;
 border-radius: 10px;
+gap: 10px;
 
 > div:nth-child(1) {
     width: 50px;
@@ -40,7 +47,58 @@ width: 80%;
 height: 80%;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: space-between;
+// align-items: center;
+border-radius: 10px;
+
+> div:nth-child(1) {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+> div:nth-child(2) {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}`
+
+export const AssetHeader = styled.div`
+width: 200px;
+height: 35%;
+color: white;
+display: flex;
 align-items: center;
+justify-content: center;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
 background-color: #1f2128;
-border-radius: 10px;`
+`
+
+export const AssetMarketPerformance = styled.div`
+width: 100%;
+height: 66%;
+background-color: #1f2128;
+border-radius: 10px;
+border-top-left-radius: 0px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+color: white;`
+
+export const AssetPerformance = styled.div`
+width: 100%;
+height: 66%;
+background-color: #1f2128;
+border-radius: 10px;
+border-top-left-radius: 0px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+color: white;`

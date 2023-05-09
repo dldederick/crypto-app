@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { render } from "react-dom";
-import ListOfAssets from '../../components/ListOfAssets'
+import ListOfAssets from "../../components/ListOfAssets";
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
 import AddAsset from "../../components/AddAsset";
@@ -41,6 +41,8 @@ export default class Coins extends React.Component {
     const createAsset = this.state.cryptoCurrencies.find(
       (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
     );
+    createAsset.assetAmount = asset.assetAmount;
+    createAsset.assetPurchaseDate = asset.assetPurchaseDate;
     const { assetList } = this.state;
     const newList = [...assetList, createAsset];
     this.setState({ assetList: newList, newAsset: {} });
@@ -52,6 +54,8 @@ export default class Coins extends React.Component {
   }
 
   render() {
+    console.log(this.state.assetList[0], "welcome");
+
     return (
       <StyledPortfolioPage>
         <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>
