@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import styled from "styled-components";
 
 export const StyledTopCurrencies = styled.div`
@@ -27,7 +27,7 @@ export const TopCurrencyHeader = styled.div`
   }
 `;
 
-export const TopCurrencyCont = styled.div`
+export const TopCurrencyCont = styled(Link)`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -35,6 +35,7 @@ export const TopCurrencyCont = styled.div`
   height: 50px;
   border-bottom: 1px #2c2f36 solid;
   white-space: nowrap;
+  text-decoration: none;
 `;
 
 export const TopIndex = styled.div`

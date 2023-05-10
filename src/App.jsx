@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
+import CoinInfoPage from './components/CoinInfoPage'
 import Portfolio from "./pages/Portfolio";
 import { AppDesign } from "./App.styles";
 
@@ -24,7 +25,7 @@ export default class App extends React.Component {
             <Route exact path="/">
                 <Coins selectedCurrency={this.state.selectedCurrency} />
             </Route>
-            <Route exact path="/coinId" />
+            <Route exact path="/:coinId" component={CoinInfoPage} />
             <Route exact path="/portfolio" component={Portfolio} />
           </Switch>
         </AppDesign>

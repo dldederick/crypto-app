@@ -11,8 +11,6 @@ export default class Coins extends React.Component {
     coinsMarketPriceArray: [],
     coinsMarketDateArray: [],
     coinsMarketVolumeArray: [],
-    coinIsClicked: false,
-    coinClicked: "",
     coinInfo: {},
     selectedCurrency: ''
   };
@@ -60,30 +58,16 @@ export default class Coins extends React.Component {
     this.getCoinsMarketChart(this.props.selectedCurrency);
   }
 
-  handleClick = (id) => {
-    this.setState((prevState) => ({
-      coinIsClicked: !prevState.coinIsClicked,
-      coinClicked: id,
-    }));
-    
-  };
-
   render() {
-    // console.log(this.state.selectedCurrency);
     return (
       <StyledCoinsPage>
-        {this.state.coinIsClicked ? (
-          <CoinInfoPage coinClicked={this.state.coinClicked} coinIsClicked={this.state.coinIsClicked} />
-        ) : (
           <ChartOverview
             topCryptoCurrencies={this.state.topCryptoCurrencies}
             coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
             coinsMarketDateArray={this.state.coinsMarketDateArray}
             coinsMarketPriceArray={this.state.coinsMarketPriceArray}
-            handleClick={this.handleClick}
             selectedCurrency={this.state.selectedCurrency}
           />
-        )}
       </StyledCoinsPage>
     );
   }

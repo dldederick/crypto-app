@@ -1,21 +1,26 @@
 import styled from "styled-components";
 
 export const StyledCoinInfo = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding: 20px;
-  //   justify-content: center;
-  margin: 0 auto;
-    // padding-top: 100px;
+  justify-content: center;
+  
+  background-color: #1F2128;
 `;
+
+export const CoinInfoWrapper = styled.div`
+width: 90%;
+display: flex;
+padding-top: 200px;
+flex-direction: column;
+align-items: center;
+gap: 50px;`
+
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
   height: 482px;
   flex-direction: column;
-//   border: 1px red solid;
 border-radius: 10px;
   overflow: hidden;
 `;
@@ -29,15 +34,12 @@ export const CoinCont = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //   justify-content: space-around;
-  // border: 1px pink solid;
+  
 
   div {
     display: flex;
-    // flex-direction: column;
     justify-content: center;
     align-items: center;
-    // border: 1px blue solid;
   }
 `;
 
@@ -48,17 +50,14 @@ export const CoinImage = styled.div`
   background-size: 50px 50px;
   background-repeat: no-repeat;
   background-position: center;
-  //   border: 1px pink solid;
 `;
 
 export const CoinName = styled.div`
   width: 100%;
   height: 80px;
-  //   border: 1px red solid;
 `;
 
 export const CoinLink = styled.div`
-//   width: 100%;
 margin: 0 auto;
   height: 20%;
   background-image: url('https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png');
@@ -133,25 +132,6 @@ export const DescriptionWrapper = styled.div`
   padding: 50px;
   background-color: #191b1f;
   border-radius: 10px;
-`;
-
-export const LinkWrapper = styled.div`
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-
-  //   div {
-  //     width: 25%;
-  //     border-radius: 10px;
-  //     background: #191b1f;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
-  //     background-size: 20px 20px;
-  //     background-repeat: no-repeat;
-  //     background-position: left 20px center;
-  //   }
 `;
 
 export const CoinInfoHeader = styled.div`
@@ -371,6 +351,13 @@ export const ConvertCurrencyTwo = styled.div`
     color: #191b1f;
     font-size: boldest;
   }
+`;
+
+export const LinkWrapper = styled.div`
+width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const Link1 = styled.div`

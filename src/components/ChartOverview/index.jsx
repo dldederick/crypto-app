@@ -15,15 +15,10 @@ import {
   import { readableNum } from "../../Utils";
 
 export default class ChartOverview extends React.Component {
-    handleClick = (id) => {
-      console.log(id)
-        this.props.handleClick(id)
-    }
 
   render() {
-    // console.log(this.props.topCryptoCurrencies)
     const currency = this.props.selectedCurrency;
-    console.log(currency)
+    // console.log(currency)
     const bitcoinObj = this.props.topCryptoCurrencies.filter(
         (obj) => obj.symbol === currency
       );
@@ -56,7 +51,7 @@ export default class ChartOverview extends React.Component {
         </CoinsCont1>
         <CoinsCont2>
           <Overview>Market Overview</Overview>
-          <TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies} handleClick={this.handleClick} />
+          <TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies}  />
         </CoinsCont2>
       </>
     );

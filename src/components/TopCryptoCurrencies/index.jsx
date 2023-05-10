@@ -24,7 +24,7 @@ import {
   VolumeMarketCapValues,
   VolumeValue,
   MarketCapValue,
-  TotalBar
+  TotalBar,
 } from "./TopCryptoCurrencies.styles";
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
@@ -45,8 +45,8 @@ export default function TopCryptoCurrencies(props) {
       {props.topCoinsData.map((obj, index) => {
         return (
           <TopCurrencyCont
+            to={`/${obj.id}`}
             key={obj.id}
-            onClick={(e) => props.handleClick(obj.id)}
           >
             <TopIndex>{index + 1}</TopIndex>
             <TopId image={obj.image}>
