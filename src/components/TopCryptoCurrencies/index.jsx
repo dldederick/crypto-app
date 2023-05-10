@@ -1,4 +1,5 @@
 import React from "react";
+import Sparkline from "../Sparklines";
 import {
   StyledTopCurrencies,
   TopCurrencyHeader,
@@ -25,7 +26,6 @@ import {
   MarketCapValue,
   TotalBar
 } from "./TopCryptoCurrencies.styles";
-import Sparkline from "../Sparklines";
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {

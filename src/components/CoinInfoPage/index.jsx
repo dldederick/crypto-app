@@ -118,7 +118,6 @@ export default class CoinsInfoPage extends React.Component {
   render() {
     const info = this.state.coinInfo;
     const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
-    // console.log(info);
     return (
       <StyledCoinInfo>
         <ConvertCont>

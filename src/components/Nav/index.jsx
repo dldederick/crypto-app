@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import ThemeSelect from "../ThemeSelect";
+import CurrencySelect from "../CurrencySelect";
+import SearchBar from "../SearchBar";
+import BottomNav from "../BottomNav";
 import {
   StyledNav,
   TopNav,
@@ -9,10 +11,7 @@ import {
   NavOptions,
   StyledLink,
 } from "./Nav.styles";
-import ThemeSelect from "../ThemeSelect";
-import CurrencySelect from "../CurrencySelect";
-import SearchBar from "../SearchBar";
-import BottomNav from "../BottomNav";
+
 
 export default class Nav extends React.Component {
   state = {
@@ -30,7 +29,6 @@ export default class Nav extends React.Component {
   };
 
   getGlobalCryptoCurrencyData = async () => {
-    // this.setState({ isLoading: true });
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
@@ -78,7 +76,7 @@ export default class Nav extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.selectedCurrency !== prevState.selectedCurrency) {
-      this.getGlobalCryptoCurrencyData();
+      // this.getGlobalCryptoCurrencyData();
     }
   }
 

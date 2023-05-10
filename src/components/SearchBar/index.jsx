@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyledInput } from './SearchBar.styles';
 import SearchMatches from '../SearchMatches';
+import { StyledInput } from './SearchBar.styles';
 
 export default class SearchBar extends React.Component {
     state = {
         filteredValue: '',
-        // hasValue: false
     }
 
     handleSubmit = (e) => {

@@ -16,6 +16,7 @@ import {
 
 export default class ChartOverview extends React.Component {
     handleClick = (id) => {
+      console.log(id)
         this.props.handleClick(id)
     }
 

@@ -24,6 +24,7 @@ export default class App extends React.Component {
             <Route exact path="/">
                 <Coins selectedCurrency={this.state.selectedCurrency} />
             </Route>
+            <Route exact path="/coinId" />
             <Route exact path="/portfolio" component={Portfolio} />
           </Switch>
         </AppDesign>

@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { StyledCoinsPage } from "./Coins.styles";
 import ChartOverview from "../../components/ChartOverview";
 import CoinInfoPage from "../../components/CoinInfoPage";
+import { StyledCoinsPage } from "./Coins.styles";
 export default class Coins extends React.Component {
   state = {
     isLoading: false,
@@ -48,9 +48,6 @@ export default class Coins extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    // if (this.state.coinIsClicked !== prevState.coinIsClicked) {
-    //   this.setState({ coinIsClicked: !prevState.coinIsClicked })
-    // }
     if (this.state.selectedCurrency !== prevState.selectedCurrency) {
       this.getTopCryptoCurrencies(this.state.selectedCurrency);
       this.getCoinsMarketChart(this.state.selectedCurrency);
@@ -72,7 +69,7 @@ export default class Coins extends React.Component {
   };
 
   render() {
-    console.log(this.state.selectedCurrency);
+    // console.log(this.state.selectedCurrency);
     return (
       <StyledCoinsPage>
         {this.state.coinIsClicked ? (

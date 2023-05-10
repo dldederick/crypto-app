@@ -1,11 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { render } from "react-dom";
+import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
-import AddAsset from "../../components/AddAsset";
-
 export default class Coins extends React.Component {
   state = {
     assetList: [],
@@ -25,7 +23,7 @@ export default class Coins extends React.Component {
       const cryptoNames = data.map((obj) => obj.name);
       this.setState({ cryptoCurrencies: data, cryptoNames, isLoading: false });
     } catch (error) {
-      this.setState({ hasError: false, isLoading: false });
+      this.setState({ hasError: true, isLoading: false });
     }
   };
 
@@ -51,11 +49,10 @@ export default class Coins extends React.Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getCryptoCurrencies();
-  }
+  }  
 
   render() {
-    console.log(this.state.assetList[0], "welcome");
-
+    console.log(this.state.assetList)
     return (
       <StyledPortfolioPage>
         <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>

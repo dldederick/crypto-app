@@ -6,7 +6,6 @@ import {
   } from "chart.js";
   import { Line } from "react-chartjs-2";
   import { Top7d } from './Sparklines.styles'
-  import { readableNum } from '../../Utils'
   
   ChartJS.register(
     LineElement,

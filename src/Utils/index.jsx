@@ -61,3 +61,10 @@ const formattedTime = newDate.toLocaleTimeString().replace(/:\d\d\s/,' ');
 const formattedDateTime = `${formattedDate} ${formattedTime}`;
 return formattedDateTime;
 }
+
+export function convertToUnixTimestamp(dateString) {
+  const [month, day, year] = dateString.split('/');
+  const date = new Date(`${year}-${month}-${day}`);
+  const unixTimestamp = Math.floor(date.getTime() / 1000);
+  return unixTimestamp;
+};

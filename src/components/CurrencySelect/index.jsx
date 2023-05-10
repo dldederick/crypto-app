@@ -1,6 +1,6 @@
 import React from "react";
-import { CurrencySelectStyles, MoneyImage, MoneyOptionsContainer, DropdownVector } from "./CurrencySelect.styles";
 import DropDownMenu from '../DropDownMenu';
+import { CurrencySelectStyles, MoneyImage, MoneyOptionsContainer, DropdownVector } from "./CurrencySelect.styles";
 
 export default class CurrencySelect extends React.Component {
   state = {
