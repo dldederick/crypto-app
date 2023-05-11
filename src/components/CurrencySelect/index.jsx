@@ -1,38 +1,43 @@
 import React from "react";
-import DropDownMenu from '../DropDownMenu';
-import { CurrencySelectStyles, MoneyImage, MoneyOptionsContainer, DropdownVector } from "./CurrencySelect.styles";
+import DropDownMenu from "../DropDownMenu";
+import {
+  CurrencySelectStyles,
+  CoinSelected,
+  DropdownVector,
+} from "./CurrencySelect.styles";
 
 export default class CurrencySelect extends React.Component {
   state = {
     isClicked: false,
-    selectedCurrency: 'USD',
-  }
+    selectedCurrency: "USD",
+  };
 
   handleClick = (e) => {
     this.setState((prevState) => ({
-      isClicked: !prevState.isClicked
-    }))
+      isClicked: !prevState.isClicked,
+    }));
     // this.setState({ isClicked: true })
-  }
+  };
 
   handleSelect = (key) => {
-    this.setState({ selectedCurrency: key });
+    this.setState({ selectedCurrency: key.toUpperCase() });
     this.props.handleSelect(key);
     this.handleClick();
-  }
+  };
 
   render() {
-    console.log(this.state.isClicked, 'hello')
+    console.log(this.state.isClicked, "hello");
     return (
-      <CurrencySelectStyles onClick={this.handleClick}>
-        <MoneyImage>$</MoneyImage>
-        <MoneyOptionsContainer >
-          <span>{this.state.selectedCurrency}</span>
-          <DropdownVector></DropdownVector>
-          {this.state.isClicked && <DropDownMenu handleSelect={this.handleSelect} listOfCurrencies={this.props.listOfCurrencies}  />}
-        </MoneyOptionsContainer>
+      <CurrencySelectStyles>
+        <CoinSelected>${this.state.selectedCurrency}</CoinSelected>
+        <DropdownVector onClick={this.handleClick}></DropdownVector>
+        {this.state.isClicked && (
+          <DropDownMenu
+            handleSelect={this.handleSelect}
+            listOfCurrencies={this.props.listOfCurrencies}
+          />
+        )}
       </CurrencySelectStyles>
     );
   }
-  
 }

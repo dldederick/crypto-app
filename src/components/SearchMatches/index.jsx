@@ -1,16 +1,27 @@
 import React from "react";
-import { StyledSearchMenu, SuggestedCoin } from "./SearchMatches.styles";
+import {
+  StyledSearchMenu,
+  SuggestedCoin,
+  SuggestedCoinLink,
+} from "./SearchMatches.styles";
 
 export default function SearchMatches(props) {
-  
   const filteredList = props.coinsList?.filter((item) => {
     return item[0].toUpperCase().includes(props.filteredValue[0].toUpperCase());
   });
 
+  const handleClick = () => {
+    props.handleClick();
+  }
+
   return (
     <StyledSearchMenu>
       {filteredList?.map((item) => {
-        return <SuggestedCoin key={item}>{item}</SuggestedCoin>;
+        return (
+          <SuggestedCoin key={item}>
+            <SuggestedCoinLink to={`/${item}`} onClick={handleClick}>{item}</SuggestedCoinLink>
+          </SuggestedCoin>
+        );
       })}
     </StyledSearchMenu>
   );

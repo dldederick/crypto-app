@@ -17,7 +17,6 @@ export default class Nav extends React.Component {
   state = {
     isLoading: false,
     hasError: false,
-    selectedCurrency: "",
     searchedCoin: '',
     dominance: "btc",
     currencies: [],
@@ -66,7 +65,6 @@ export default class Nav extends React.Component {
 
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
-    // this.setState({ selectedCurrency: lowerCase });
     this.props.handleSelect(lowerCase)
   };
 
