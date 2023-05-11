@@ -19,18 +19,19 @@ export default class ChartOverview extends React.Component {
   render() {
     const currency = this.props.selectedCurrency;
     // console.log(currency)
-    const bitcoinObj = this.props.topCryptoCurrencies.filter(
+    const coinObj = this.props.topCryptoCurrencies.filter(
         (obj) => obj.symbol === currency
       );
-      const bitcoinPrice = readableNum(bitcoinObj[0]?.current_price);
-      const bitcoinVolume = readableNum(bitcoinObj[0]?.total_volume);
-      const bitcoinImage = bitcoinObj[0]?.image;
+      const coinPrice = readableNum(coinObj[0]?.current_price);
+      const coinVolume = readableNum(coinObj[0]?.total_volume);
+      const coinImage = coinObj[0]?.image;
+      const coinSymbol = coinObj[0]?.symbol.toUpperCase();
     return (
       <>
         <CoinsCont1>
           <Wrapper1>
-            <PriceOverview img={bitcoinImage}>
-              {bitcoinObj.id} (BTC) Price: ${bitcoinPrice}{" "}
+            <PriceOverview img={coinImage}>
+              {coinObj.id} ({coinSymbol}) Price: ${coinPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.props.coinsMarketPriceArray}
@@ -39,8 +40,8 @@ export default class ChartOverview extends React.Component {
           </Wrapper1>
           <Wrapper2>
             <VolumeOverviewWrapper>
-              <VolumeOverview img={bitcoinImage}>
-                Bitcoin (BTC) Volume: ${bitcoinVolume}{" "}
+              <VolumeOverview img={coinImage}>
+                {coinObj.id} ({coinSymbol}) Volume: ${coinVolume}{" "}
               </VolumeOverview>
             </VolumeOverviewWrapper>
             <CurrencyVolumeChart

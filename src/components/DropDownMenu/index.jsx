@@ -19,12 +19,16 @@ export default class DropDownMenu extends React.Component {
     this.setState({ filteredValue: upperCase });
   };
 
+  // handleInputClick = (e) => {
+  //   e.stopPropagation();
+  // }
+
   render() {
     const filteredList = this.state.filteredValue
-      ? this.props.currencies.filter((item) =>
-          item.includes(this.state.filteredValue)
+      ? this.props.listOfCurrencies.filter((item) =>
+          item.toUpperCase().includes(this.state.filteredValue.toUpperCase())
         )
-      : this.props.currencies;
+      : this.props.listOfCurrencies.map(item => item.toUpperCase());
 
     return (
       <StyledDropDown>
@@ -32,6 +36,7 @@ export default class DropDownMenu extends React.Component {
           placeholder="Search"
           onChange={this.handleChange}
           value={this.state.filteredValue}
+          // onClick={this.handleInputClick}
         ></input>
         <CurrencyList>
           {filteredList.map((key) => {
@@ -40,7 +45,7 @@ export default class DropDownMenu extends React.Component {
                 key={key}
                 onClick={() => this.handleSelect(key)}
               >
-                {key}
+                {key.toUpperCase()}
               </CurrencyListItems>
             );
           })}

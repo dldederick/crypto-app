@@ -12,10 +12,11 @@ export default class Coins extends React.Component {
     coinsMarketDateArray: [],
     coinsMarketVolumeArray: [],
     coinInfo: {},
-    selectedCurrency: ''
+    // selectedCurrency: ''
   };
 
-  getTopCryptoCurrencies = async (currency) => {
+  getTopCryptoCurrencies = async () => {
+    const currency = this.props.selectedCurrency;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
@@ -26,7 +27,8 @@ export default class Coins extends React.Component {
     }
   };
 
-  getCoinsMarketChart = async (currency) => {
+  getCoinsMarketChart = async () => {
+    const currency = this.props.selectedCurrency;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=180&interval=daily`
@@ -46,19 +48,20 @@ export default class Coins extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.selectedCurrency !== prevState.selectedCurrency) {
-      this.getTopCryptoCurrencies(this.state.selectedCurrency);
-      this.getCoinsMarketChart(this.state.selectedCurrency);
+    if (prevProps.selectedCurrency !== this.props.selectedCurrency) {
+      this.getTopCryptoCurrencies();
+      this.getCoinsMarketChart();
     }
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true, selectedCurrency: this.props.selectedCurrency });
-    this.getTopCryptoCurrencies(this.props.selectedCurrency);
-    this.getCoinsMarketChart(this.props.selectedCurrency);
+    this.setState({ isLoading: true });
+    this.getTopCryptoCurrencies();
+    this.getCoinsMarketChart();
   }
 
   render() {
+    console.log(this.props.selectedCurrency, 'coins');
     return (
       <StyledCoinsPage>
           <ChartOverview
@@ -66,7 +69,7 @@ export default class Coins extends React.Component {
             coinsMarketVolumeArray={this.state.coinsMarketVolumeArray}
             coinsMarketDateArray={this.state.coinsMarketDateArray}
             coinsMarketPriceArray={this.state.coinsMarketPriceArray}
-            selectedCurrency={this.state.selectedCurrency}
+            selectedCurrency={this.props.selectedCurrency}
           />
       </StyledCoinsPage>
     );

@@ -36,6 +36,7 @@ export const TopCurrencyCont = styled(Link)`
   border-bottom: 1px #2c2f36 solid;
   white-space: nowrap;
   text-decoration: none;
+  color: white;
 `;
 
 export const TopIndex = styled.div`

@@ -66,7 +66,7 @@ export default class Nav extends React.Component {
 
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
-    this.setState({ selectedCurrency: lowerCase });
+    // this.setState({ selectedCurrency: lowerCase });
     this.props.handleSelect(lowerCase)
   };
 
@@ -76,12 +76,12 @@ export default class Nav extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.selectedCurrency !== prevState.selectedCurrency) {
-      // this.getGlobalCryptoCurrencyData();
+      this.getGlobalCryptoCurrencyData();
     }
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true, selectedCurrency: this.props.selectedCurrency });
+    this.setState({ isLoading: true });
     this.getGlobalCryptoCurrencyData();
     this.getCoinsList();
   }
@@ -93,7 +93,7 @@ export default class Nav extends React.Component {
         <TopNav>
           <NavPages>
             <div>
-              <StyledLink to="/">Coins</StyledLink>
+              <StyledLink to="/coin">Coins</StyledLink>
             </div>
             <div>
               <StyledLink to="/portfolio">Portfolio</StyledLink>
@@ -102,8 +102,7 @@ export default class Nav extends React.Component {
           <NavOptions>
             <SearchBar coinsList={this.state.coinsList} handleSubmit={this.handleSubmit} />
             <CurrencySelect
-              currencyType={this.state.currencyType}
-              currencies={this.state.currencies}
+              listOfCurrencies={this.props.listOfCurrencies}
               handleSelect={this.handleSelect}
             />
             <ThemeSelect />

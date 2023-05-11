@@ -12,22 +12,24 @@ export default class CurrencySelect extends React.Component {
     this.setState((prevState) => ({
       isClicked: !prevState.isClicked
     }))
+    // this.setState({ isClicked: true })
   }
 
   handleSelect = (key) => {
     this.setState({ selectedCurrency: key });
-    this.handleClick();
     this.props.handleSelect(key);
+    this.handleClick();
   }
 
   render() {
+    console.log(this.state.isClicked, 'hello')
     return (
       <CurrencySelectStyles onClick={this.handleClick}>
         <MoneyImage>$</MoneyImage>
         <MoneyOptionsContainer >
-          <span >{this.state.selectedCurrency}</span>
-          <DropdownVector onClick={this.handleClick}></DropdownVector>
-          {this.state.isClicked && <DropDownMenu handleSelect={this.handleSelect} currencyType={this.props.currencyType} currencies={this.props.currencies}  />}
+          <span>{this.state.selectedCurrency}</span>
+          <DropdownVector></DropdownVector>
+          {this.state.isClicked && <DropDownMenu handleSelect={this.handleSelect} listOfCurrencies={this.props.listOfCurrencies}  />}
         </MoneyOptionsContainer>
       </CurrencySelectStyles>
     );
