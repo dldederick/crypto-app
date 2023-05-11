@@ -46,7 +46,7 @@ export default class App extends React.Component {
             handleSelect={this.handleSelect}
           />
           <Switch>
-          <Route exact path="/coin">
+          <Route exact path="/">
               <Coins selectedCurrency={this.state.selectedCurrency} />
             </Route>
             <Route exact path="/coin/:coinId" component={CoinInfoPage} />

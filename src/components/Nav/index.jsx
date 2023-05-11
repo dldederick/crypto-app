@@ -91,7 +91,7 @@ export default class Nav extends React.Component {
         <TopNav>
           <NavPages>
             <div>
-              <StyledLink to="/coin">Coins</StyledLink>
+              <StyledLink to="/">Coins</StyledLink>
             </div>
             <div>
               <StyledLink to="/portfolio">Portfolio</StyledLink>

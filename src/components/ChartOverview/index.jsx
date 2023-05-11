@@ -17,15 +17,15 @@ import {
 export default class ChartOverview extends React.Component {
 
   render() {
-    const currency = this.props.selectedCurrency;
-    // console.log(currency)
+    const displayCoin = this.props.currencyDisplayed;
     const coinObj = this.props.topCryptoCurrencies.filter(
-        (obj) => obj.symbol === currency
+        (obj) => obj.id === displayCoin
       );
       const coinPrice = readableNum(coinObj[0]?.current_price);
       const coinVolume = readableNum(coinObj[0]?.total_volume);
       const coinImage = coinObj[0]?.image;
       const coinSymbol = coinObj[0]?.symbol.toUpperCase();
+    // const displayObj = this.props.topCryptoCurrencies.filter(item => item)
     return (
       <>
         <CoinsCont1>
