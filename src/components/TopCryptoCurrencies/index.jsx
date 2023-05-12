@@ -3,6 +3,9 @@ import Sparkline from "../Sparklines";
 import {
   StyledTopCurrencies,
   TopCurrencyHeader,
+  TopIdHeader,
+  TopCurrentPriceHeader,
+  TopIndexHeader,
   Top1hHeader,
   Top24hHeader,
   Top7dHeader,
@@ -29,25 +32,36 @@ import {
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {
+  const chartCategories = [
+    { componentName: TopIndexHeader, name: '#', id: "index" },
+    { componentName: TopIdHeader, name: 'Name', id: "id" },
+    { componentName: TopCurrentPriceHeader, name: 'Price', id: "currentPrice" },
+    { componentName: Top1hHeader, name: '1h%', id: "1h" },
+    { componentName: Top24hHeader, name: '24h%', id: "24h" },
+    { componentName: Top7dHeader, name: '7d%', id: "7d" },
+  ];
+
+  const handleClick = (id) => {
+    props.handleClick(id);
+  };
+
   return (
     <StyledTopCurrencies>
       <TopCurrencyHeader>
-        <TopIndex>#</TopIndex>
-        <TopId>Name</TopId>
-        <TopCurrentPrice>Price</TopCurrentPrice>
-        <Top1hHeader>1h%</Top1hHeader>
-        <Top24hHeader>24h%</Top24hHeader>
-        <Top7dHeader>7d%</Top7dHeader>
+        {chartCategories.map((item) => {
+          return (
+            <item.componentName key={item.id} onClick={() => handleClick(item.id)}>
+              {item.name}
+            </item.componentName>
+          );
+        })}
         <TopVolumeMarketCap>24h Volume/Market Cap</TopVolumeMarketCap>
         <TopSupply>Circulating/Total Supply</TopSupply>
         <Top7dChart>Last 7 days</Top7dChart>
       </TopCurrencyHeader>
       {props.topCoinsData.map((obj, index) => {
         return (
-          <TopCurrencyCont
-            to={`/${obj.id}`}
-            key={obj.id}
-          >
+          <TopCurrencyCont to={`/coin/${obj.id}`} key={obj.id}>
             <TopIndex>{index + 1}</TopIndex>
             <TopId image={obj.image}>
               {capitalize(obj.id)} ({obj.symbol.toUpperCase()})

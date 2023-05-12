@@ -40,7 +40,11 @@ export const TopCurrencyCont = styled(Link)`
 `;
 
 export const TopIndex = styled.div`
-  width: 10px;
+  width: 20px;
+`;
+
+export const TopIndexHeader = styled.div`
+width: 20px;
 `;
 
 export const TopId = styled.div`
@@ -52,12 +56,31 @@ export const TopId = styled.div`
   text-indent: 35px;
 `;
 
+export const TopIdHeader = styled.div`
+  width: 200px;
+  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-size: 15px 15px;
+  background-position: left;
+  background-repeat: no-repeat;
+  text-indent: 35px;
+
+`;
+
 export const TopCurrentPrice = styled.div`
-  width: 40px;
+  width: 100px;
+`;
+
+export const TopCurrentPriceHeader = styled.div`
+  width: 100px;
+  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-size: 15px 15px;
+  background-position: left;
+  background-repeat: no-repeat;
+  text-indent: 20px;
 `;
 
 export const Top1h = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
   color: ${(props) => (props.value > 0 ? " #00ff5f" : "#D9123A")};
   background-image: url(${(props) =>
@@ -70,7 +93,7 @@ export const Top1h = styled.div`
 `;
 
 export const Top24h = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
   color: ${(props) => (props.value > 0 ? " #00ff5f" : "#D9123A")};
   background-image: url(${(props) =>
@@ -83,7 +106,7 @@ export const Top24h = styled.div`
 `;
 
 export const Top7d = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
   color: ${(props) => (props.value > 0 ? " #00ff5f" : "#D9123A")};
   background-image: url(${(props) =>
@@ -100,18 +123,30 @@ export const TopVolumeMarketCap = styled.div`
 `;
 
 export const Top1hHeader = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
+  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-size: 15px 15px;
+  background-position: left;
+  background-repeat: no-repeat;
 `;
 
 export const Top24hHeader = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
+  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-size: 15px 15px;
+  background-position: left;
+  background-repeat: no-repeat;
 `;
 
 export const Top7dHeader = styled.div`
-  width: 40px;
+  width: 100px;
   text-indent: 19px;
+  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-size: 15px 15px;
+  background-position: left;
+  background-repeat: no-repeat;
 `;
 
 export const CirculatingSupplyValues = styled.div`

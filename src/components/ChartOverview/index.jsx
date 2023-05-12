@@ -15,8 +15,55 @@ import {
   import { readableNum } from "../../Utils";
 
 export default class ChartOverview extends React.Component {
+  state = {
+    sortBy: '',
+    sort: 'desc',
+    sortedList: []
+  }
+
+  handleClick = (id) => {
+    if (this.state.sortBy === '') {
+      this.setState({ sortBy: id });
+    }
+    
+    if (id === this.state.sortBy) {
+      if ( this.state.sort === 'desc') {
+        this.setState({ sort: 'asc' })
+      } else {
+        this.setState({ sort: 'desc' })
+      }
+    }
+
+    if (id !== '' && id !== this.state.sortBy) {
+      this.setState({ sortBy: id, sort: 'desc' })
+    }
+
+    this.handleSort();
+  }
+
+  handleSort = () => {
+    const { sortBy, sort } = this.state;
+    const { topCryptoCurrencies } = this.props;
+  
+    const sortedList = [...topCryptoCurrencies].sort((a, b) => {
+      const valueA = a[sortBy];
+      const valueB = b[sortBy];
+  
+      // Compare the values based on the sort order
+      if (valueA < valueB) {
+        return sort === 'asc' ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sort === 'asc' ? 1 : -1;
+      }
+      return 0;
+    });
+  
+    this.setState({ sortedList });
+  }
 
   render() {
+    console.log(this.state.sortBy)
     const displayCoin = this.props.currencyDisplayed;
     const coinObj = this.props.topCryptoCurrencies.filter(
         (obj) => obj.id === displayCoin
@@ -25,7 +72,6 @@ export default class ChartOverview extends React.Component {
       const coinVolume = readableNum(coinObj[0]?.total_volume);
       const coinImage = coinObj[0]?.image;
       const coinSymbol = coinObj[0]?.symbol.toUpperCase();
-    // const displayObj = this.props.topCryptoCurrencies.filter(item => item)
     return (
       <>
         <CoinsCont1>
@@ -52,7 +98,8 @@ export default class ChartOverview extends React.Component {
         </CoinsCont1>
         <CoinsCont2>
           <Overview>Market Overview</Overview>
-          <TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies}  />
+          {this.state.sortBy ? (<TopCryptoCurrencies topCoinsData={this.state.sortedList}  handleClick={this.handleClick} />) : (<TopCryptoCurrencies topCoinsData={this.props.topCryptoCurrencies}  handleClick={this.handleClick} />)}
+          
         </CoinsCont2>
       </>
     );
