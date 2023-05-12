@@ -33,7 +33,6 @@ import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 
 export default function TopCryptoCurrencies(props) {
   const chartCategories = [
-    { componentName: TopIndexHeader, name: '#', id: "index" },
     { componentName: TopIdHeader, name: 'Name', id: "id" },
     { componentName: TopCurrentPriceHeader, name: 'Price', id: "currentPrice" },
     { componentName: Top1hHeader, name: '1h%', id: "1h" },
@@ -48,6 +47,7 @@ export default function TopCryptoCurrencies(props) {
   return (
     <StyledTopCurrencies>
       <TopCurrencyHeader>
+      <TopIndexHeader>#</TopIndexHeader>
         {chartCategories.map((item) => {
           return (
             <item.componentName key={item.id} onClick={() => handleClick(item.id)}>
