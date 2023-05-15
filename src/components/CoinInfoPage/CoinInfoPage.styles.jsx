@@ -4,24 +4,25 @@ export const StyledCoinInfo = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  
-  background-color: #1F2128;
+
+  background-color: #1f2128;
 `;
 
 export const CoinInfoWrapper = styled.div`
-width: 90%;
-display: flex;
-padding-top: 200px;
-flex-direction: column;
-align-items: center;
-gap: 50px;`
+  width: 90%;
+  display: flex;
+  padding-top: 200px;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+`;
 
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
   height: 482px;
   flex-direction: column;
-border-radius: 10px;
+  border-radius: 10px;
   overflow: hidden;
 `;
 
@@ -34,7 +35,6 @@ export const CoinCont = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
 
   div {
     display: flex;
@@ -138,7 +138,6 @@ export const CoinInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  
 `;
 
 export const CoinInfoSummary = styled.div`
@@ -175,7 +174,7 @@ export const CoinInfoCont = styled.div`
   display: flex;
   padding-top: 50px;
   flex-direction: column;
-//   justify-content: center;
+  //   justify-content: center;
   align-items: center;
 
   > div:nth-child(1) {
@@ -191,7 +190,8 @@ export const Circle = styled.div`
   height: 12px;
   border: 1px solid green;
   border-radius: 50%;
-  background-color: ${(props) => props.item === props.isSelected ? '#00ff5f' : 'none' }
+  background-color: ${(props) =>
+    props.item === props.isSelected ? "#00ff5f" : "none"};
 `;
 
 export const Period = styled.div`
@@ -221,7 +221,7 @@ export const CoinSupplyBars = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 5px;
-  background-color: #191B1F;
+  background-color: #191b1f;
 
   > div:nth-child(1) {
     width: ${(props) => props.supplyPercent}%;
@@ -251,7 +251,7 @@ export const CoinMarketVolumeBars = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 5px;
-  background-color: #191B1F;
+  background-color: #191b1f;
 
   > div:nth-child(1) {
     width: ${(props) => props.supplyPercent}%;
@@ -354,7 +354,7 @@ export const ConvertCurrencyTwo = styled.div`
 `;
 
 export const LinkWrapper = styled.div`
-width: 100%;
+  width: 100%;
   height: 50px;
   display: flex;
   justify-content: space-around;
@@ -378,12 +378,11 @@ export const Link1 = styled.div`
   }
 
   > div:nth-child(2) {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 60%;
+    text-align: center;
   }
 
   > div:nth-child(3) {
@@ -412,15 +411,15 @@ export const Link2 = styled.div`
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
+    
   }
 
   > div:nth-child(2) {
-    width: 60%;
-    height: 100%;
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 60%;
+    text-align: center;
   }
 
   > div:nth-child(3) {
@@ -452,12 +451,11 @@ export const Link3 = styled.div`
   }
 
   > div:nth-child(2) {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 60%;
+    text-align: center;
   }
 
   > div:nth-child(3) {

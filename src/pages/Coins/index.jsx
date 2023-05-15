@@ -49,13 +49,6 @@ export default class Coins extends React.Component {
     }
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.selectedCurrency !== this.props.selectedCurrency) {
-  //     this.getTopCryptoCurrencies();
-  //     this.getCoinsMarketChart();
-  //   }
-  // }
-
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getTopCryptoCurrencies();
@@ -64,7 +57,7 @@ export default class Coins extends React.Component {
 
   render() {
     // console.log(this.props.selectedCurrency, 'coins');
-    console.log(this.state.currencyDisplayed)
+    // console.log(this.state.currencyDisplayed)
     return (
       <StyledCoinsPage>
           <ChartOverview

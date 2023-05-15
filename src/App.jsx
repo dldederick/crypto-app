@@ -36,7 +36,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.selectedCurrency, 'app');
+    // console.log(this.state.listOfCurrencies, 'app');
     return (
       <Router>
         <AppDesign>

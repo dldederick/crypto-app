@@ -24,22 +24,25 @@ export default class Nav extends React.Component {
     markets: 0,
     totalMarketCap: 0,
     totalVolume: 0,
-    coinsList: []
+    coinsList: [],
+    everything: []
   };
 
   getGlobalCryptoCurrencyData = async () => {
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
+      const everything = data;
       const activeCryptoCurrencies = data.data.active_cryptocurrencies;
       const markets = data.data.markets;
       const currencies = Object.keys(data.data.total_market_cap).map((key) =>
         key.toUpperCase()
       );
       const totalMarketCap =
-        data.data.total_market_cap[this.state.selectedCurrency];
-      const totalVolume = data.data.total_volume[this.state.selectedCurrency];
+        data.data.total_market_cap[this.props.selectedCurrency];
+      const totalVolume = data.data.total_volume[this.props.selectedCurrency];
       const dominance = data.data.market_cap_percentage.btc;
       this.setState({
+        everything,
         activeCryptoCurrencies,
         markets,
         currencies,
@@ -85,7 +88,7 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    // console.log(this.state.showCoinPage)
+    console.log(this.state.everything)
     return (
       <StyledNav>
         <TopNav>

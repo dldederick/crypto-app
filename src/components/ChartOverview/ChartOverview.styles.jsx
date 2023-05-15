@@ -41,7 +41,7 @@ text-align: center;
 height: 40px;
 line-height: 40px;
 background-image: url(${props => props.img});
-background-size: 15px 15px;
+background-size: 20px 20px;
 background-repeat: no-repeat;
 background-position: 50px;`
 
@@ -54,7 +54,7 @@ text-align: center;
 height: 40px;
 line-height: 40px;
 background-image: url(${props => props.img});
-background-size: 15px 15px;
+background-size: 20px 20px;
 background-repeat: no-repeat;
 background-position: 40px;
 `
