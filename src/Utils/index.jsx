@@ -68,3 +68,7 @@ export function convertToUnixTimestamp(dateString) {
   const unixTimestamp = Math.floor(date.getTime() / 1000);
   return unixTimestamp;
 };
+
+export function openInNewTab(url) {
+  window.open(url, '_blank',  'noreferrer' )
+}

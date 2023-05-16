@@ -37,7 +37,7 @@ import {
   Link2,
   Link3,
 } from "./CoinInfoPage.styles";
-import { readableNum, convertDate, roundedPercentage } from "../../Utils";
+import { readableNum, convertDate, roundedPercentage, openInNewTab } from "../../Utils";
 
 export default class CoinsInfoPage extends React.Component {
   state = {
@@ -283,17 +283,17 @@ export default class CoinsInfoPage extends React.Component {
           <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
           <LinkWrapper>
             <Link1>
-              <div></div>
+              <div onClick={() => openInNewTab(info.links?.homepage[0])}></div>
               <div>{info.links?.homepage[0]}</div>
               <div onClick={() => navigator.clipboard.writeText(info.links?.homepage[0])}></div>
             </Link1>
             <Link2>
-              <div></div>
+              <div onClick={() => openInNewTab(info.links?.blockchain_site[0])}></div>
               <div>{info.links?.blockchain_site[0]}</div>
               <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[0])}></div>
             </Link2>
             <Link3>
-              <div></div>
+              <div onClick={() => openInNewTab(info.links?.blockchain_site[1])}></div>
               <div>{info.links?.blockchain_site[1]}</div>
               <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[1])}></div>
             </Link3>
