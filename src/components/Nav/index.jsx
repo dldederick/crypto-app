@@ -76,7 +76,7 @@ export default class Nav extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.selectedCurrency !== prevState.selectedCurrency) {
+    if (this.props.selectedCurrency !== prevProps.selectedCurrency) {
       this.getGlobalCryptoCurrencyData();
     }
   }
@@ -105,6 +105,7 @@ export default class Nav extends React.Component {
             <CurrencySelect
               listOfCurrencies={this.props.listOfCurrencies}
               handleSelect={this.handleSelect}
+              currencySymbol={this.props.currencySymbol}
             />
             <ThemeSelect />
           </NavOptions>
@@ -115,6 +116,7 @@ export default class Nav extends React.Component {
           marketCap={this.state.totalMarketCap}
           volume={this.state.totalVolume}
           dominance={this.state.dominance}
+          currencySymbol={this.props.currencySymbol}
         />
       </StyledNav>
     );

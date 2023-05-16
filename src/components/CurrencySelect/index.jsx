@@ -17,18 +17,21 @@ const CurrencySelect = (props) => {
   const handleSelect = (key) => {
     setSelectedCurrency(key.toUpperCase());
     props.handleSelect(key);
-    handleClick;
+    handleClick();
   };
 
   console.log(isClicked, "hello");
   return (
     <CurrencySelectStyles>
-      <CoinSelected>${selectedCurrency}</CoinSelected>
+      <CoinSelected>{props.currencySymbol}{selectedCurrency}</CoinSelected>
       <DropdownVector onClick={handleClick}></DropdownVector>
       {isClicked && (
         <DropDownMenu
           handleSelect={handleSelect}
           listOfCurrencies={props.listOfCurrencies}
+          isClicked={isClicked}
+          handleClick={handleClick}
+          currencySymbol={props.currencySymbol}
         />
       )}
     </CurrencySelectStyles>

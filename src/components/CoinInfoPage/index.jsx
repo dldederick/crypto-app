@@ -13,7 +13,6 @@ import {
   CoinSupplyData,
   CoinMarketVolumeData,
   DescriptionWrapper,
-  // LinkWrapper,
   ConvertCont,
   CoinInfoHeader,
   CoinInfoSummary,
@@ -34,9 +33,6 @@ import {
   ConvertIcon,
   ConvertCurrencyOne,
   ConvertCurrencyTwo,
-  // Link1,
-  // Link2,
-  // Link3,
 } from "./CoinInfoPage.styles";
 import { readableNum, convertDate, roundedPercentage, openInNewTab } from "../../Utils";
 
@@ -283,22 +279,6 @@ export default class CoinsInfoPage extends React.Component {
           </SummaryWrapper>
           <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
           <LinkWrapper links={info.links} />
-            {/* <Link1>
-              <div onClick={() => openInNewTab(info.links?.homepage[0])}></div>
-              <div>{info.links?.homepage[0]}</div>
-              <div onClick={() => navigator.clipboard.writeText(info.links?.homepage[0])}></div>
-            </Link1>
-            <Link2>
-              <div onClick={() => openInNewTab(info.links?.blockchain_site[0])}></div>
-              <div>{info.links?.blockchain_site[0]}</div>
-              <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[0])}></div>
-            </Link2>
-            <Link3>
-              <div onClick={() => openInNewTab(info.links?.blockchain_site[1])}></div>
-              <div>{info.links?.blockchain_site[1]}</div>
-              <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[1])}></div>
-            </Link3>
-          </LinkWrapper> */}
         </CoinInfoWrapper>
       </StyledCoinInfo>
     );

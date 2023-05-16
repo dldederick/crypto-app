@@ -1,4 +1,5 @@
 import React from "react";
+import getSymbolFromCurrency from "currency-symbol-map";
 import {
   StyledDropDown,
   CurrencyList,
@@ -19,8 +20,19 @@ export default class DropDownMenu extends React.Component {
     this.setState({ filteredValue: upperCase });
   };
 
-  // handleInputClick = (e) => {
-  //   e.stopPropagation();
+  // handleWindowClick = (e) => {
+  //   const dropDown = document.getElementById('drop-down');
+  //   if (dropDown && !dropDown.contains(e.target)) {
+  //     this.props.handleClick()
+  //   }
+  // }
+
+  // componentDidMount(){
+  //   document.addEventListener('click', this.handleWindowClick)
+  // }
+
+  // componentWillUnmount(){
+  //   document.removeEventListener('click', this.handleWindowClick)
   // }
 
   render() {
@@ -31,12 +43,11 @@ export default class DropDownMenu extends React.Component {
       : this.props.listOfCurrencies.map(item => item.toUpperCase());
 
     return (
-      <StyledDropDown>
+      <StyledDropDown id="drop-down">
         <input
           placeholder="Search"
           onChange={this.handleChange}
           value={this.state.filteredValue}
-          // onClick={this.handleInputClick}
         ></input>
         <CurrencyList>
           {filteredList.map((key) => {
@@ -45,7 +56,7 @@ export default class DropDownMenu extends React.Component {
                 key={key}
                 onClick={() => this.handleSelect(key)}
               >
-                {key.toUpperCase()}
+                {getSymbolFromCurrency(key)}{key.toUpperCase()}
               </CurrencyListItems>
             );
           })}

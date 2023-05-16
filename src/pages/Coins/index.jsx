@@ -67,6 +67,7 @@ export default class Coins extends React.Component {
             coinsMarketDateArray={this.state.coinsMarketDateArray}
             coinsMarketPriceArray={this.state.coinsMarketPriceArray}
             selectedCurrency={this.props.selectedCurrency}
+            currencySymbol={this.props.currencySymbol}
           />
       </StyledCoinsPage>
     );
