@@ -285,17 +285,17 @@ export default class CoinsInfoPage extends React.Component {
             <Link1>
               <div></div>
               <div>{info.links?.homepage[0]}</div>
-              <div></div>
+              <div onClick={() => navigator.clipboard.writeText(info.links?.homepage[0])}></div>
             </Link1>
             <Link2>
               <div></div>
               <div>{info.links?.blockchain_site[0]}</div>
-              <div></div>
+              <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[0])}></div>
             </Link2>
             <Link3>
               <div></div>
               <div>{info.links?.blockchain_site[1]}</div>
-              <div></div>
+              <div onClick={() => navigator.clipboard.writeText(info.links?.blockchain_site[1])}></div>
             </Link3>
           </LinkWrapper>
         </CoinInfoWrapper>
