@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import getSymbolFromCurrency from "currency-symbol-map";
+import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
 import CoinInfoPage from "./components/CoinInfoPage";
@@ -8,14 +9,27 @@ import Portfolio from "./pages/Portfolio";
 import { AppDesign } from "./App.styles";
 import axios from "axios";
 
+
 export default class App extends React.Component {
   state = {
     listOfCurrencies: [],
     selectedCurrency: "usd",
-    currencySymbol: '',
+    currencySymbol: "",
     isLoading: false,
     hasError: false,
+    darkMode: true,
   };
+
+  darkTheme = {
+    main: '#191B1F',
+    secondary: '#1F2128'
+  }
+  
+  lightTheme = {
+    main: '#FFFFFF',
+    secondary: '#FFFF00'
+  }
+  
 
   getSupportedCurrencies = async () => {
     try {
@@ -32,42 +46,55 @@ export default class App extends React.Component {
     this.setState({ selectedCurrency: key });
   };
 
+  handleClick = () => {
+    this.setState({ darkMode: !this.state.darkMode })
+  }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getSupportedCurrencies();
     const symbol = getSymbolFromCurrency(this.state.selectedCurrency);
-    this.setState({ currencySymbol: symbol })
+    this.setState({ currencySymbol: symbol });
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.selectedCurrency !== this.state.selectedCurrency){
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedCurrency !== this.state.selectedCurrency) {
       const symbol = getSymbolFromCurrency(this.state.selectedCurrency);
-      this.setState({ currencySymbol: symbol })
+      this.setState({ currencySymbol: symbol });
     }
   }
 
   render() {
-    // console.log(this.state.listOfCurrencies, 'app');
+    console.log(this.state.darkMode)
     return (
-      <Router>
-        <AppDesign>
-          <Nav
-            selectedCurrency={this.state.selectedCurrency}
-            currencySymbol={this.state.currencySymbol}
-            listOfCurrencies={this.state.listOfCurrencies}
-            handleSelect={this.handleSelect}
-          />
-          <Switch>
-          <Route exact path="/">
-              <Coins selectedCurrency={this.state.selectedCurrency} currencySymbol={this.state.currencySymbol} />
-            </Route>
-            <Route exact path="/coin/:coinId" component={CoinInfoPage} />
-            <Route exact path="/portfolio">
-              <Portfolio selectedCurrency={this.state.selectedCurrency} currencySymbol={this.state.currencySymbol}/>
-            </Route>
-          </Switch>
-        </AppDesign>
-      </Router>
+      <ThemeProvider theme={this.state.darkMode ? this.darkTheme : this.lightTheme}>
+        <Router>
+          <AppDesign>
+            <Nav
+              selectedCurrency={this.state.selectedCurrency}
+              currencySymbol={this.state.currencySymbol}
+              listOfCurrencies={this.state.listOfCurrencies}
+              handleSelect={this.handleSelect}
+              handleClick={this.handleClick}
+            />
+            <Switch>
+              <Route exact path="/">
+                <Coins
+                  selectedCurrency={this.state.selectedCurrency}
+                  currencySymbol={this.state.currencySymbol}
+                />
+              </Route>
+              <Route exact path="/coin/:coinId" component={CoinInfoPage} />
+              <Route exact path="/portfolio">
+                <Portfolio
+                  selectedCurrency={this.state.selectedCurrency}
+                  currencySymbol={this.state.currencySymbol}
+                />
+              </Route>
+            </Switch>
+          </AppDesign>
+        </Router>
+     </ThemeProvider>
     );
   }
 }

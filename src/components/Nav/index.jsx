@@ -65,6 +65,10 @@ export default class Nav extends React.Component {
       this.setState({ hasError: false, isLoading: false })
     }
   }
+  
+  handleClick = () => {
+    this.props.handleClick()
+  }
 
   handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
@@ -107,7 +111,7 @@ export default class Nav extends React.Component {
               handleSelect={this.handleSelect}
               currencySymbol={this.props.currencySymbol}
             />
-            <ThemeSelect />
+            <ThemeSelect handleClick={this.handleClick} />
           </NavOptions>
         </TopNav>
         <BottomNav

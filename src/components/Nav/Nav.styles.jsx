@@ -5,7 +5,8 @@ export const StyledNav = styled.div`
   // border: 1px yellow solid;
   width: calc(100% - 20px);
   height: 100px;
-  background-color: #191B1F;
+  // background-color: #191B1F;
+  background-color: ${(props) => props.theme.main};
   margin: auto;
   position: absolute;
   top: 10px;

@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyledThemeButton } from './ThemeSelect.styles'
 
-export default function ThemeSelect() {
+export default function ThemeSelect(props) {
+    const handleClick = () => {
+        props.handleClick();
+    }
     return (
-        <StyledThemeButton>
+        <StyledThemeButton onClick={() => handleClick()}>
             <img></img>
         </StyledThemeButton>
     )
