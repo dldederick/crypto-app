@@ -56,7 +56,7 @@ export default class DropDownMenu extends React.Component {
                 key={key}
                 onClick={() => this.handleSelect(key)}
               >
-                {getSymbolFromCurrency(key)}{key.toUpperCase()}
+                {getSymbolFromCurrency(key)} {key.toUpperCase()}
               </CurrencyListItems>
             );
           })}

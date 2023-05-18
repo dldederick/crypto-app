@@ -68,7 +68,7 @@ export default class Coins extends React.Component {
         {this.state.assetList?.length < 1 ? (
           <ZeroAssets>You currently have 0 assets.</ZeroAssets>
         ) : (
-          <ListOfAssets assets={this.state.assetList} />
+          <ListOfAssets assets={this.state.assetList} selectedCurrency={this.props.selectedCurrency} currencySymbol={this.props.currencySymbol} />
         )}
       </StyledPortfolioPage>
     );

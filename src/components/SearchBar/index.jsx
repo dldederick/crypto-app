@@ -16,7 +16,7 @@ export default class SearchBar extends React.Component {
     this.setState({ filteredValue: e.target.value });
   };
 
-  handleClick = (value) => {
+  handleClick = () => {
     this.setState({ filteredValue: "" });
   };
 
@@ -25,7 +25,7 @@ export default class SearchBar extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <StyledInput
-          placeholder="Search"
+          placeholder="Search coins..."
           onChange={this.handleChange}
           value={this.state.filteredValue}
         ></StyledInput>

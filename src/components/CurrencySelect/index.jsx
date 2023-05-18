@@ -3,7 +3,7 @@ import DropDownMenu from "../DropDownMenu";
 import {
   CurrencySelectStyles,
   CoinSelected,
-  DropdownVector,
+  // DropdownVector,
 } from "./CurrencySelect.styles";
 
 const CurrencySelect = (props) => {
@@ -23,8 +23,8 @@ const CurrencySelect = (props) => {
   console.log(isClicked, "hello");
   return (
     <CurrencySelectStyles>
-      <CoinSelected>{props.currencySymbol}{selectedCurrency}</CoinSelected>
-      <DropdownVector onClick={handleClick}></DropdownVector>
+      <CoinSelected onClick={handleClick}>{props.currencySymbol} {selectedCurrency}</CoinSelected>
+      {/* <DropdownVector onClick={handleClick}></DropdownVector> */}
       {isClicked && (
         <DropDownMenu
           handleSelect={handleSelect}

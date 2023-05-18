@@ -92,7 +92,7 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    console.log(this.state.everything)
+    // console.log(this.state.everything)
     return (
       <StyledNav>
         <TopNav>

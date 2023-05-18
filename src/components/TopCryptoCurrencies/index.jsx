@@ -67,7 +67,7 @@ export default function TopCryptoCurrencies(props) {
               {capitalize(obj.id)} ({obj.symbol.toUpperCase()})
             </TopId>
             <TopCurrentPrice>
-              {props.currencySymbol}{roundedPercentage(obj.current_price)}
+              {props.currencySymbol} {roundedPercentage(obj.current_price)}
             </TopCurrentPrice>
             <Top1h value={obj.price_change_percentage_1h_in_currency}>
               {roundedPercentage(obj.price_change_percentage_1h_in_currency)}%
@@ -80,8 +80,8 @@ export default function TopCryptoCurrencies(props) {
             </Top7d>
             <TopVolumeMarketCap>
               <VolumeMarketCapValues>
-                <VolumeValue>{props.currencySymbol}{readableNum(obj.total_volume)}</VolumeValue>
-                <MarketCapValue>{props.currencySymbol}{readableNum(obj.market_cap)}</MarketCapValue>
+                <VolumeValue>{props.currencySymbol} {readableNum(obj.total_volume)}</VolumeValue>
+                <MarketCapValue>{props.currencySymbol} {readableNum(obj.market_cap)}</MarketCapValue>
               </VolumeMarketCapValues>
               <TotalBar>
                 <VolumeMarketCapPercentageBar
@@ -92,9 +92,9 @@ export default function TopCryptoCurrencies(props) {
             <TopSupply>
               <CirculatingSupplyValues>
                 <CirculatingValue>
-                {props.currencySymbol}{readableNum(obj.circulating_supply)}
+                {props.currencySymbol} {readableNum(obj.circulating_supply)}
                 </CirculatingValue>
-                <SupplyValue>{props.currencySymbol}{readableNum(obj.total_supply)}</SupplyValue>
+                <SupplyValue>{props.currencySymbol} {readableNum(obj.total_supply)}</SupplyValue>
               </CirculatingSupplyValues>
               <TotalBar>
                 <CirculatingSupplyPercentageBar

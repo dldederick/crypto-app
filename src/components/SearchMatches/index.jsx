@@ -19,7 +19,7 @@ export default function SearchMatches(props) {
       {filteredList?.map((item) => {
         return (
           <SuggestedCoin key={item}>
-            <SuggestedCoinLink to={`/${item}`} onClick={handleClick}>{item}</SuggestedCoinLink>
+            <SuggestedCoinLink to={`/coin/${item}`} onClick={handleClick}>{item}</SuggestedCoinLink>
           </SuggestedCoin>
         );
       })}

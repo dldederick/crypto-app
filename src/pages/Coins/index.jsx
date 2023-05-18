@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ChartOverview from "../../components/ChartOverview";
-import CoinInfoPage from "../../components/CoinInfoPage";
+import CoinInfoPage from "../CoinInfoPage";
 import { StyledCoinsPage } from "./Coins.styles";
 export default class Coins extends React.Component {
   state = {

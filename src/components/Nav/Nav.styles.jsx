@@ -55,7 +55,7 @@ export const NavOptions = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   width: 50%;
   padding-right: 15px;
 `;

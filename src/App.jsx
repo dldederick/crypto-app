@@ -4,11 +4,10 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
-import CoinInfoPage from "./components/CoinInfoPage";
+import CoinInfoPage from "./pages/CoinInfoPage";
 import Portfolio from "./pages/Portfolio";
 import { AppDesign } from "./App.styles";
 import axios from "axios";
-
 
 export default class App extends React.Component {
   state = {
@@ -21,15 +20,14 @@ export default class App extends React.Component {
   };
 
   darkTheme = {
-    main: '#191B1F',
-    secondary: '#1F2128'
-  }
-  
+    main: "#191B1F",
+    secondary: "#1F2128",
+  };
+
   lightTheme = {
-    main: '#FFFFFF',
-    secondary: '#FFFF00'
-  }
-  
+    main: "#FFFFFF",
+    secondary: "#FFFF00",
+  };
 
   getSupportedCurrencies = async () => {
     try {
@@ -44,13 +42,19 @@ export default class App extends React.Component {
 
   handleSelect = (key) => {
     this.setState({ selectedCurrency: key });
+    // localStorage.setItem('SelectedCurrency', key)
   };
 
   handleClick = () => {
-    this.setState({ darkMode: !this.state.darkMode })
-  }
+    this.setState({ darkMode: !this.state.darkMode });
+  };
 
   componentDidMount() {
+    // const storedCurrency = localStorage.getItem('SelectedCurrency');
+    // if (storedCurrency){
+    //   this.setState({ selectedCurrency: JSON.parse(storedCurrency) })
+    // }
+
     this.setState({ isLoading: true });
     this.getSupportedCurrencies();
     const symbol = getSymbolFromCurrency(this.state.selectedCurrency);
@@ -65,9 +69,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.darkMode)
+    // console.log(this.state.selectedCurrency)
     return (
-      <ThemeProvider theme={this.state.darkMode ? this.darkTheme : this.lightTheme}>
+      <ThemeProvider
+        theme={this.state.darkMode ? this.darkTheme : this.lightTheme}
+      >
         <Router>
           <AppDesign>
             <Nav
@@ -78,13 +84,24 @@ export default class App extends React.Component {
               handleClick={this.handleClick}
             />
             <Switch>
-              <Route exact path="/">
-                <Coins
-                  selectedCurrency={this.state.selectedCurrency}
-                  currencySymbol={this.state.currencySymbol}
-                />
+              <Route
+                exact
+                path="/">
+                  <Coins
+                    selectedCurrency={this.state.selectedCurrency}
+                    currencySymbol={this.state.currencySymbol}
+                  />
               </Route>
-              <Route exact path="/coin/:coinId" component={CoinInfoPage} />
+              <Route
+                exact
+                path="/coin/:coinId"
+                component={(props) => (
+                  <CoinInfoPage
+                    {...props}
+                    selectedCurrency={this.state.selectedCurrency}
+                  />
+                )}
+              ></Route>
               <Route exact path="/portfolio">
                 <Portfolio
                   selectedCurrency={this.state.selectedCurrency}
@@ -94,7 +111,7 @@ export default class App extends React.Component {
             </Switch>
           </AppDesign>
         </Router>
-     </ThemeProvider>
+      </ThemeProvider>
     );
   }
 }

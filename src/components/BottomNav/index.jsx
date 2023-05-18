@@ -17,7 +17,7 @@ export default function BottomNav(props) {
       {Object.entries(bottomNavData).map(([key, value])=> {
         return(
         <div key={key}>
-            <span>{key}: </span><a>{props.currencySymbol}{value}</a>
+            <span>{key}: </span><a>{props.currencySymbol} {value}</a>
         </div>
       )})}
     </StyledBottomNav>

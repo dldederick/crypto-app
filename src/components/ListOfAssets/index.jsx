@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import getSymbolFromCurrency from "currency-symbol-map";
 import {
   StyledAssetList,
   ActiveAsset,
@@ -29,8 +30,9 @@ export default class ListOfAssets extends React.Component {
           const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
           const newDate = Math.floor(Date.now() / 1000);
           const name = obj.id;
+          const currency = this.props.selectedCurrency;
           const { data } =
-            await axios(`https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=usd&from=${purchaseDate}&to=${newDate}
+            await axios(`https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}
                 `);
 
           const firstPrice = data.prices[0][1];
@@ -53,13 +55,14 @@ export default class ListOfAssets extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ assetList: this.props.assets, isLoading: true }, () => {
-      this.getCoinPriceChange();
-    });
+    // const getAssetList = localStorage.getItem('AssetList');
+    this.setState({ isLoading: true });
+    this.getCoinPriceChange();
+   
   }
 
   render() {
-    console.log(this.props.assets, "hello");
+    console.log(this.props.assets, this.props.selectedCurrency, "welcome");
     return (
       <StyledAssetList>
         {this.state.updatedAssetList.map((obj) => (
@@ -72,7 +75,7 @@ export default class ListOfAssets extends React.Component {
               <div>
                 <AssetHeader>Market Performance</AssetHeader>
                 <AssetMarketPerformance>
-                  <div>Current Price: {readableNum(obj?.current_price)}</div>
+                  <div>Current Price: {getSymbolFromCurrency(obj.id)} {readableNum(obj?.current_price)}</div>
                   <div>
                     Price Change 24h: {readableNum(obj?.price_change_24h)}
                   </div>
@@ -92,13 +95,13 @@ export default class ListOfAssets extends React.Component {
               <div>
                 <AssetHeader>Coin Performance</AssetHeader>
                 <AssetPerformance>
-                  <div>Coin Amount: {obj.assetAmount}</div>
+                  <div>Coin Amount: {getSymbolFromCurrency(obj.id)} {obj.assetAmount}</div>
                   <div>
                     Coin Value:{" "}
-                    {readableNum(obj.assetAmount * obj.current_price)}
+                    {getSymbolFromCurrency(obj.id)} {readableNum(obj.assetAmount * obj.current_price)}
                   </div>
                   <div>Date Purchased: {obj.assetPurchaseDate}</div>
-                  <div>Price Change Since Purchase: {obj.percentageChange}</div>
+                  <div>Price Change Since Purchase: {getSymbolFromCurrency(obj.id)} {obj.percentageChange}</div>
                 </AssetPerformance>
               </div>
             </ListAssetInfoCont>

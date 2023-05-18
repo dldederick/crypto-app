@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import CoinDataChart from "../CoinDataChart";
-import LinkWrapper from "../LInkWrapper";
+import getSymbolFromCurrency from "currency-symbol-map";
+import CoinDataChart from "../../components/CoinDataChart";
+import LinkWrapper from "../../components/LInkWrapper";
 import {
   StyledCoinInfo,
   CoinInfoWrapper,
@@ -109,26 +110,33 @@ export default class CoinsInfoPage extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props, 'props')
     this.getCoinInfo(this.props.match.params.coinId);
     this.getCoinMarketChart(this.state.periodSelected);
   }
 
   render() {
-    console.log(this.props.match.params);
+    // console.log(this.props);
+    console.log(this.state.coinInfo)
+   
     const info = this.state.coinInfo;
+    const symbol = info.symbol;
+    const currency = this.props.selectedCurrency;
+    const selectedCoinSymbol = getSymbolFromCurrency(symbol);
+    const selectedCurrencySymbol = getSymbolFromCurrency(currency);
     const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
     return (
       <StyledCoinInfo>
         <CoinInfoWrapper>
           <ConvertCont>
             <ConvertCurrencyOne>
-              <div>USD</div>
-              <input value={info.market_data?.current_price?.usd}></input>
+              <div>{symbol?.toUpperCase()}</div>
+              <input value={`${selectedCoinSymbol}${info.market_data?.current_price[symbol]}`}></input>
             </ConvertCurrencyOne>
-            <ConvertIcon onClick={this.handleConversion}></ConvertIcon>
+            <ConvertIcon></ConvertIcon>
             <ConvertCurrencyTwo>
-              <input value={info.market_data?.current_price?.btc}></input>
-              <div>BTC</div>
+              <input value={`${selectedCurrencySymbol}${info.market_data?.current_price[currency]}`}></input>
+              <div>{currency?.toUpperCase()}</div>
             </ConvertCurrencyTwo>
           </ConvertCont>
           <SummaryWrapper>

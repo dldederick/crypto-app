@@ -6,8 +6,6 @@ export default function ThemeSelect(props) {
         props.handleClick();
     }
     return (
-        <StyledThemeButton onClick={() => handleClick()}>
-            <img></img>
-        </StyledThemeButton>
+        <StyledThemeButton onClick={() => handleClick()}></StyledThemeButton>
     )
 }
