@@ -20,7 +20,6 @@ const CurrencySelect = (props) => {
     handleClick();
   };
 
-  console.log(isClicked, "hello");
   return (
     <CurrencySelectStyles>
       <CoinSelected onClick={handleClick}>{props.currencySymbol} {selectedCurrency}</CoinSelected>
