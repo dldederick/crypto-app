@@ -40,7 +40,7 @@ export default class Coins extends React.Component {
           const { data } = await axios(
             `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
           );
-          const firstPrice = data?.prices[0][0];
+          const firstPrice = data.prices[0][0];
           const lastPrice = data.prices[data.prices.length - 1][1];
           const priceChange = lastPrice - firstPrice;
           const percentageChange = (priceChange / firstPrice) * 100;
@@ -87,14 +87,7 @@ export default class Coins extends React.Component {
   }
 
   render() {
-    // const purchaseDate = convertToUnixTimestamp(
-    //   this.state.assetList[0].assetPurchaseDate
-    // );
-    // const newDate = Math.floor(Date.now() / 1000);
-    // const name = this.state.assetList[0].id;
-    // const currency = this.props.selectedCurrency;
-    console.log(this.state.assetList, this.state.hasError, "state");
-    // console.log(purchaseDate, newDate, name, currency)
+    console.log(this.state.assetList)
     return (
       <StyledPortfolioPage>
         <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>
@@ -104,6 +97,7 @@ export default class Coins extends React.Component {
             cryptoNames={this.state.cryptoNames}
             cryptoInfo={this.state.cryptoCurrencies}
             addAsset={this.addAsset}
+            currencySymbol={this.props.currencySymbol}
           />
         )}
         {this.state.assetList?.length < 1 ? (

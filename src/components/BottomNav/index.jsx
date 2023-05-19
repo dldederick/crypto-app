@@ -9,17 +9,26 @@ export default function BottomNav(props) {
         'Exchange': props.exchange,
         'Market Cap': readableNum(props.marketCap),
         'Volume': readableNum(props.volume),
-        'Dominance': `BTC ${Math.round(props.dominance)}%`
+        'BTC Dominance': `${Math.round(props.dominance)}%`
     }
 
   return (
     <StyledBottomNav>
       {Object.entries(bottomNavData).map(([key, value])=> {
-        return(
-        <div key={key}>
-            <span>{key}: </span><a>{props.currencySymbol} {value}</a>
-        </div>
-      )})}
+        if(key !== 'BTC Dominance'){
+          return(
+            <div key={key}>
+                <span>{key}: </span><a>{props.currencySymbol}{value}</a>
+            </div>
+          )} else {
+            return(
+              <div key={key}>
+                <span>{key}: </span><a>{value}</a>
+            </div>
+            )
+          }
+          })
+        }
     </StyledBottomNav>
   );
 }
