@@ -12,6 +12,9 @@ import {
 import { readableNum, roundedPercentage } from "../../Utils";
 
 export default function ListOfAssets(props) {
+  function textColor(number){
+    return number >= 0 ? {color: '#00ff5f'} : {color: '#D9123A'};
+  }
   return (
     <StyledAssetList>
       {props.assets.map((obj) => (
@@ -25,23 +28,35 @@ export default function ListOfAssets(props) {
               <AssetHeader>Market Performance</AssetHeader>
               <AssetMarketPerformance>
                 <div>
-                  Current Price: {props.currencySymbol}
-                  {readableNum(obj?.current_price)}
+                  Current Price:{" "}
+                  <span style={textColor(readableNum(obj?.current_price))}>
+                    {props.currencySymbol}
+                    {readableNum(obj?.current_price)}
+                  </span>
                 </div>
                 <div>
-                  Price Change 24h: {props.currencySymbol}
-                  {readableNum(obj?.price_change_24h)}
+                  Price Change 24h:{" "}
+                  <span style={textColor(readableNum(obj?.price_change_24h))}>
+                    {props.currencySymbol}
+                    {readableNum(obj?.price_change_24h)}
+                  </span>
                 </div>
                 <div>
                   Market Cap / Volume:{" "}
-                  {roundedPercentage(obj?.market_cap / obj?.total_volume)}%
+                  <span style={textColor(roundedPercentage(obj?.market_cap / obj?.total_volume))}>
+                    {roundedPercentage(obj?.market_cap / obj?.total_volume)}%
+                  </span>
                 </div>
                 <div>
                   Circulating Supply / Supply:{" "}
-                  {roundedPercentage(
-                    obj?.circulating_supply / obj?.total_supply
-                  )}
-                  %
+                  <span style={textColor(roundedPercentage(
+                      obj?.circulating_supply / obj?.total_supply
+                    ))}>
+                    {roundedPercentage(
+                      obj?.circulating_supply / obj?.total_supply
+                    )}
+                    %
+                  </span>
                 </div>
               </AssetMarketPerformance>
             </div>
@@ -49,16 +64,17 @@ export default function ListOfAssets(props) {
               <AssetHeader>Coin Performance</AssetHeader>
               <AssetPerformance>
                 <div>
-                  Coin Amount: {obj?.assetAmount}
+                  Coin Amount: <span style={textColor(obj?.assetAmount)}>{props.currencySymbol}
+                  {obj?.assetAmount}</span>
                 </div>
                 <div>
-                  Coin Value: {props.currencySymbol}
-                  {readableNum(obj?.assetAmount * obj?.current_price)}
+                  Coin Value: <span style={textColor(readableNum(obj?.assetAmount * obj?.current_price))}>{props.currencySymbol}
+                  {readableNum(obj?.assetAmount * obj?.current_price)}</span>
                 </div>
-                <div>Date Purchased: {obj?.assetPurchaseDate}</div>
+                <div>Date Purchased: <span>{obj?.assetPurchaseDate}</span></div>
                 <div>
-                  Price Change Since Purchase: {props.currencySymbol}
-                  {readableNum(obj?.percentageChange)}
+                  Price Change Since Purchase: <span style={textColor(readableNum(obj?.percentageChange))}>{props.currencySymbol}
+                  {readableNum(obj?.percentageChange)}</span>
                 </div>
               </AssetPerformance>
             </div>

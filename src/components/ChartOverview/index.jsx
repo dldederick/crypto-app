@@ -126,7 +126,7 @@ export default class ChartOverview extends React.Component {
         {this.state.sortedList.length > 0 ? (<CoinsCont1>
           <Wrapper1>
             <PriceOverview img={sortedImage}>
-              {sorted.id} ({sortedSymbol}) Price: {this.props.currencySymbol} {sortedPrice}{" "}
+              {sorted.id} ({sortedSymbol}) Price: {this.props.currencySymbol}{sortedPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.state.sortedMarketPriceArray}
@@ -136,7 +136,7 @@ export default class ChartOverview extends React.Component {
           <Wrapper2>
             <VolumeOverviewWrapper>
               <VolumeOverview img={sortedImage}>
-                {sorted.id} ({sortedSymbol}) Volume: {this.props.currencySymbol} {sortedVolume}{" "}
+                {sorted.id} ({sortedSymbol}) Volume: {this.props.currencySymbol}{sortedVolume}{" "}
               </VolumeOverview>
             </VolumeOverviewWrapper>
             <CurrencyVolumeChart
@@ -147,7 +147,7 @@ export default class ChartOverview extends React.Component {
         </CoinsCont1>) : (<CoinsCont1>
           <Wrapper1>
             <PriceOverview img={coinImage}>
-              {coinObj.id} ({coinSymbol}) Price: {this.props.currencySymbol} {coinPrice}{" "}
+              {coinObj.id} ({coinSymbol}) Price: {this.props.currencySymbol}{coinPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.props.coinsMarketPriceArray}
@@ -157,7 +157,7 @@ export default class ChartOverview extends React.Component {
           <Wrapper2>
             <VolumeOverviewWrapper>
               <VolumeOverview img={coinImage}>
-                {coinObj.id} ({coinSymbol}) Volume: {this.props.currencySymbol} {coinVolume}{" "}
+                {coinObj.id} ({coinSymbol}) Volume: {this.props.currencySymbol}{coinVolume}{" "}
               </VolumeOverview>
             </VolumeOverviewWrapper>
             <CurrencyVolumeChart

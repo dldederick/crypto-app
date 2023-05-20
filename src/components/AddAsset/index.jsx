@@ -54,7 +54,7 @@ const AddAsset = (props) => {
   const handleChangeAmount = (e) => {
     const value = e.target.value;
     const numericValue = value.replace(/\D/g, '');
-    setAssetAmount(value);
+    setAssetAmount(numericValue);
   };
 
   const handleDateChange = (e) => {
