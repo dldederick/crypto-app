@@ -13,12 +13,12 @@ import {
   VolumeOverview,
   VolumeOverviewWrapper,
 } from "./ChartOverview.styles";
-import { readableNum } from "../../Utils";
+import { readableNum, capitalize } from "../../Utils";
 
 export default class ChartOverview extends React.Component {
   state = {
     sortBy: "",
-    sort: "desc",
+    sort: "",
     sortedList: [],
     sortedMarketDateArray: [],
     sortedMarketPriceArray: [],
@@ -105,7 +105,8 @@ export default class ChartOverview extends React.Component {
   }
 
   render() {
-    console.log(this.state.sortedList);
+    const price = this.state.sortBy;
+    console.log(this.props.topCryptoCurrencies, 'sortedList');
     const displayCoin = this.props.currencyDisplayed;
 
     const coinObj = this.props.topCryptoCurrencies.filter(
@@ -115,18 +116,21 @@ export default class ChartOverview extends React.Component {
     const coinVolume = readableNum(coinObj[0]?.total_volume);
     const coinImage = coinObj[0]?.image;
     const coinSymbol = coinObj[0]?.symbol.toUpperCase();
+    const coinName = coinObj[0]?.name;
+    console.log(coinObj.id)
 
     const sorted = this.state.sortedList[0];
     const sortedPrice = readableNum(sorted?.current_price);
     const sortedVolume = readableNum(sorted?.total_volume);
     const sortedImage = sorted?.image;
     const sortedSymbol = sorted?.symbol.toUpperCase();
+    const sortedName = sorted?.name;
     return (
       <>
         {this.state.sortedList.length > 0 ? (<CoinsCont1>
           <Wrapper1>
             <PriceOverview img={sortedImage}>
-              {sorted.id} ({sortedSymbol}) Price: {this.props.currencySymbol}{sortedPrice}{" "}
+              {sortedName} ({sortedSymbol}) Price: {this.props.currencySymbol}{sortedPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.state.sortedMarketPriceArray}
@@ -136,7 +140,7 @@ export default class ChartOverview extends React.Component {
           <Wrapper2>
             <VolumeOverviewWrapper>
               <VolumeOverview img={sortedImage}>
-                {sorted.id} ({sortedSymbol}) Volume: {this.props.currencySymbol}{sortedVolume}{" "}
+                {sortedName} ({sortedSymbol}) Volume: {this.props.currencySymbol}{sortedVolume}{" "}
               </VolumeOverview>
             </VolumeOverviewWrapper>
             <CurrencyVolumeChart
@@ -147,7 +151,7 @@ export default class ChartOverview extends React.Component {
         </CoinsCont1>) : (<CoinsCont1>
           <Wrapper1>
             <PriceOverview img={coinImage}>
-              {coinObj.id} ({coinSymbol}) Price: {this.props.currencySymbol}{coinPrice}{" "}
+              {coinName} ({coinSymbol}) Price: {this.props.currencySymbol}{coinPrice}{" "}
             </PriceOverview>
             <CurrencyPriceChart
               prices={this.props.coinsMarketPriceArray}
@@ -157,7 +161,7 @@ export default class ChartOverview extends React.Component {
           <Wrapper2>
             <VolumeOverviewWrapper>
               <VolumeOverview img={coinImage}>
-                {coinObj.id} ({coinSymbol}) Volume: {this.props.currencySymbol}{coinVolume}{" "}
+                {coinName} ({coinSymbol}) Volume: {this.props.currencySymbol}{coinVolume}{" "}
               </VolumeOverview>
             </VolumeOverviewWrapper>
             <CurrencyVolumeChart

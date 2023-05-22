@@ -14,8 +14,12 @@ export const roundedNum = (num) => {
 }
 
 export const roundedPercentage = (num) => {
+  if (typeof num !== 'number' || isNaN(num)) {
+    return ''; // return empty string or any default value you prefer
+  }
   return num.toFixed(2).padStart(4, '0');
-}
+};
+
 
 export const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1)

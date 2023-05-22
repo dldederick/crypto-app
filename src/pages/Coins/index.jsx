@@ -57,7 +57,7 @@ export default class Coins extends React.Component {
 
   render() {
     // console.log(this.props.selectedCurrency, 'coins');
-    // console.log(this.state.currencyDisplayed)
+    // console.log(this.state.topCryptoCurrencies)
     return (
       <StyledCoinsPage>
           <ChartOverview

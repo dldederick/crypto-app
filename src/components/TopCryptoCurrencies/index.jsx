@@ -44,6 +44,8 @@ export default function TopCryptoCurrencies(props) {
     props.handleClick(id);
   };
 
+  console.log(props.topCoinsData, 'topCoinsData')
+
   return (
     <StyledTopCurrencies>
       <TopCurrencyHeader>

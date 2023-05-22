@@ -86,7 +86,7 @@ export default class App extends React.Component {
             <Switch>
               <Route
                 exact
-                path="/">
+                path='/'>
                   <Coins
                     selectedCurrency={this.state.selectedCurrency}
                     currencySymbol={this.state.currencySymbol}
