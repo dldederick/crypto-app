@@ -59,8 +59,6 @@ export default function CurrencyPriceChart(props) {
     },
   };
 
-  console.log(props.dates, props.prices, 'damon')
-
   return (
     <Chart1>
       <Line data={data} options={options} />

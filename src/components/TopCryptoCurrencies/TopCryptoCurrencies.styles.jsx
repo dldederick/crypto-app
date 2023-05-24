@@ -27,11 +27,14 @@ export const TopCurrencyHeader = styled.div`
   }
 `;
 
+export const TopCurrencyList = styled.div`
+width: 95%;`
+
 export const TopCurrencyCont = styled(Link)`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 95%;
+  width: 100%;
   height: 50px;
   border-bottom: 1px #2c2f36 solid;
   white-space: nowrap;

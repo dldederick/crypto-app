@@ -49,7 +49,7 @@ export default function ChartOverview(props) {
   //   const sortedImage = sorted?.image;
   //   const sortedSymbol = sorted?.symbol.toUpperCase();
   //   const sortedName = sorted?.name;
-    console.log("incoming coins", coinsMarketDateArray);
+    // console.log("incoming coins", coinsMarketDateArray);
     return (
       <CoinsCont1>
             <Wrapper1>
