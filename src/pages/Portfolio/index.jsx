@@ -49,7 +49,6 @@ export default class Coins extends React.Component {
       );
 
       this.setState({ assetList, isLoading: false });
-      //   console.log(this.state.updatedAssetList, 'state')
     } catch (error) {
         console.log(error)
       this.setState({ hasError: true, isLoading: false });
@@ -68,7 +67,8 @@ export default class Coins extends React.Component {
     const createAsset = this.state.cryptoCurrencies.find(
       (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
     );
-    createAsset.assetAmount = asset.assetAmount;
+    const numericValue = asset.assetAmount.replace(/\D/g, "");
+    createAsset.assetAmount = numericValue;
     createAsset.assetPurchaseDate = asset.assetPurchaseDate;
     const { assetList } = this.state;
     const newList = [...assetList, createAsset];
@@ -87,7 +87,6 @@ export default class Coins extends React.Component {
   }
 
   render() {
-    console.log(this.state.assetList)
     return (
       <StyledPortfolioPage>
         <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>

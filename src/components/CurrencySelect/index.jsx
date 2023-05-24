@@ -8,7 +8,7 @@ import {
 
 const CurrencySelect = (props) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [selectedCurrency, setSelectedCurrency] = useState(props.selectedCurrency.toUpperCase());
 
   const handleClick = (e) => {
     setIsClicked(!isClicked);

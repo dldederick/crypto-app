@@ -6,8 +6,8 @@ import {
     CategoryScale,
   } from "chart.js";
   import { Bar } from "react-chartjs-2";
-  import { Chart2 } from './CurrencyVolumeChart.styles'
   import { formatTimestamp } from "../../Utils";
+  import { Chart2 } from './CurrencyVolumeChart.styles'
   
   ChartJS.register(
     BarController,

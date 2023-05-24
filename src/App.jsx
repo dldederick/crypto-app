@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
@@ -7,7 +8,6 @@ import Coins from "./pages/Coins";
 import CoinInfoPage from "./pages/CoinInfoPage";
 import Portfolio from "./pages/Portfolio";
 import { AppDesign } from "./App.styles";
-import axios from "axios";
 
 export default class App extends React.Component {
   state = {
@@ -42,7 +42,7 @@ export default class App extends React.Component {
 
   handleSelect = (key) => {
     this.setState({ selectedCurrency: key });
-    // localStorage.setItem('SelectedCurrency', key)
+    localStorage.setItem('SelectedCurrency', key)
   };
 
   handleClick = () => {
@@ -52,7 +52,9 @@ export default class App extends React.Component {
   componentDidMount() {
     // const storedCurrency = localStorage.getItem('SelectedCurrency');
     // if (storedCurrency){
-    //   this.setState({ selectedCurrency: JSON.parse(storedCurrency) })
+    //   this.setState({ selectedCurrency: storedCurrency })
+    // } else {
+    //   this.setState({ selectedCurrency: 'usd' })
     // }
 
     this.setState({ isLoading: true });
@@ -69,7 +71,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.selectedCurrency)
     return (
       <ThemeProvider
         theme={this.state.darkMode ? this.darkTheme : this.lightTheme}
@@ -86,16 +87,20 @@ export default class App extends React.Component {
             <Switch>
               <Route
                 exact
-                path='/'>
-                  <Coins
-                    selectedCurrency={this.state.selectedCurrency}
-                    currencySymbol={this.state.currencySymbol}
-                  />
+                path='/'
+                render={(props) => <Coins
+                {...props}
+                  selectedCurrency={this.state.selectedCurrency}
+                  currencySymbol={this.state.currencySymbol}
+                />}
+                >
+                  
+                  
               </Route>
               <Route
                 exact
                 path="/coin/:coinId"
-                component={(props) => (
+                render={(props) => (
                   <CoinInfoPage
                     {...props}
                     selectedCurrency={this.state.selectedCurrency}

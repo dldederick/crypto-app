@@ -92,7 +92,6 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    // console.log(this.state.everything)
     return (
       <StyledNav>
         <TopNav>
@@ -110,6 +109,7 @@ export default class Nav extends React.Component {
               listOfCurrencies={this.props.listOfCurrencies}
               handleSelect={this.handleSelect}
               currencySymbol={this.props.currencySymbol}
+              selectedCurrency={this.props.selectedCurrency}
             />
             <ThemeSelect handleClick={this.handleClick} />
           </NavOptions>

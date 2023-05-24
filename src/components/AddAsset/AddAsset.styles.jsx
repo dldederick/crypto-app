@@ -176,10 +176,12 @@ export const AddButton = styled.button`
 `;
 
 export const SearchAssets = styled.div`
-  width: 302px;
+  width: 233px;
   max-height: 162px;
   position: absolute;
-  top: 75px;
+  padding-top: 5px;
+  top: 70px;
+  right: 42px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledSearchMenu = styled.div`
-width: 502px;
-background: #2C2F36;
+width: 402px;
+background: ${(props) => props.theme.main};
 position: absolute;
 top: calc(68%);
 padding: 10px;

@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import CoinDataChart from "../../components/CoinDataChart";
-import LinkWrapper from "../../components/LInkWrapper";
+import LinkWrapper from "../../components/LinkWrapper";
+import { readableNum, convertDate, roundedPercentage, openInNewTab } from "../../Utils";
 import {
   StyledCoinInfo,
   CoinInfoWrapper,
@@ -35,7 +36,6 @@ import {
   ConvertCurrencyOne,
   ConvertCurrencyTwo,
 } from "./CoinInfoPage.styles";
-import { readableNum, convertDate, roundedPercentage, openInNewTab } from "../../Utils";
 
 export default class CoinsInfoPage extends React.Component {
   state = {
@@ -81,10 +81,11 @@ export default class CoinsInfoPage extends React.Component {
   };
 
   getCoinMarketChart = async (period) => {
-    period = this.state.periodSelected;
+    const currency = this.props.selectedCurrency;
+    const id = this.props.match.params.coinId;
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${period}&interval=daily`
+        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${period}&interval=daily`
       );
       const coinMarketPriceArray = data.prices.map((item) => item[1]);
       const coinMarketDateArray = data.prices.map((item) => item[0]);
@@ -107,18 +108,18 @@ export default class CoinsInfoPage extends React.Component {
     if (prevState.periodSelected !== this.state.periodSelected) {
       this.getCoinMarketChart(this.state.periodSelected);
     }
+    if (prevProps.match.params.coinId !== this.props.match.params.coinId){
+      this.getCoinInfo(this.props.match.params.coinId)
+    }
   }
 
   componentDidMount() {
-    console.log(this.props, 'props')
+    console.log(this.props.match.params.coinId)
     this.getCoinInfo(this.props.match.params.coinId);
     this.getCoinMarketChart(this.state.periodSelected);
   }
 
   render() {
-    // console.log(this.props);
-    console.log(this.state.coinInfo)
-   
     const info = this.state.coinInfo;
     const symbol = info.symbol;
     const currency = this.props.selectedCurrency;

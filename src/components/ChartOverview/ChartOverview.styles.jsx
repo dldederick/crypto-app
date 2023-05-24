@@ -17,20 +17,20 @@ display: flex;
 flex-direction: column;
 `
 
-export const CoinsCont2 = styled.div`
-width: 90%;
-height: 600px;
-margin: 0 auto;
-margin-top: 80px;
-`
-export const Overview = styled.div`
-background-color: #191B1F;
-border-top-right-radius: 10px;
-border-top-left-radius: 10px;
-width: 350px;
-text-align: center;
-height: 40px;
-line-height: 40px;`
+// export const CoinsCont2 = styled.div`
+// width: 90%;
+// // height: 600px;
+// margin: 0 auto;
+// margin-top: 80px;
+// `
+// export const Overview = styled.div`
+// background-color: #191B1F;
+// border-top-right-radius: 10px;
+// border-top-left-radius: 10px;
+// width: 350px;
+// text-align: center;
+// height: 40px;
+// line-height: 40px;`
 
 export const PriceOverview = styled.div`
 background-color: #191B1F;

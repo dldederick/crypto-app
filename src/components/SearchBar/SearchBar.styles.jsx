@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.input`
-width: 500px;
+width: 400px;
 height: 35px;
 border: none;
 // border-radius: 5px;
@@ -14,4 +14,8 @@ background-position: 10px;
 text-indent: 38px;
 font-size: 15px;
 outline: none;
-position: relative;`
+position: relative;
+
+&::placeholder {
+    color: white;
+}`

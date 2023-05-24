@@ -53,13 +53,12 @@ const AddAsset = (props) => {
 
   const handleChangeAmount = (e) => {
     const value = e.target.value;
-    const numericValue = value.replace(/\D/g, '');
-    setAssetAmount(numericValue);
+    setAssetAmount(value);
   };
 
   const handleDateChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "month" && value.length <= 2) {
       setMonthInputValue(value);
       if (value.length === 2) {
@@ -78,7 +77,6 @@ const AddAsset = (props) => {
       }
     }
   };
-  
 
   const handleClose = () => {
     props.handleClose();
@@ -140,27 +138,26 @@ const AddAsset = (props) => {
           <PurchaseDate>
             Enter date purchased:
             <input
-            name='month'
+              name="month"
               ref={monthInput}
-              //   inputMode="numeric"
               placeholder="mm"
               maxLength={2}
               onChange={handleDateChange}
               value={monthInputValue}
-            />/
+            />
+            /
             <input
-            name='day'
+              name="day"
               ref={dayInput}
-              //   inputMode="numeric"
               placeholder="dd"
               maxLength={2}
               onChange={handleDateChange}
               value={dayInputValue}
-            />/
+            />
+            /
             <input
-            name='year'
+              name="year"
               ref={yearInput}
-              //   inputMode="numeric"
               placeholder="yyyy"
               maxLength={4}
               onChange={handleDateChange}

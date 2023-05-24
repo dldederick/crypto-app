@@ -7,8 +7,8 @@ import {
   PointElement
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { Chart1 } from './CurrencyPriceChart.styles'
 import { formatTimestamp } from "../../Utils";
+import { Chart1 } from './CurrencyPriceChart.styles'
 
 ChartJS.register(
   LineElement,
@@ -58,6 +58,8 @@ export default function CurrencyPriceChart(props) {
       },
     },
   };
+
+  console.log(props.dates, props.prices, 'damon')
 
   return (
     <Chart1>

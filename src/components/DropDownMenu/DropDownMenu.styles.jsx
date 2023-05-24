@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledDropDown = styled.div`
   width: 120px;
-  background-color: #2c2f36;
+  background-color: ${(props) => props.theme.main};
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   position: absolute;

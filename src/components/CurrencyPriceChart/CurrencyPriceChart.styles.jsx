@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Chart1 = styled.div`
 width: 100%;
-height: 450px;
+// height: 450px;
 background-color: #191B1F;
 border-radius: 10px;
 border-top-left-radius: 0px;
