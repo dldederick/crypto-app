@@ -76,7 +76,6 @@ export default function TopCryptoCurrencies(props) {
         </TopCurrencyHeader>
         <TopCurrencyList>
           <InfiniteScroll
-            // style={{ width: "100%", border: "1px red solid" }}
             dataLength={props.topCryptoCurrencies.length}
             next={fetchData}
             hasMore={true}
