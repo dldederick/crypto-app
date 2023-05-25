@@ -25,8 +25,6 @@ export default class Coins extends React.Component {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.settings.currency || currency}&per_page=50&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
-      console.log( `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.settings.currency || currency}&per_page=50&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`)
-      
       const sortBy = this.state.settings.sortBy;
       const sort = this.state.settings.sort;
       const topCryptoCurrencies = data.sort((a, b) => {
@@ -44,7 +42,6 @@ export default class Coins extends React.Component {
       const currencyDisplayed = topCryptoCurrencies[0].id;
       this.setState({ topCryptoCurrencies, currencyDisplayed, isLoading: false }, () => this.getCoinsMarketChart());
     } catch (error) {
-      console.log(error)
       this.setState({ hasError: true, isLoading: false });
     }
   };
@@ -66,7 +63,6 @@ export default class Coins extends React.Component {
         isLoading: false,
       });
     } catch (error) {
-      console.log(error, 'error')
       this.setState({ hasError: true, isLoading: false });
     }
   };
@@ -117,20 +113,22 @@ export default class Coins extends React.Component {
       const updatedTopCryptoCurrencies = [...this.state.topCryptoCurrencies, ...data];
       this.setState({ topCryptoCurrencies: updatedTopCryptoCurrencies, isLoading: false });
     } catch (error) {
-      console.log(error);
       this.setState({ hasError: true, isLoading: false });
     }
   };
   
   componentDidUpdate(prevProps, prevState){
+    if (prevProps.selectedCurrency !== this.props.selectedCurrency){
+      this.setState(
+        { settings: { ...this.state.settings, currency: this.props.selectedCurrency } },
+        () => this.getTopCryptoCurrencies()
+      );
+    }
     if(prevProps.location.search !== this.props.location.search){
       const settings = queryString.parse(this.props.location.search)
       this.setState({  settings });
-      console.log('props changed', settings, this.props.location)
     }
-
     if(prevState.settings !== this.state.settings){
-      console.log('state changed', this.state.settings);
       this.getTopCryptoCurrencies();
     }
   };
