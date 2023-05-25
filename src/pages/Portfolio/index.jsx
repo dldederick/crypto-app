@@ -1,42 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
 import { convertToUnixTimestamp } from '../../Utils'
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
-export default class Coins extends React.Component {
-  state = {
-    assetList: [],
-    addIsClicked: false,
-    hasError: false,
-    isLoading: false,
-    cryptoCurrencies: [],
-    cryptoNames: [],
-    newAsset: {},
-  };
 
-  getCryptoCurrencies = async () => {
+const Coins = (props) => {
+const [ assetList, setAssetList ] = useState([]);
+const [ addIsClicked, setAddIsClicked ] = useState(false);
+const [ hasError, setHasError ] = useState(false);
+const [ isLoading, setIsLoading ] = useState(false);
+const [ cryptoCurrencies, setCryptoCurrencies ] = useState([]);
+const [ cryptoNames, setCryptoNames ] = useState([]);
+const [ newAsset, setNewAsset ] = useState({});
+
+  const getCryptoCurrencies = async () => {
     const currency = this.props.selectedCurrency;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
       );
       const cryptoNames = data.map((obj) => obj.name);
-      this.setState({ cryptoCurrencies: data, cryptoNames, isLoading: false });
+      setCryptoCurrencies(data);
+      setCryptoNames(cryptoNames);
+      setIsLoading(false);
     } catch (error) {
-      this.setState({ hasError: true, isLoading: false });
+      setHasError(true);
+      setIsLoading(false);
     }
   };
 
-  getCoinPriceChange = async () => {
+  const getCoinPriceChange = async () => {
     try {
       const assetList = await Promise.all(
-        this.state.assetList.map(async (obj) => {
+        assetList.map(async (obj) => {
           const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
           const newDate = Math.floor(Date.now() / 1000);
           const name = obj.id;
-          const currency = this.props.selectedCurrency;
+          const currency = props.selectedCurrency;
           const { data } = await axios(
             `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
           );
@@ -47,68 +49,65 @@ export default class Coins extends React.Component {
           return { ...obj, percentageChange };
         })
       );
-
-      this.setState({ assetList, isLoading: false });
+      setAssetList(assetList);
+      setIsLoading(false);
     } catch (error) {
-        console.log(error)
-      this.setState({ hasError: true, isLoading: false });
+      setHasError(true);
+      setIsLoading(false);
     }
   };
 
-  handleNewAsset = () => {
-    this.setState({ addIsClicked: true });
+  const handleNewAsset = () => {
+    setAddIsClicked(true);
   };
 
-  handleClose = () => {
-    this.setState({ addIsClicked: false });
+  const handleClose = () => {
+    setAddIsClicked(false)
   };
 
-  addAsset = (asset) => {
+  const addAsset = (asset) => {
     const createAsset = this.state.cryptoCurrencies.find(
       (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
     );
     const numericValue = asset.assetAmount.replace(/\D/g, "");
     createAsset.assetAmount = numericValue;
     createAsset.assetPurchaseDate = asset.assetPurchaseDate;
-    const { assetList } = this.state;
     const newList = [...assetList, createAsset];
-    this.setState({ assetList: newList, newAsset: {} });
+    setAssetList(newList);
+    setNewAsset({});
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.assetList.length !== this.state.assetList.length) {
-      this.getCoinPriceChange();
-    }
-  }
+  useEffect(() => {
+    getCoinPriceChange();
+  }, [assetList.length])
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    this.getCryptoCurrencies();
-  }
+  useEffect(() => {
+    setIsLoading(true);
+    getCryptoCurrencies();
+  }, [])
 
-  render() {
     return (
       <StyledPortfolioPage>
-        <NewAssetButton onClick={this.handleNewAsset}>Add Asset</NewAssetButton>
-        {this.state.addIsClicked && (
+        <NewAssetButton onClick={handleNewAsset}>Add Asset</NewAssetButton>
+        {addIsClicked && (
           <AddAsset
-            handleClose={this.handleClose}
-            cryptoNames={this.state.cryptoNames}
-            cryptoInfo={this.state.cryptoCurrencies}
-            addAsset={this.addAsset}
-            currencySymbol={this.props.currencySymbol}
+            handleClose={handleClose}
+            cryptoNames={cryptoNames}
+            cryptoInfo={cryptoCurrencies}
+            addAsset={addAsset}
+            currencySymbol={props.currencySymbol}
           />
         )}
-        {this.state.assetList?.length < 1 ? (
+        {assetList?.length < 1 ? (
           <ZeroAssets>You currently have 0 assets.</ZeroAssets>
         ) : (
           <ListOfAssets
-            assets={this.state.assetList}
-            selectedCurrency={this.props.selectedCurrency}
-            currencySymbol={this.props.currencySymbol}
+            assets={assetList}
+            selectedCurrency={props.selectedCurrency}
+            currencySymbol={props.currencySymbol}
           />
         )}
       </StyledPortfolioPage>
     );
-  }
 }
+export default Coins;
