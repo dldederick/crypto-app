@@ -27,6 +27,7 @@ export default function ChartOverview(props) {
     const coinImage = coinObj[0]?.image;
     const coinSymbol = coinObj[0]?.symbol.toUpperCase();
     const coinName = coinObj[0]?.name;
+    console.log(coinName, 'coinName', currencyDisplayed, 'currencyDisplayed')
 
     return (
       <CoinsCont1>

@@ -26,7 +26,7 @@ export default class Coins extends React.Component {
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.settings.currency || currency}&per_page=50&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       console.log( `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.settings.currency || currency}&per_page=50&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`)
-      const currencyDisplayed = data[0].id;
+      
       const sortBy = this.state.settings.sortBy;
       const sort = this.state.settings.sort;
       const topCryptoCurrencies = data.sort((a, b) => {
@@ -41,6 +41,7 @@ export default class Coins extends React.Component {
         }
         return 0
       })
+      const currencyDisplayed = topCryptoCurrencies[0].id;
       this.setState({ topCryptoCurrencies, currencyDisplayed, isLoading: false }, () => this.getCoinsMarketChart());
     } catch (error) {
       console.log(error)
