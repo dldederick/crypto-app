@@ -114,7 +114,6 @@ export default class CoinsInfoPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.coinId)
     this.getCoinInfo(this.props.match.params.coinId);
     this.getCoinMarketChart(this.state.periodSelected);
   }

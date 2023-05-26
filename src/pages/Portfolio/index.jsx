@@ -6,7 +6,7 @@ import { convertToUnixTimestamp } from '../../Utils'
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
 
-const Coins = (props) => {
+const Portfolio = (props) => {
 const [ assetList, setAssetList ] = useState([]);
 const [ addIsClicked, setAddIsClicked ] = useState(false);
 const [ hasError, setHasError ] = useState(false);
@@ -16,7 +16,7 @@ const [ cryptoNames, setCryptoNames ] = useState([]);
 const [ newAsset, setNewAsset ] = useState({});
 
   const getCryptoCurrencies = async () => {
-    const currency = this.props.selectedCurrency;
+    const currency = props.selectedCurrency;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
@@ -66,7 +66,7 @@ const [ newAsset, setNewAsset ] = useState({});
   };
 
   const addAsset = (asset) => {
-    const createAsset = this.state.cryptoCurrencies.find(
+    const createAsset = cryptoCurrencies.find(
       (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
     );
     const numericValue = asset.assetAmount.replace(/\D/g, "");
@@ -77,13 +77,24 @@ const [ newAsset, setNewAsset ] = useState({});
     setNewAsset({});
   };
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.assetList.length !== this.state.assetList.length) {
+  //     this.getCoinPriceChange();
+  //   }
+  // }
+  
   useEffect(() => {
     getCoinPriceChange();
   }, [assetList.length])
 
+  // componentDidMount() {
+  //   this.setState({ isLoading: true });
+  //   this.getCryptoCurrencies();
+  // }
+
   useEffect(() => {
-    setIsLoading(true);
-    getCryptoCurrencies();
+    setIsLoading(true)
+    getCryptoCurrencies()
   }, [])
 
     return (
@@ -110,4 +121,4 @@ const [ newAsset, setNewAsset ] = useState({});
       </StyledPortfolioPage>
     );
 }
-export default Coins;
+export default Portfolio;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import DropDownMenu from "../DropDownMenu";
 import {
   CurrencySelectStyles,
@@ -8,7 +9,7 @@ import {
 
 const CurrencySelect = (props) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState(props.selectedCurrency.toUpperCase());
+  const [selectedCurrency, setSelectedCurrency] = useState('');
 
   const handleClick = (e) => {
     setIsClicked(!isClicked);
@@ -19,6 +20,10 @@ const CurrencySelect = (props) => {
     props.handleSelect(key);
     handleClick();
   };
+
+  useEffect(() => {
+  setSelectedCurrency(props.selectedCurrency.toUpperCase())
+  }, [props.selectedCurrency])
 
   return (
     <CurrencySelectStyles>
