@@ -110,8 +110,9 @@ export default class Nav extends React.Component {
               handleSelect={this.handleSelect}
               currencySymbol={this.props.currencySymbol}
               selectedCurrency={this.props.selectedCurrency}
+              darkMode={this.props.darkMode}
             />
-            <ThemeSelect handleClick={this.handleClick} />
+            <ThemeSelect handleClick={this.handleClick} darkMode={this.props.darkMode} />
           </NavOptions>
         </TopNav>
         <BottomNav

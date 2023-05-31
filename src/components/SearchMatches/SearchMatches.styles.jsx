@@ -44,4 +44,4 @@ export const SuggestedCoinLink = styled(Link)`
 text-decoration: none;
 width: 100%;
 height: 100%;
-color: white;`
+color: ${(props) => props.theme.text};`

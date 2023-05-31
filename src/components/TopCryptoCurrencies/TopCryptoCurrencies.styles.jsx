@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledTopCurrencies = styled.div`
   width: 100%;
   padding: 15px 10px 0 10px;
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
   border-radius: 10px;
   border-top-left-radius: 0px;
   display: flex;
@@ -19,11 +19,11 @@ export const TopCurrencyHeader = styled.div`
   align-items: center;
   width: 95%;
   height: 50px;
-  border-bottom: 4px #2c2f36 solid;
+  border-bottom: 4px #646263 solid;
   white-space: nowrap;
 
   div {
-    color: white;
+    color: ${(props) => props.theme.text};
   }
 `;
 
@@ -36,10 +36,10 @@ export const TopCurrencyCont = styled(Link)`
   align-items: center;
   width: 100%;
   height: 50px;
-  border-bottom: 1px #2c2f36 solid;
+  border-bottom: 1px ${(props) => props.theme.secondary} solid;
   white-space: nowrap;
   text-decoration: none;
-  color: white;
+  color: ${(props) => props.theme.text};
 `;
 
 export const TopIndex = styled.div`
@@ -61,12 +61,11 @@ export const TopId = styled.div`
 
 export const TopIdHeader = styled.div`
   width: 200px;
-  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
   text-indent: 35px;
-
 `;
 
 export const TopCurrentPrice = styled.div`
@@ -75,7 +74,7 @@ export const TopCurrentPrice = styled.div`
 
 export const TopCurrentPriceHeader = styled.div`
   width: 100px;
-  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -128,7 +127,7 @@ export const TopVolumeMarketCap = styled.div`
 export const Top1hHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -137,7 +136,7 @@ export const Top1hHeader = styled.div`
 export const Top24hHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -146,7 +145,7 @@ export const Top24hHeader = styled.div`
 export const Top7dHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: url('https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png');
+  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -202,7 +201,7 @@ export const MarketCapValue = styled.div`
 export const TotalBar = styled.div`
   width: 100%;
   height: 8px;
-  background-color: #2c2f36;
+  background-color: ${(props) => props.theme.secondary};
   border-radius: 5px;
 `;
 
@@ -221,7 +220,7 @@ margin-top: 80px;
 `
 
 export const Overview = styled.div`
-background-color: #191B1F;
+background-color: ${(props) => props.theme.main};
 border-top-right-radius: 10px;
 border-top-left-radius: 10px;
 width: 350px;

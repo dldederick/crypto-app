@@ -6,6 +6,6 @@ export default function ThemeSelect(props) {
         props.handleClick();
     }
     return (
-        <StyledThemeButton onClick={() => handleClick()}></StyledThemeButton>
+        <StyledThemeButton onClick={() => handleClick()} darkMode={props.darkMode}></StyledThemeButton>
     )
 }

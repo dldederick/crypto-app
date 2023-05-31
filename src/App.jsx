@@ -7,25 +7,15 @@ import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
 import CoinInfoPage from "./pages/CoinInfoPage";
 import Portfolio from "./pages/Portfolio";
-import { AppDesign } from "./App.styles";
+import { AppDesign, darkTheme, lightTheme } from "./App.styles";
 
 const App = () => {
-const [ listOfCurrencies, setListOfCurrencies ] = useState([]);
-const [ selectedCurrency, setSelectedCurrency ] = useState('');
-const [ currencySymbol, setCurrencySymbol ] = useState('');
-const [ isLoading, setIsLoading ] = useState(false);
-const [ hasError, setHasError ] = useState(false);
-const [ darkMode, setDarkMode ] = useState(true);
-
-  const darkTheme = {
-    main: "#191B1F",
-    secondary: "#1F2128",
-  };
-
-  const lightTheme = {
-    main: "#FFFFFF",
-    secondary: "#FFFF00",
-  };
+  const [listOfCurrencies, setListOfCurrencies] = useState([]);
+  const [selectedCurrency, setSelectedCurrency] = useState("");
+  const [currencySymbol, setCurrencySymbol] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const getSupportedCurrencies = async () => {
     try {
@@ -33,7 +23,7 @@ const [ darkMode, setDarkMode ] = useState(true);
         await axios(`https://api.coingecko.com/api/v3/simple/supported_vs_currencies
 `);
       setListOfCurrencies(data);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
       setHasError(true);
       setIsLoading(false);
@@ -42,101 +32,81 @@ const [ darkMode, setDarkMode ] = useState(true);
 
   const handleSelect = (key) => {
     setSelectedCurrency(key);
-    localStorage.setItem('SelectedCurrency', key)
+    localStorage.setItem("SelectedCurrency", key);
   };
 
   const handleClick = () => {
-    setDarkMode(!darkMode)
+    setDarkMode(!darkMode);
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.selectedCurrency !== this.state.selectedCurrency) {
-  //     const symbol = getSymbolFromCurrency(this.state.selectedCurrency);
-  //     this.setState({ currencySymbol: symbol });
-  //   }
-  // }
-
   useEffect(() => {
-    // localStorage.setItem('SelectedCurrency', selectedCurrency)
     const symbol = getSymbolFromCurrency(selectedCurrency);
-    setCurrencySymbol(symbol)
-  }, [selectedCurrency])
-
-  // componentDidMount() {
-    // const storedCurrency = localStorage.getItem('SelectedCurrency');
-    // if (storedCurrency){
-    //   this.setState({ selectedCurrency: storedCurrency })
-    // } else {
-    //   this.setState({ selectedCurrency: 'usd' })
-    // }
-
-  //   this.setState({ isLoading: true });
-  //   this.getSupportedCurrencies();
-  //   const symbol = getSymbolFromCurrency(this.state.selectedCurrency);
-  //   this.setState({ currencySymbol: symbol });
-  // }
+    setCurrencySymbol(symbol);
+  }, [selectedCurrency]);
 
   useEffect(() => {
-    // console.log(localStorage('SelectedCurrency'))
-    const storedCurrency = localStorage.getItem('SelectedCurrency');
-    if (storedCurrency){
+    const storedCurrency = localStorage.getItem("SelectedCurrency");
+    if (storedCurrency) {
       setSelectedCurrency(storedCurrency);
+      console.log(storedCurrency, "storedCurrency");
     } else {
-      setSelectedCurrency('usd');
-      localStorage.setItem('SelectedCurrency', 'usd');
+      setSelectedCurrency("usd");
+      localStorage.setItem("SelectedCurrency", "usd");
     }
     setIsLoading(true);
     getSupportedCurrencies();
     const symbol = getSymbolFromCurrency(selectedCurrency);
-    setCurrencySymbol(symbol)
-  }, [])
+    setCurrencySymbol(symbol);
+    console.log(selectedCurrency, 'setCurrency')
+  }, []);
 
-    return (
-      <ThemeProvider
-        theme={darkMode ? darkTheme : lightTheme}
-      >
-        <Router>
-          <AppDesign>
-            <Nav
-              selectedCurrency={selectedCurrency}
-              currencySymbol={currencySymbol}
-              listOfCurrencies={listOfCurrencies}
-              handleSelect={handleSelect}
-              handleClick={handleClick}
-            />
-            <Switch>
-              <Route
-                exact
-                path='/'
-                render={(props) => <Coins
-                {...props}
+  return (
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Router>
+        <AppDesign>
+          <Nav
+            selectedCurrency={selectedCurrency}
+            currencySymbol={currencySymbol}
+            listOfCurrencies={listOfCurrencies}
+            handleSelect={handleSelect}
+            handleClick={handleClick}
+            darkMode={darkMode}
+          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Coins
+                  {...props}
                   selectedCurrency={selectedCurrency}
                   currencySymbol={currencySymbol}
-                />}
-                >
-                  
-                  
-              </Route>
-              <Route
-                exact
-                path="/coin/:coinId"
-                render={(props) => (
-                  <CoinInfoPage
-                    {...props}
-                    selectedCurrency={selectedCurrency}
-                  />
-                )}
-              ></Route>
-              <Route exact path="/portfolio">
-                <Portfolio
-                  selectedCurrency={selectedCurrency}
-                  currencySymbol={currencySymbol}
+                  darkMode={darkMode}
                 />
-              </Route>
-            </Switch>
-          </AppDesign>
-        </Router>
-      </ThemeProvider>
-    );
-  }
-  export default App;
+              )}
+            ></Route>
+            <Route
+              exact
+              path="/coin/:coinId"
+              render={(props) => (
+                <CoinInfoPage
+                  {...props}
+                  selectedCurrency={selectedCurrency}
+                  darkMode={darkMode}
+                />
+              )}
+            ></Route>
+            <Route exact path="/portfolio">
+              <Portfolio
+                selectedCurrency={selectedCurrency}
+                currencySymbol={currencySymbol}
+                darkMode={darkMode}
+              />
+            </Route>
+          </Switch>
+        </AppDesign>
+      </Router>
+    </ThemeProvider>
+  );
+};
+export default App;

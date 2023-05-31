@@ -5,17 +5,18 @@ width: 400px;
 height: 35px;
 border: none;
 // border-radius: 5px;
-background: #191B1F;
-border-bottom: 2px #1F2128 solid;
-background-image: url(https://i.postimg.cc/ncZpvPtZ/Search.png);
+background: none;
+border-bottom: 1px ${(props) => props.theme.text} solid;
+background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/ncZpvPtZ/Search.png)' : 'url(https://i.postimg.cc/h4wdpZvL/Search-1.png)'};
 background-size: 15px 15px;
 background-repeat: no-repeat;
 background-position: 10px;
 text-indent: 38px;
 font-size: 15px;
 outline: none;
+color: ${(props) => props.theme.text};
 position: relative;
 
 &::placeholder {
-    color: white;
+    color: ${(props) => props.theme.text};
 }`

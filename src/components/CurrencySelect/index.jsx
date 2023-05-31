@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { ThemeProvider } from "styled-components";
 import DropDownMenu from "../DropDownMenu";
 import {
   CurrencySelectStyles,
   CoinSelected,
-  // DropdownVector,
 } from "./CurrencySelect.styles";
+import { darkTheme, lightTheme } from "../../App.styles";
 
 const CurrencySelect = (props) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('');
+  const [selectedCurrency, setSelectedCurrency] = useState("");
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setIsClicked(!isClicked);
+    console.log(isClicked, "selectPage");
   };
 
   const handleSelect = (key) => {
@@ -22,23 +24,28 @@ const CurrencySelect = (props) => {
   };
 
   useEffect(() => {
-  setSelectedCurrency(props.selectedCurrency.toUpperCase())
-  }, [props.selectedCurrency])
+    setSelectedCurrency(props.selectedCurrency.toUpperCase());
+  }, [props.selectedCurrency]);
 
   return (
-    <CurrencySelectStyles>
-      <CoinSelected onClick={handleClick}>{props.currencySymbol} {selectedCurrency}</CoinSelected>
-      {/* <DropdownVector onClick={handleClick}></DropdownVector> */}
-      {isClicked && (
-        <DropDownMenu
-          handleSelect={handleSelect}
-          listOfCurrencies={props.listOfCurrencies}
-          isClicked={isClicked}
-          handleClick={handleClick}
-          currencySymbol={props.currencySymbol}
-        />
-      )}
-    </CurrencySelectStyles>
+    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
+      <CurrencySelectStyles>
+        <CoinSelected onClick={handleClick}
+        darkMode={props.darkMode}
+        className="coin-selected">
+          {props.currencySymbol} {selectedCurrency}
+        </CoinSelected>
+        {isClicked && (
+          <DropDownMenu
+            handleSelect={handleSelect}
+            listOfCurrencies={props.listOfCurrencies}
+            isClicked={isClicked}
+            handleClick={handleClick}
+            currencySymbol={props.currencySymbol}
+          />
+        )}
+      </CurrencySelectStyles>
+    </ThemeProvider>
   );
 };
 

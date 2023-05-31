@@ -13,27 +13,25 @@ export const StyledDropDown = styled.div`
   flex-direction: column;
   align-items: center;
 
-  //   border: 1px pink solid;
-
   input {
     border: none;
-    background-color: rgba(240, 240, 240, 0.2);
+    background-color: ${(props) => props.theme.secondary};
     width: 90%;
     height: 30px;
     text-indent: 30px;
     outline: none;
     border-radius: 5px;
     font-size: 13px;
-    color: white;
-    background-image: url(https://i.postimg.cc/ncZpvPtZ/Search.png);
+    color: ${(props) => props.theme.text};
+    background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/ncZpvPtZ/Search.png)' : 'url(https://i.postimg.cc/h4wdpZvL/Search-1.png)'};
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: 10px;
   }
 
   input::placeholder {
-    color: white;
-    -webkit-text-fill-color: white;
+    color: ${(props) => props.theme.text};
+    -webkit-text-fill-color: ${(props) => props.theme.text};
   }
 `;
 
@@ -70,7 +68,7 @@ export const CurrencyList = styled.div`
 export const CurrencyListItems = styled.div`
   width: 60%;
   padding: 5px 0 5px 0;
-  color: white;
+  color: ${(props) => props.theme.text};
   text-align: center;
   border-bottom: 1px solid rgba(240, 240, 240, 0.2);
 `;

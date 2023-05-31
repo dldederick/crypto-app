@@ -17,9 +17,9 @@ export const CoinSelected = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #00ff5f;
+  color: ${(props) => props.darkMode ? '#00ff5f' : '#646263'};
   text-align: center;
-  background-color: #191b1f;
+  background-color: none;
   border-radius: 5px;
   width: 100%;
   height: 30px;
@@ -28,11 +28,3 @@ export const CoinSelected = styled.div`
   background-repeat: no-repeat;
   background-size: 10px 5px;
 `;
-
-// export const DropdownVector = styled.div`
-//   background-image: url(https://i.postimg.cc/SxHdpyJ6/Polygon-4.png);
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   width: 15px;
-//   height: 8px;
-// `;

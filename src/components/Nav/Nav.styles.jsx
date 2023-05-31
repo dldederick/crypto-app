@@ -7,6 +7,7 @@ export const StyledNav = styled.div`
   height: 100px;
   // background-color: #191B1F;
   background-color: ${(props) => props.theme.main};
+  color: ${(props) => props.theme.text};
   margin: auto;
   position: absolute;
   top: 10px;
@@ -20,7 +21,8 @@ export const StyledNav = styled.div`
 export const TopNav = styled.div`
 display: flex;
 width: 100%;
-height: 100px;`
+height: 100px;
+`
 
 
 
@@ -30,6 +32,7 @@ export const NavPages = styled.div`
   gap: 20px;
   padding-left: 50px;
   width: 50%;
+  
   }
 
   div {
@@ -42,12 +45,12 @@ export const NavPages = styled.div`
   }
 
   div:hover {
-    background-color: #2C2F36;
+    background-color: ${(props) => props.theme.secondary};
   }
 `;
 
 export const StyledLink = styled(Link)`
-  color: white;
+color: ${(props) => props.theme.text};
   text-decoration: none;
 `;
 

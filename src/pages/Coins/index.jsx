@@ -5,6 +5,8 @@ import queryString from "query-string";
 import ChartOverview from "../../components/ChartOverview";
 import TopCryptoCurrencies from "../../components/TopCryptoCurrencies";
 import { StyledCoinsPage } from "./Coins.styles";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "../../App.styles";
 
 const Coins = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +17,7 @@ const Coins = (props) => {
   const [coinsMarketVolumeArray, setCoinsMarketVolumeArray] = useState([]);
   const [coinInfo, setCoinInfo] = useState({});
   const [settings, setSettings] = useState({});
-  const [currencyDisplayed, SetCurrencyDisplayed] = useState("");
+  const [currencyDisplayed, setCurrencyDisplayed] = useState("");
   const [page, setPage] = useState(1);
 
   const location = useLocation();
@@ -25,9 +27,7 @@ const Coins = (props) => {
     const currency = props.selectedCurrency;
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${
-          settings.currency || currency
-        }&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       const sortBy = settings.sortBy;
       const sort = settings.sort;
@@ -44,11 +44,13 @@ const Coins = (props) => {
         return 0;
       });
       setTopCryptoCurrencies(topCryptoCurrencies);
-      SetCurrencyDisplayed(topCryptoCurrencies[0].id);
+      // console.log(topCryptoCurrencies, 'topCrypto', topCryptoCurrencies[0].id, 'firstTopCrypto')
+      setCurrencyDisplayed(topCryptoCurrencies[0].id);
       setIsLoading(false);
-      getCoinsMarketChart();
-      console.log(currencyDisplayed, 'checking currency')
+      // getCoinsMarketChart();
+      // console.log(currencyDisplayed, "checking currency");
     } catch (error) {
+      console.log(error, "topCoinsError");
       setHasError(true);
       setIsLoading(false);
     }
@@ -61,11 +63,14 @@ const Coins = (props) => {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${display}/market_chart?vs_currency=${currency}&days=180&interval=daily`
       );
+      console.log(data, 'data')
       setCoinsMarketDateArray(data.prices.map((item) => item[0]));
       setCoinsMarketPriceArray(data.prices.map((item) => item[1]));
+      // console.log(coinsMarketPriceArray, 'priceArray')
       setCoinsMarketVolumeArray(data.total_volumes.map((item) => item[1]));
       setIsLoading(false);
     } catch (error) {
+      console.log(error, "marketChartsError");
       setHasError(true);
       setIsLoading(false);
     }
@@ -94,11 +99,14 @@ const Coins = (props) => {
     const currency = props.selectedCurrency;
     let sort = "desc";
 
+    const settings = { currency, sortBy, sort };
+
     if (sortBy === settings.sortBy) {
       sort = settings.sort === "desc" ? "asc" : "desc";
     }
 
-    const settings = { currency, sortBy, sort };
+    console.log()
+
     const setUrl = queryString.stringify(settings);
     props.history.push(`?${setUrl}`);
   };
@@ -110,31 +118,23 @@ const Coins = (props) => {
       const currency = props.selectedCurrency;
       const sortBy = settings.sortBy || "market_cap_desc";
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${sortBy}&per_page=50&page=${newPage}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${sortBy}&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+      );
+      console.log(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${sortBy}&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       setTopCryptoCurrencies([...topCryptoCurrencies, ...data]);
       setIsLoading(false);
     } catch (error) {
+      console.log(error);
       setHasError(true);
       setIsLoading(false);
     }
   };
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if (prevProps.selectedCurrency !== this.props.selectedCurrency){
-  //     this.setState(
-  //       { settings: { ...this.state.settings, currency: this.props.selectedCurrency } },
-  //       () => this.getTopCryptoCurrencies()
-  //     );
-  //   }
-  //   if(prevProps.location.search !== this.props.location.search){
-  //     const settings = queryString.parse(this.props.location.search)
-  //     this.setState({  settings });
-  //   }
-  //   if(prevState.settings !== this.state.settings){
-  //     this.getTopCryptoCurrencies();
-  //   }
-  // };
+  useEffect(() => {
+    getCoinsMarketChart();
+  }, [currencyDisplayed])
 
   useEffect(() => {
     setSettings((settings) => ({
@@ -153,19 +153,11 @@ const Coins = (props) => {
   }, [props.location.search]);
 
   useEffect(() => {
-    getTopCryptoCurrencies()
-  }, [settings])
-
-  // componentDidMount() {
-  //   const settings = queryString.parse(this.props.location.search)
-  //   if(Object.keys(settings).length === 0){
-  //     this.props.history.push(`/?currency=${this.props.selectedCurrency}&sortBy=market_cap&sort=desc`);
-  //   }
-  //   this.setState({ settings });
-  //   this.getTopCryptoCurrencies();
-  // }
+    getTopCryptoCurrencies();
+  }, [settings]);
 
   useEffect(() => {
+    console.log(props.selectedCurrency, 'passedCurrency')
     const settings = queryString.parse(props.location.search);
     if (Object.keys(settings).length === 0) {
       props.history.push(
@@ -180,23 +172,27 @@ const Coins = (props) => {
   const render = isLoading && hasError;
 
   return (
-    <StyledCoinsPage>
-      <ChartOverview
-        currencyDisplayed={currencyDisplayed}
-        topCryptoCurrencies={topCryptoCurrencies}
-        coinsMarketVolumeArray={coinsMarketVolumeArray}
-        coinsMarketDateArray={coinsMarketDateArray}
-        coinsMarketPriceArray={coinsMarketPriceArray}
-        selectedCurrency={props.selectedCurrency}
-        currencySymbol={props.currencySymbol}
-      />
-      <TopCryptoCurrencies
-        topCryptoCurrencies={topCryptoCurrencies}
-        handleClick={handleClick}
-        currencySymbol={props.currencySymbol}
-        handleFetchData={handleFetchData}
-      />
-    </StyledCoinsPage>
+    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
+      <StyledCoinsPage>
+        <ChartOverview
+          currencyDisplayed={currencyDisplayed}
+          topCryptoCurrencies={topCryptoCurrencies}
+          coinsMarketVolumeArray={coinsMarketVolumeArray}
+          coinsMarketDateArray={coinsMarketDateArray}
+          coinsMarketPriceArray={coinsMarketPriceArray}
+          selectedCurrency={props.selectedCurrency}
+          currencySymbol={props.currencySymbol}
+          darkMode={props.darkMode}
+        />
+        <TopCryptoCurrencies
+          topCryptoCurrencies={topCryptoCurrencies}
+          handleClick={handleClick}
+          currencySymbol={props.currencySymbol}
+          handleFetchData={handleFetchData}
+          darkMode={props.darkMode}
+        />
+      </StyledCoinsPage>
+    </ThemeProvider>
   );
 };
 export default Coins;

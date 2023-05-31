@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
 import {
   StyledDropDown,
@@ -6,55 +6,52 @@ import {
   CurrencyListItems,
 } from "./DropDownMenu.styles";
 
-export default class DropDownMenu extends React.Component {
-  state = {
-    filteredValue: "",
-  };
+const DropDownMenu = (props) => {
+  const [ filteredValue, setFilteredValue ] = useState('');
 
-  handleSelect = (key) => {
-    this.props.handleSelect(key);
-  };
+  const dropdownRef = useRef(null);
 
-  handleChange = (e) => {
-    const upperCase = e.target.value.toUpperCase();
-    this.setState({ filteredValue: upperCase });
-  };
-
-  // handleWindowClick = (e) => {
-  //   const dropDown = document.getElementById('drop-down');
-  //   if (dropDown && !dropDown.contains(e.target)) {
-  //     this.props.handleClick()
-  //   }
-  // }
-
-  // componentDidMount(){
-  //   document.addEventListener('click', this.handleWindowClick)
-  // }
-
-  // componentWillUnmount(){
-  //   document.removeEventListener('click', this.handleWindowClick)
-  // }
-
-  render() {
-    const filteredList = this.state.filteredValue
-      ? this.props.listOfCurrencies.filter((item) =>
-          item.toUpperCase().includes(this.state.filteredValue.toUpperCase())
+  const filteredList = filteredValue
+      ? props.listOfCurrencies.filter((item) =>
+          item.toUpperCase().includes(filteredValue.toUpperCase())
         )
-      : this.props.listOfCurrencies.map(item => item.toUpperCase());
+      : props.listOfCurrencies.map(item => item.toUpperCase());
+
+  const handleSelect = (key) => {
+    props.handleSelect(key);
+  };
+
+  const handleChange = (e) => {
+    const upperCase = e.target.value.toUpperCase();
+    setFilteredValue(upperCase)
+  };
+
+  const handleWindowClick = (e) => {
+    if (dropdownRef.current && props.isClicked && !dropdownRef.current.contains(e.target) &&
+    !e.target.classList.contains("coin-selected")) {
+      props.handleClick();
+    }
+  };
+  
+  useEffect(() => {
+    document.addEventListener("mousedown", handleWindowClick);
+  }, [])
+
+  console.log(props.isClicked, 'dropDown')
 
     return (
-      <StyledDropDown id="drop-down">
+      <StyledDropDown id="drop-down" ref={dropdownRef}>
         <input
           placeholder="Search"
-          onChange={this.handleChange}
-          value={this.state.filteredValue}
+          onChange={handleChange}
+          value={filteredValue}
         ></input>
         <CurrencyList>
           {filteredList.map((key) => {
             return (
               <CurrencyListItems
                 key={key}
-                onClick={() => this.handleSelect(key)}
+                onClick={() => handleSelect(key)}
               >
                 {getSymbolFromCurrency(key)} {key.toUpperCase()}
               </CurrencyListItems>
@@ -64,4 +61,4 @@ export default class DropDownMenu extends React.Component {
       </StyledDropDown>
     );
   }
-}
+export default DropDownMenu;
