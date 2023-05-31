@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { ThemeProvider } from "styled-components";
 import {
   StyledAddAsset,
   AssetInfoCont,
@@ -14,6 +15,7 @@ import {
   Assets,
   AssetImage,
 } from "./AddAsset.styles";
+import { darkTheme, lightTheme } from "../../App.styles";
 
 const AddAsset = (props) => {
   const [coinInputValue, setCoinInputValue] = useState("");
@@ -97,7 +99,8 @@ const AddAsset = (props) => {
   const imageUrl = props.cryptoInfo.filter((item) => item.name === assetName);
 
   return (
-    <StyledAddAsset onSubmit={handleSubmit}>
+    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
+<StyledAddAsset onSubmit={handleSubmit} darkMode={props.darkMode}>
       <AssetInfoCont>
         <AssetImageCont>
           {assetName.length > 0 &&
@@ -171,6 +174,8 @@ const AddAsset = (props) => {
         <AddButton type="submit">Add</AddButton>
       </ButtonCont>
     </StyledAddAsset>
+    </ThemeProvider>
+    
   );
 };
 

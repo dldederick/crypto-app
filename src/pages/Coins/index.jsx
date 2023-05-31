@@ -97,19 +97,18 @@ const Coins = (props) => {
   const handleClick = (id) => {
     const sortBy = sortNameChange(id);
     const currency = props.selectedCurrency;
+  
     let sort = "desc";
-
-    const settings = { currency, sortBy, sort };
-
-    if (sortBy === settings.sortBy) {
-      sort = settings.sort === "desc" ? "asc" : "desc";
+    if (settings.sortBy === sortBy && settings.sort === "desc") {
+      sort = "asc";
     }
-
-    console.log()
-
-    const setUrl = queryString.stringify(settings);
+  
+    const updatedSettings = { ...settings, currency, sortBy, sort };
+    const setUrl = queryString.stringify(updatedSettings);
+  
     props.history.push(`?${setUrl}`);
   };
+  
 
   const handleFetchData = async () => {
     setPage(page + 1);
@@ -143,9 +142,9 @@ const Coins = (props) => {
     }));
   }, [props.selectedCurrency]);
 
-  useEffect(() => {
-    getTopCryptoCurrencies();
-  }, [settings.currency]);
+  // useEffect(() => {
+  //   getTopCryptoCurrencies();
+  // }, [settings.currency]);
 
   useEffect(() => {
     const settings = queryString.parse(props.location.search);
@@ -157,7 +156,7 @@ const Coins = (props) => {
   }, [settings]);
 
   useEffect(() => {
-    console.log(props.selectedCurrency, 'passedCurrency')
+    // console.log(props.selectedCurrency, 'passedCurrency')
     const settings = queryString.parse(props.location.search);
     if (Object.keys(settings).length === 0) {
       props.history.push(
@@ -166,7 +165,7 @@ const Coins = (props) => {
     }
     setIsLoading(true);
     setSettings(settings);
-    getTopCryptoCurrencies();
+    // getTopCryptoCurrencies();
   }, []);
 
   const render = isLoading && hasError;

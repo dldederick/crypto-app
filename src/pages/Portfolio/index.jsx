@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
-import { convertToUnixTimestamp } from '../../Utils'
+import { ThemeProvider } from "styled-components";
+import { convertToUnixTimestamp } from "../../Utils";
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
+import { darkTheme, lightTheme } from "../../App.styles";
 
 const Portfolio = (props) => {
-const [ assetList, setAssetList ] = useState([]);
-const [ addIsClicked, setAddIsClicked ] = useState(false);
-const [ hasError, setHasError ] = useState(false);
-const [ isLoading, setIsLoading ] = useState(false);
-const [ cryptoCurrencies, setCryptoCurrencies ] = useState([]);
-const [ cryptoNames, setCryptoNames ] = useState([]);
-const [ newAsset, setNewAsset ] = useState({});
+  const [assetList, setAssetList] = useState([]);
+  const [addIsClicked, setAddIsClicked] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cryptoCurrencies, setCryptoCurrencies] = useState([]);
+  const [cryptoNames, setCryptoNames] = useState([]);
+  const [newAsset, setNewAsset] = useState({});
 
   const getCryptoCurrencies = async () => {
     const currency = props.selectedCurrency;
@@ -62,7 +64,7 @@ const [ newAsset, setNewAsset ] = useState({});
   };
 
   const handleClose = () => {
-    setAddIsClicked(false)
+    setAddIsClicked(false);
   };
 
   const addAsset = (asset) => {
@@ -82,10 +84,10 @@ const [ newAsset, setNewAsset ] = useState({});
   //     this.getCoinPriceChange();
   //   }
   // }
-  
+
   useEffect(() => {
     getCoinPriceChange();
-  }, [assetList.length])
+  }, [assetList.length]);
 
   // componentDidMount() {
   //   this.setState({ isLoading: true });
@@ -93,11 +95,12 @@ const [ newAsset, setNewAsset ] = useState({});
   // }
 
   useEffect(() => {
-    setIsLoading(true)
-    getCryptoCurrencies()
-  }, [])
+    setIsLoading(true);
+    getCryptoCurrencies();
+  }, []);
 
-    return (
+  return (
+    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <StyledPortfolioPage>
         <NewAssetButton onClick={handleNewAsset}>Add Asset</NewAssetButton>
         {addIsClicked && (
@@ -107,6 +110,7 @@ const [ newAsset, setNewAsset ] = useState({});
             cryptoInfo={cryptoCurrencies}
             addAsset={addAsset}
             currencySymbol={props.currencySymbol}
+            darkMode={props.darkMode}
           />
         )}
         {assetList?.length < 1 ? (
@@ -119,6 +123,7 @@ const [ newAsset, setNewAsset ] = useState({});
           />
         )}
       </StyledPortfolioPage>
-    );
-}
+    </ThemeProvider>
+  );
+};
 export default Portfolio;

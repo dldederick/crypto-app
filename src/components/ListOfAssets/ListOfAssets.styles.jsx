@@ -8,7 +8,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 20px;
-background-color: #191b1f;
+background-color: ${(props) => props.theme.main};
 border-radius: 10px;
 `
 
@@ -18,7 +18,7 @@ height: 250px;
 display: flex;
 justify-content: space-around;
 align-items: center;
-background-color: #191b1f;
+background-color: ${(props) => props.theme.main};
 border-radius: 10px;
 `
 
@@ -29,9 +29,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: #1f2128;
+background-color: ${(props) => props.theme.secondary};
 border-radius: 10px;
 gap: 10px;
+color: ${(props) => props.theme.text};
 
 > div:nth-child(1) {
     width: 50px;
@@ -72,33 +73,33 @@ border-radius: 10px;
 export const AssetHeader = styled.div`
 width: 200px;
 height: 35%;
-color: white;
+color: ${(props) => props.theme.text};
 display: flex;
 align-items: center;
 justify-content: center;
 border-top-right-radius: 10px;
 border-top-left-radius: 10px;
-background-color: #1f2128;
+background-color: ${(props) => props.theme.secondary};
 `
 
 export const AssetMarketPerformance = styled.div`
 width: 100%;
 height: 66%;
-background-color: #1f2128;
+background-color: ${(props) => props.theme.secondary};
 border-radius: 10px;
 border-top-left-radius: 0px;
 display: flex;
 justify-content: space-around;
 align-items: center;
-color: white;`
+color: ${(props) => props.theme.text};`
 
 export const AssetPerformance = styled.div`
 width: 100%;
 height: 66%;
-background-color: #1f2128;
+background-color: ${(props) => props.theme.secondary};
 border-radius: 10px;
 border-top-left-radius: 0px;
 display: flex;
 justify-content: space-around;
 align-items: center;
-color: white;`
+color: ${(props) => props.theme.text};`

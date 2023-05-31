@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const StyledPortfolioPage = styled.div`
   width: 100%;
   border-radius: 10px;
-  background-color: #1f2128;
+  background-color: ${(props) => props.theme.secondary};
   padding-top: 200px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   // justify-content: center;
@@ -27,10 +28,11 @@ export const NewAssetButton = styled.div`
 
 export const ZeroAssets = styled.div`
   width: 400px;
-  background: #191b1f;
+  background: ${(props) => props.theme.main};
   margin: 0 auto;
   height: 50px;
   border-radius: 10px;
   text-align: center;
   line-height: 50px;
+  color: ${(props) => props.theme.text}
 `;

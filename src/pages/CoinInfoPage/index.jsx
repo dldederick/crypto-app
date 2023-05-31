@@ -3,7 +3,13 @@ import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import CoinDataChart from "../../components/CoinDataChart";
 import LinkWrapper from "../../components/LinkWrapper";
-import { readableNum, convertDate, roundedPercentage, openInNewTab } from "../../Utils";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "../../App.styles";
+import {
+  readableNum,
+  convertDate,
+  roundedPercentage,
+} from "../../Utils";
 import {
   StyledCoinInfo,
   CoinInfoWrapper,
@@ -108,8 +114,8 @@ export default class CoinsInfoPage extends React.Component {
     if (prevState.periodSelected !== this.state.periodSelected) {
       this.getCoinMarketChart(this.state.periodSelected);
     }
-    if (prevProps.match.params.coinId !== this.props.match.params.coinId){
-      this.getCoinInfo(this.props.match.params.coinId)
+    if (prevProps.match.params.coinId !== this.props.match.params.coinId) {
+      this.getCoinInfo(this.props.match.params.coinId);
     }
   }
 
@@ -126,169 +132,180 @@ export default class CoinsInfoPage extends React.Component {
     const selectedCurrencySymbol = getSymbolFromCurrency(currency);
     const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
     return (
-      <StyledCoinInfo>
-        <CoinInfoWrapper>
-          <ConvertCont>
-            <ConvertCurrencyOne>
-              <div>{symbol?.toUpperCase()}</div>
-              <input value={`${selectedCoinSymbol}${info.market_data?.current_price[symbol]}`}></input>
-            </ConvertCurrencyOne>
-            <ConvertIcon></ConvertIcon>
-            <ConvertCurrencyTwo>
-              <input value={`${selectedCurrencySymbol}${info.market_data?.current_price[currency]}`}></input>
-              <div>{currency?.toUpperCase()}</div>
-            </ConvertCurrencyTwo>
-          </ConvertCont>
-          <SummaryWrapper>
-            <CoinInfoHeader>
-              <CoinInfoSummary>Coin Summary</CoinInfoSummary>
-            </CoinInfoHeader>
-            <CoinInfoCont>
-              <div>
-                <CoinCont>
-                  <div>
-                    <CoinImage image={info.image?.large}></CoinImage>
-                    <CoinName>
-                      {info.id &&
-                        info.id.charAt(0).toUpperCase() + info.id.slice(1)}
-                    </CoinName>
-                  </div>
-                  <CoinLink>{info.links?.homepage[0]}</CoinLink>
-                </CoinCont>
-                <CoinHighlights>
-                  <CoinPriceData>
+      <ThemeProvider theme={this.props.darkMode ? darkTheme : lightTheme}>
+        <StyledCoinInfo>
+          <CoinInfoWrapper>
+            <ConvertCont>
+              <ConvertCurrencyOne>
+                <div>{symbol?.toUpperCase()}</div>
+                <input
+                  value={`${selectedCoinSymbol}${info.market_data?.current_price[symbol]}`}
+                ></input>
+              </ConvertCurrencyOne>
+              <ConvertIcon></ConvertIcon>
+              <ConvertCurrencyTwo>
+                <input
+                  value={`${selectedCurrencySymbol}${info.market_data?.current_price[currency]}`}
+                ></input>
+                <div>{currency?.toUpperCase()}</div>
+              </ConvertCurrencyTwo>
+            </ConvertCont>
+            <SummaryWrapper>
+              <CoinInfoHeader>
+                <CoinInfoSummary>Coin Summary</CoinInfoSummary>
+              </CoinInfoHeader>
+              <CoinInfoCont>
+                <div>
+                  <CoinCont>
                     <div>
-                      Current Price: $
-                      {readableNum(info.market_data?.current_price?.btc)}
+                      <CoinImage image={info.image?.large}></CoinImage>
+                      <CoinName>
+                        {info.id &&
+                          info.id.charAt(0).toUpperCase() + info.id.slice(1)}
+                      </CoinName>
                     </div>
-                    <div>
-                      {readableNum(
-                        info.market_data?.price_change_24h_in_currency?.btc
-                      )}
-                    </div>
-                  </CoinPriceData>
-                  <div>
-                    <CoinAth>
+                    <CoinLink>{info.links?.homepage[0]}</CoinLink>
+                  </CoinCont>
+                  <CoinHighlights>
+                    <CoinPriceData>
                       <div>
-                        All Time High: $
-                        {readableNum(info.market_data?.ath?.btc)}
+                        Current Price: $
+                        {readableNum(info.market_data?.current_price?.btc)}
                       </div>
-                      <div>{convertDate(info.market_data?.ath_date?.btc)}</div>
-                    </CoinAth>
-                    <CoinAtl>
                       <div>
-                        All Time Low: ${readableNum(info.market_data?.atl?.btc)}
+                        {readableNum(
+                          info.market_data?.price_change_24h_in_currency?.btc
+                        )}
                       </div>
-                      <div>{convertDate(info.market_data?.atl_date?.btc)}</div>
-                    </CoinAtl>
-                  </div>
-                </CoinHighlights>
-                <CoinMarketVolumeData>
-                  <div>
-                    <div>Market Cap Rank: {info.market_cap_rank}</div>
+                    </CoinPriceData>
                     <div>
-                      Market Cap:{" "}
-                      {readableNum(info.market_data?.market_cap?.btc)}
+                      <CoinAth>
+                        <div>
+                          All Time High: $
+                          {readableNum(info.market_data?.ath?.btc)}
+                        </div>
+                        <div>
+                          {convertDate(info.market_data?.ath_date?.btc)}
+                        </div>
+                      </CoinAth>
+                      <CoinAtl>
+                        <div>
+                          All Time Low: $
+                          {readableNum(info.market_data?.atl?.btc)}
+                        </div>
+                        <div>
+                          {convertDate(info.market_data?.atl_date?.btc)}
+                        </div>
+                      </CoinAtl>
                     </div>
+                  </CoinHighlights>
+                  <CoinMarketVolumeData>
                     <div>
-                      Total Volume:{" "}
-                      {readableNum(info.market_data?.total_volume?.btc)}
-                    </div>
-                  </div>
-                  <CoinMarketVolumeBar>
-                    <CoinMarketVolumePercent>
+                      <div>Market Cap Rank: {info.market_cap_rank}</div>
                       <div>
+                        Market Cap:{" "}
                         {readableNum(info.market_data?.market_cap?.btc)}
                       </div>
                       <div>
-                        {readableNum(
-                          info.market_data?.total_volume?.btc /
-                            info.market_data?.market_cap?.btc
-                        )}
-                        %
-                      </div>
-                      <div>
+                        Total Volume:{" "}
                         {readableNum(info.market_data?.total_volume?.btc)}
                       </div>
-                    </CoinMarketVolumePercent>
-                    <CoinMarketVolumeBars
-                      supplyPercent={
-                        roundedPercentage(
-                          info.market_data?.total_volume?.btc /
-                            info.market_data?.market_cap?.btc
-                        ) * 100
-                      }
-                    >
-                      <div></div>
-                    </CoinMarketVolumeBars>
-                  </CoinMarketVolumeBar>
-                </CoinMarketVolumeData>
-                <CoinSupplyData>
-                  <div>
-                    <div>
-                      Fully Diluted Valuation: {""}
-                      {readableNum(
-                        info.market_data?.fully_diluted_valuation?.btc
-                      )}
                     </div>
+                    <CoinMarketVolumeBar>
+                      <CoinMarketVolumePercent>
+                        <div>
+                          {readableNum(info.market_data?.market_cap?.btc)}
+                        </div>
+                        <div>
+                          {readableNum(
+                            info.market_data?.total_volume?.btc /
+                              info.market_data?.market_cap?.btc
+                          )}
+                          %
+                        </div>
+                        <div>
+                          {readableNum(info.market_data?.total_volume?.btc)}
+                        </div>
+                      </CoinMarketVolumePercent>
+                      <CoinMarketVolumeBars
+                        supplyPercent={
+                          roundedPercentage(
+                            info.market_data?.total_volume?.btc /
+                              info.market_data?.market_cap?.btc
+                          ) * 100
+                        }
+                      >
+                        <div></div>
+                      </CoinMarketVolumeBars>
+                    </CoinMarketVolumeBar>
+                  </CoinMarketVolumeData>
+                  <CoinSupplyData>
                     <div>
-                      Circualting Supply:{" "}
-                      {readableNum(info.market_data?.circulating_supply)}
-                    </div>
-                    <div>
-                      Max Supply: {readableNum(info.market_data?.max_supply)}
-                    </div>
-                  </div>
-                  <CoinSupplyBar>
-                    <CoinSupplyPercent>
                       <div>
+                        Fully Diluted Valuation: {""}
+                        {readableNum(
+                          info.market_data?.fully_diluted_valuation?.btc
+                        )}
+                      </div>
+                      <div>
+                        Circualting Supply:{" "}
                         {readableNum(info.market_data?.circulating_supply)}
                       </div>
                       <div>
-                        {readableNum(
-                          info.market_data?.circulating_supply /
-                            info.market_data?.max_supply
-                        )}
-                        %
+                        Max Supply: {readableNum(info.market_data?.max_supply)}
                       </div>
-                      <div>{readableNum(info.market_data?.max_supply)}</div>
-                    </CoinSupplyPercent>
-                    <CoinSupplyBars
-                      supplyPercent={
-                        roundedPercentage(
-                          info.market_data?.circulating_supply /
-                            info.market_data?.max_supply
-                        ) * 100
-                      }
-                    >
-                      <div></div>
-                    </CoinSupplyBars>
-                  </CoinSupplyBar>
-                </CoinSupplyData>
-              </div>
-              <TimePeriod>
-                {timePeriods.map((item) => (
-                  <Period key={item}>
-                    <Circle
-                      onClick={() => this.handleClick(item)}
-                      isSelected={this.state.isSelected}
-                      item={item}
-                    ></Circle>
-                    <p>{item}</p>
-                  </Period>
-                ))}
-              </TimePeriod>
-              <CoinDataChart
-                coinInfo={info}
-                marketPrices={this.state.coinMarketPriceArray}
-                marketDates={this.state.coinMarketDateArray}
-              />
-            </CoinInfoCont>
-          </SummaryWrapper>
-          <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
-          <LinkWrapper links={info.links} />
-        </CoinInfoWrapper>
-      </StyledCoinInfo>
+                    </div>
+                    <CoinSupplyBar>
+                      <CoinSupplyPercent>
+                        <div>
+                          {readableNum(info.market_data?.circulating_supply)}
+                        </div>
+                        <div>
+                          {readableNum(
+                            info.market_data?.circulating_supply /
+                              info.market_data?.max_supply
+                          )}
+                          %
+                        </div>
+                        <div>{readableNum(info.market_data?.max_supply)}</div>
+                      </CoinSupplyPercent>
+                      <CoinSupplyBars
+                        supplyPercent={
+                          roundedPercentage(
+                            info.market_data?.circulating_supply /
+                              info.market_data?.max_supply
+                          ) * 100
+                        }
+                      >
+                        <div></div>
+                      </CoinSupplyBars>
+                    </CoinSupplyBar>
+                  </CoinSupplyData>
+                </div>
+                <TimePeriod>
+                  {timePeriods.map((item) => (
+                    <Period key={item}>
+                      <Circle
+                        onClick={() => this.handleClick(item)}
+                        isSelected={this.state.isSelected}
+                        item={item}
+                      ></Circle>
+                      <p>{item}</p>
+                    </Period>
+                  ))}
+                </TimePeriod>
+                <CoinDataChart
+                  coinInfo={info}
+                  marketPrices={this.state.coinMarketPriceArray}
+                  marketDates={this.state.coinMarketDateArray}
+                />
+              </CoinInfoCont>
+            </SummaryWrapper>
+            <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
+            <LinkWrapper links={info.links} darkMode={this.props.darkMode} />
+          </CoinInfoWrapper>
+        </StyledCoinInfo>
+      </ThemeProvider>
     );
   }
 }

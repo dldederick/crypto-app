@@ -4,8 +4,7 @@ export const StyledCoinInfo = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-
-  background-color: #1f2128;
+  background-color: ${(props) => props.theme.secondary};
 `;
 
 export const CoinInfoWrapper = styled.div`
@@ -29,12 +28,13 @@ export const SummaryWrapper = styled.div`
 export const CoinCont = styled.div`
   width: 20%;
   height: 170px;
-  background: #1f2128;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: ${(props) => props.theme.text};
 
   div {
     display: flex;
@@ -70,7 +70,7 @@ margin: 0 auto;
 export const CoinHighlights = styled.div`
   width: 20%;
   height: 170px;
-  background: #1f2128;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   //   border: 1px blue solid;
   display: flex;
@@ -78,6 +78,7 @@ export const CoinHighlights = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  color: ${(props) => props.theme.text};
 
   > div:nth-child(2) {
     display: flex;
@@ -89,6 +90,7 @@ export const CoinHighlights = styled.div`
 export const CoinPriceData = styled.div`
     display: flex;
     gap: 20px;
+    color: ${(props) => props.theme.text};
     
     > div:nth-child(2) {
         text-indent: 19px;
@@ -105,7 +107,7 @@ export const CoinPriceData = styled.div`
 export const CoinSupplyData = styled.div`
   width: 20%;
   height: 170px;
-  background: #1f2128;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   //   border: 1px orange solid;
   display: flex;
@@ -113,12 +115,13 @@ export const CoinSupplyData = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  color: ${(props) => props.theme.text};
 `;
 
 export const CoinMarketVolumeData = styled.div`
   width: 20%;
   height: 170px;
-  background: #1f2128;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   //   border: 1px orange solid;
   display: flex;
@@ -126,12 +129,14 @@ export const CoinMarketVolumeData = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  color: ${(props) => props.theme.text};
 `;
 
 export const DescriptionWrapper = styled.div`
   padding: 50px;
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
   border-radius: 10px;
+  color: ${(props) => props.theme.text};
 `;
 
 export const CoinInfoHeader = styled.div`
@@ -141,7 +146,7 @@ export const CoinInfoHeader = styled.div`
 `;
 
 export const CoinInfoSummary = styled.div`
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   width: 350px;
@@ -152,7 +157,8 @@ export const CoinInfoSummary = styled.div`
 
 export const TimePeriod = styled.div`
   display: flex;
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
+  color: ${(props) => props.theme.text};
   justify-content: center;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -165,7 +171,7 @@ export const TimePeriod = styled.div`
 `;
 
 export const CoinInfoCont = styled.div`
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
   height: 400px;
   width: 100%;
   border-radius: 10px;
@@ -221,7 +227,7 @@ export const CoinSupplyBars = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 5px;
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
 
   > div:nth-child(1) {
     width: ${(props) => props.supplyPercent}%;
@@ -251,7 +257,7 @@ export const CoinMarketVolumeBars = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 5px;
-  background-color: #191b1f;
+  background-color: ${(props) => props.theme.main};
 
   > div:nth-child(1) {
     width: ${(props) => props.supplyPercent}%;
@@ -311,7 +317,8 @@ export const ConvertCurrencyOne = styled.div`
   input {
     width: 70%;
     height: 100%;
-    background-color: #191b1f;
+    background-color: ${(props) => props.theme.main};
+    color: ${(props) => props.theme.text};
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     outline: none;
@@ -330,7 +337,8 @@ export const ConvertCurrencyTwo = styled.div`
   input {
     width: 70%;
     height: 100%;
-    background-color: #191b1f;
+    background-color: ${(props) => props.theme.main};
+    color: ${(props) => props.theme.text};
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     outline: none;
@@ -352,48 +360,6 @@ export const ConvertCurrencyTwo = styled.div`
     font-size: boldest;
   }
 `;
-
-// export const LinkWrapper = styled.div`
-//   width: 100%;
-//   height: 50px;
-//   display: flex;
-//   justify-content: space-around;
-// `;
-
-// export const Link1 = styled.div`
-//   width: 25%;
-//   border-radius: 10px;
-//   background: #191b1f;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   > div:nth-child(1) {
-//     width: 20%;
-//     height: 100%;
-//     background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
-//     background-size: 20px 20px;
-//     background-repeat: no-repeat;
-//     background-position: center;
-//   }
-
-//   > div:nth-child(2) {
-//     overflow: hidden;
-//     white-space: nowrap;
-//     text-overflow: ellipsis;
-//     min-width: 60%;
-//     text-align: center;
-//   }
-
-//   > div:nth-child(3) {
-//     width: 20%;
-//     height: 100%;
-//     background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
-//     background-size: 20px 20px;
-//     background-repeat: no-repeat;
-//     background-position: center;
-//   }
-// `;
 
 export const Link2 = styled.div`
   width: 25%;

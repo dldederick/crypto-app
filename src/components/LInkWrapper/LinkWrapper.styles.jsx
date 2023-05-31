@@ -10,7 +10,8 @@ export const StyledLinkWrapper = styled.div`
 export const Link = styled.div`
   width: 25%;
   border-radius: 10px;
-  background: #191b1f;
+  background-color: ${(props) => props.theme.main};
+  color: ${(props) => props.theme.text};
   display: flex;
   justify-content: center;
   align-items: center;
