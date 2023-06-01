@@ -17,6 +17,8 @@ const App = () => {
   const [hasError, setHasError] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
+  // const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000)
+
   const getSupportedCurrencies = async () => {
     try {
       const { data } =
@@ -45,6 +47,12 @@ const App = () => {
   }, [selectedCurrency]);
 
   useEffect(() => {
+    // const handleResize = () => {
+    //   setIsSmallScreen(window.innerWidth <= 700);
+    // };
+
+    // window.addEventListener("resize", handleResize);
+
     const storedCurrency = localStorage.getItem("SelectedCurrency");
     if (storedCurrency) {
       setSelectedCurrency(storedCurrency);
@@ -57,7 +65,12 @@ const App = () => {
     getSupportedCurrencies();
     const symbol = getSymbolFromCurrency(selectedCurrency);
     setCurrencySymbol(symbol);
-    console.log(selectedCurrency, 'setCurrency')
+    console.log(selectedCurrency, 'setCurrency');
+
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    // };
+
   }, []);
 
   return (
@@ -71,6 +84,7 @@ const App = () => {
             handleSelect={handleSelect}
             handleClick={handleClick}
             darkMode={darkMode}
+            // isSmallScreen={isSmallScreen}
           />
           <Switch>
             <Route

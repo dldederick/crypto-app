@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledBottomNav = styled.div`
+export const StyledGlobalCoins = styled.div`
 display: flex;
 justify-content: space-around;
 color: white;

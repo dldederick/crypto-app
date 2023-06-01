@@ -76,7 +76,7 @@ export default class CoinsInfoPage extends React.Component {
   getCoinInfo = async (id) => {
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`
+        `https://api.coingecko.com/api/v3/coins/${id}?&market_data=true&community_data=true`
       );
       this.setState({ coinInfo: data, isLoading: false });
     } catch (error) {
@@ -84,9 +84,10 @@ export default class CoinsInfoPage extends React.Component {
     }
   };
 
-  getCoinMarketChart = async (period) => {
+  getCoinMarketChart = async () => {
     const currency = this.props.selectedCurrency;
     const id = this.props.match.params.coinId;
+    const period = this.state.periodSelected;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${period}&interval=daily`
@@ -119,11 +120,12 @@ export default class CoinsInfoPage extends React.Component {
 
   componentDidMount() {
     this.getCoinInfo(this.props.match.params.coinId);
-    this.getCoinMarketChart(this.state.periodSelected);
+    this.getCoinMarketChart();
   }
 
   render() {
     const info = this.state.coinInfo;
+    console.log(info, 'info')
     const symbol = info.symbol;
     const currency = this.props.selectedCurrency;
     const selectedCoinSymbol = getSymbolFromCurrency(symbol);

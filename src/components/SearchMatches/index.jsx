@@ -7,7 +7,7 @@ import {
 
 export default function SearchMatches(props) {
   const filteredList = props.coinsList?.filter((item) => {
-    return item[0].toUpperCase().includes(props.filteredValue[0].toUpperCase());
+    return item.toUpperCase().includes(props.filteredValue.toUpperCase());
   });
 
   const handleClick = () => {

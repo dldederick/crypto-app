@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavPages from "../NavPages";
 import NavOptions from "../NavOptions";
-import BottomNav from "../BottomNav";
+import GlobalCoins from "../GlobalCoins";
 import {
   StyledNav,
   TopNav,
@@ -65,21 +65,9 @@ const Nav = (props) => {
     setSearchedCoin(item)
   }
 
-  // const componentDidUpdate(prevProps, prevState) {
-  //   if (this.props.selectedCurrency !== prevProps.selectedCurrency) {
-  //     this.getGlobalCryptoCurrencyData();
-  //   }
-  // }
-
   useEffect(() => {
     getGlobalCryptoCurrencyData()
   }, [props.selectedCurrency])
-
-  // const componentDidMount() {
-  //   this.setState({ isLoading: true });
-  //   this.getGlobalCryptoCurrencyData();
-  //   this.getCoinsList();
-  // }
 
 useEffect(() => {
   setIsLoading(true);
@@ -101,7 +89,7 @@ useEffect(() => {
           handleSubmit={handleSubmit}
           handleClick={handleClick} />
         </TopNav>
-        <BottomNav
+        <GlobalCoins
           coins={activeCryptoCurrencies}
           exchange={markets}
           marketCap={totalMarketCap}

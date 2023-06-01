@@ -1,10 +1,10 @@
 import React from "react";
-import { StyledBottomNav } from "./BottomNav.styles";
+import { StyledGlobalCoins } from "./GlobalCoins.styles";
 import { readableNum } from "../../Utils";
 
 export default function BottomNav(props) {
 
-    const bottomNavData = {
+    const globalCoinsData = {
         'Coins': props.coins,
         'Exchange': props.exchange,
         'Market Cap': readableNum(props.marketCap),
@@ -13,8 +13,8 @@ export default function BottomNav(props) {
     }
 
   return (
-    <StyledBottomNav>
-      {Object.entries(bottomNavData).map(([key, value])=> {
+    <StyledGlobalCoins>
+      {Object.entries(globalCoinsData).map(([key, value])=> {
         if(key !== 'BTC Dominance'){
           return(
             <div key={key}>
@@ -29,6 +29,6 @@ export default function BottomNav(props) {
           }
           })
         }
-    </StyledBottomNav>
+    </StyledGlobalCoins>
   );
 }
