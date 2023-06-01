@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavPages from "../NavPages";
 import NavOptions from "../NavOptions";
@@ -9,108 +9,107 @@ import {
 } from "./Nav.styles";
 
 
-export default class Nav extends React.Component {
-  state = {
-    isLoading: false,
-    hasError: false,
-    searchedCoin: '',
-    dominance: "btc",
-    currencies: [],
-    activeCryptoCurrencies: 0,
-    markets: 0,
-    totalMarketCap: 0,
-    totalVolume: 0,
-    coinsList: [],
-    everything: []
-  };
+const Nav = (props) => {
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ hasError, setHasError ] = useState(false);
+  const [ searchedCoin, setSearchedCoin ] = useState('');
+  const [ dominance, setDominance ] = useState('btc');
+  const [ currencies, setCurrencies ] = useState([]);
+  const [ activeCryptoCurrencies, setActiveCryptoCurrencies ] = useState(0);
+  const [ markets, setMarkets ] = useState(0);
+  const [ totalMarketCap, setTotalMarketCap ] = useState(0);
+  const [ totalVolume, setTotalVolume ] = useState(0);
+  const [ coinsList, setCoinsList ] = useState([]);
+  const [ everything, setEverything ] = useState([]);
 
-  getGlobalCryptoCurrencyData = async () => {
+  const getGlobalCryptoCurrencyData = async () => {
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
-      const everything = data;
-      const activeCryptoCurrencies = data.data.active_cryptocurrencies;
-      const markets = data.data.markets;
+      setEverything(data);
+      setActiveCryptoCurrencies(data.data.active_cryptocurrencies);
+      setMarkets(data.data.markets);
       const currencies = Object.keys(data.data.total_market_cap).map((key) =>
         key.toUpperCase()
       );
-      const totalMarketCap =
-        data.data.total_market_cap[this.props.selectedCurrency];
-      const totalVolume = data.data.total_volume[this.props.selectedCurrency];
-      const dominance = data.data.market_cap_percentage.btc;
-      this.setState({
-        everything,
-        activeCryptoCurrencies,
-        markets,
-        currencies,
-        totalMarketCap,
-        totalVolume,
-        dominance,
-        isLoading: false,
-      });
+      setTotalMarketCap(data.data.total_market_cap[props.selectedCurrency]);
+      setTotalVolume(data.data.total_volume[this.props.selectedCurrency]);
+      setDominance(data.data.market_cap_percentage.btc);
+      setIsLoading(false);
     } catch (error) {
-      this.setState({ hasError: true, isLoading: false });
+      setIsLoading(false);
+      setHasError(true);
     }
   };
 
-  getCoinsList = async () => {
+  const getCoinsList = async () => {
     try {
       const { data } = await axios(`https://api.coingecko.com/api/v3/coins/list`);
-      const coinsList = data.map(obj => obj.name);
-      this.setState({ coinsList, isLoading: false })
+      setCoinsList(data.map(obj => obj.name));
+      setIsLoading(false);
     } catch(error) {
-      this.setState({ hasError: false, isLoading: false })
+      setIsLoading(false);
+      setHasError(true);
     }
   }
   
-  handleClick = () => {
-    this.props.handleClick()
+  const handleClick = () => {
+    props.handleClick()
   }
 
-  handleSelect = (key) => {
+  const handleSelect = (key) => {
     const lowerCase = key.toLowerCase();
-    this.props.handleSelect(lowerCase)
+    props.handleSelect(lowerCase)
   };
 
-  handleSubmit = (item) => {
-    this.setState({ searchedCoin: item })
+  const handleSubmit = (item) => {
+    setSearchedCoin(item)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.selectedCurrency !== prevProps.selectedCurrency) {
-      this.getGlobalCryptoCurrencyData();
-    }
-  }
+  // const componentDidUpdate(prevProps, prevState) {
+  //   if (this.props.selectedCurrency !== prevProps.selectedCurrency) {
+  //     this.getGlobalCryptoCurrencyData();
+  //   }
+  // }
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    this.getGlobalCryptoCurrencyData();
-    this.getCoinsList();
-  }
+  useEffect(() => {
+    getGlobalCryptoCurrencyData()
+  }, [props.selectedCurrency])
 
-  render() {
-    return (
+  // const componentDidMount() {
+  //   this.setState({ isLoading: true });
+  //   this.getGlobalCryptoCurrencyData();
+  //   this.getCoinsList();
+  // }
+
+useEffect(() => {
+  setIsLoading(true);
+  getGlobalCryptoCurrencyData();
+  getCoinsList();
+}, [])
+
+  return (
       <StyledNav>
         <TopNav>
           <NavPages />
           <NavOptions
-          listOfCurrencies={this.props.listOfCurrencies}
-          handleSelect={this.handleSelect}
-          currencySymbol={this.props.currencySymbol}
-          selectedCurrency={this.props.selectedCurrency}
-          darkMode={this.props.darkMode}
-          coinsList={this.state.coinsList}
-          handleSubmit={this.handleSubmit}
-          handleClick={this.handleClick} />
+          listOfCurrencies={props.listOfCurrencies}
+          handleSelect={handleSelect}
+          currencySymbol={props.currencySymbol}
+          selectedCurrency={props.selectedCurrency}
+          darkMode={props.darkMode}
+          coinsList={coinsList}
+          handleSubmit={handleSubmit}
+          handleClick={handleClick} />
         </TopNav>
         <BottomNav
-          coins={this.state.activeCryptoCurrencies}
-          exchange={this.state.markets}
-          marketCap={this.state.totalMarketCap}
-          volume={this.state.totalVolume}
-          dominance={this.state.dominance}
-          currencySymbol={this.props.currencySymbol}
+          coins={activeCryptoCurrencies}
+          exchange={markets}
+          marketCap={totalMarketCap}
+          volume={totalVolume}
+          dominance={dominance}
+          currencySymbol={props.currencySymbol}
         />
       </StyledNav>
     );
   }
-}
+export default Nav;
