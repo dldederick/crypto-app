@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
-import { ThemeProvider } from "styled-components";
 import { convertToUnixTimestamp } from "../../Utils";
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
-import { darkTheme, lightTheme } from "../../App.styles";
 
 const Portfolio = (props) => {
   const [assetList, setAssetList] = useState([]);
@@ -100,7 +98,6 @@ const Portfolio = (props) => {
   }, []);
 
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <StyledPortfolioPage>
         <NewAssetButton onClick={handleNewAsset}>Add Asset</NewAssetButton>
         {addIsClicked && (
@@ -123,7 +120,6 @@ const Portfolio = (props) => {
           />
         )}
       </StyledPortfolioPage>
-    </ThemeProvider>
   );
 };
 export default Portfolio;

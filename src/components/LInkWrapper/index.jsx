@@ -1,7 +1,5 @@
 import React from "react";
 import { openInNewTab } from "../../Utils";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../../App.styles";
 import { StyledLinkWrapper, Link } from "./LinkWrapper.styles";
 
 export default function LinkWrapper(props) {
@@ -11,7 +9,6 @@ export default function LinkWrapper(props) {
     { address: props.links?.blockchain_site[1], id: "link3" },
   ];
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <StyledLinkWrapper>
         {Links.map((link) => (
           <Link key={link.id} darkMode={props.darkMode}>
@@ -23,6 +20,5 @@ export default function LinkWrapper(props) {
           </Link>
         ))}
       </StyledLinkWrapper>
-    </ThemeProvider>
   );
 }

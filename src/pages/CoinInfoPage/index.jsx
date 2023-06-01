@@ -3,8 +3,6 @@ import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import CoinDataChart from "../../components/CoinDataChart";
 import LinkWrapper from "../../components/LinkWrapper";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../../App.styles";
 import {
   readableNum,
   convertDate,
@@ -132,7 +130,6 @@ export default class CoinsInfoPage extends React.Component {
     const selectedCurrencySymbol = getSymbolFromCurrency(currency);
     const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
     return (
-      <ThemeProvider theme={this.props.darkMode ? darkTheme : lightTheme}>
         <StyledCoinInfo>
           <CoinInfoWrapper>
             <ConvertCont>
@@ -305,7 +302,6 @@ export default class CoinsInfoPage extends React.Component {
             <LinkWrapper links={info.links} darkMode={this.props.darkMode} />
           </CoinInfoWrapper>
         </StyledCoinInfo>
-      </ThemeProvider>
     );
   }
 }

@@ -1,7 +1,5 @@
 import React from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
-import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from "../../App.styles";
 import {
   StyledAssetList,
   ActiveAsset,
@@ -18,7 +16,6 @@ export default function ListOfAssets(props) {
     return number >= 0 ? {color: '#00ff5f'} : {color: '#D9123A'};
   }
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <StyledAssetList>
       {props.assets.map((obj) => (
         <ActiveAsset key={obj.name}>
@@ -84,8 +81,6 @@ export default function ListOfAssets(props) {
           </ListAssetInfoCont>
         </ActiveAsset>
       ))}
-    </StyledAssetList>
-    </ThemeProvider>
-    
+    </StyledAssetList> 
   );
 }

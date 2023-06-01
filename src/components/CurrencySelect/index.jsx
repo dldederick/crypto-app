@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { ThemeProvider } from "styled-components";
 import DropDownMenu from "../DropDownMenu";
 import {
   CurrencySelectStyles,
   CoinSelected,
 } from "./CurrencySelect.styles";
-import { darkTheme, lightTheme } from "../../App.styles";
 
 const CurrencySelect = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -28,7 +26,6 @@ const CurrencySelect = (props) => {
   }, [props.selectedCurrency]);
 
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <CurrencySelectStyles>
         <CoinSelected onClick={handleClick}
         darkMode={props.darkMode}
@@ -45,7 +42,6 @@ const CurrencySelect = (props) => {
           />
         )}
       </CurrencySelectStyles>
-    </ThemeProvider>
   );
 };
 

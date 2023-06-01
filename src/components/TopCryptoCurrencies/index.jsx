@@ -1,7 +1,6 @@
 import React from "react";
 import Sparkline from "../Sparklines";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ThemeProvider } from "styled-components";
 import { readableNum, roundedPercentage, capitalize } from "../../Utils";
 import {
   StyledTopCurrencies,
@@ -35,7 +34,6 @@ import {
   Overview,
   TopCurrencyList,
 } from "./TopCryptoCurrencies.styles";
-import { darkTheme, lightTheme } from "../../App.styles";
 
 export default function TopCryptoCurrencies(props) {
   function fetchData() {
@@ -55,7 +53,6 @@ export default function TopCryptoCurrencies(props) {
   };
 
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <CoinsCont2>
         <Overview>Market Overview</Overview>
         <StyledTopCurrencies>
@@ -150,6 +147,5 @@ export default function TopCryptoCurrencies(props) {
           </TopCurrencyList>
         </StyledTopCurrencies>
       </CoinsCont2>
-    </ThemeProvider>
   );
 }

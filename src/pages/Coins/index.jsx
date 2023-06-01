@@ -5,8 +5,6 @@ import queryString from "query-string";
 import ChartOverview from "../../components/ChartOverview";
 import TopCryptoCurrencies from "../../components/TopCryptoCurrencies";
 import { StyledCoinsPage } from "./Coins.styles";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../../App.styles";
 
 const Coins = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -171,7 +169,6 @@ const Coins = (props) => {
   const render = isLoading && hasError;
 
   return (
-    <ThemeProvider theme={props.darkMode ? darkTheme : lightTheme}>
       <StyledCoinsPage>
         <ChartOverview
           currencyDisplayed={currencyDisplayed}
@@ -191,7 +188,6 @@ const Coins = (props) => {
           darkMode={props.darkMode}
         />
       </StyledCoinsPage>
-    </ThemeProvider>
   );
 };
 export default Coins;

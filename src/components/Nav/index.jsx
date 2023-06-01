@@ -1,15 +1,11 @@
 import React from "react";
 import axios from "axios";
-import ThemeSelect from "../ThemeSelect";
-import CurrencySelect from "../CurrencySelect";
-import SearchBar from "../SearchBar";
+import NavPages from "../NavPages";
+import NavOptions from "../NavOptions";
 import BottomNav from "../BottomNav";
 import {
   StyledNav,
   TopNav,
-  NavPages,
-  NavOptions,
-  StyledLink,
 } from "./Nav.styles";
 
 
@@ -95,25 +91,16 @@ export default class Nav extends React.Component {
     return (
       <StyledNav>
         <TopNav>
-          <NavPages>
-            <div>
-              <StyledLink to="/">Coins</StyledLink>
-            </div>
-            <div>
-              <StyledLink to="/portfolio">Portfolio</StyledLink>
-            </div>
-          </NavPages>
-          <NavOptions>
-            <SearchBar coinsList={this.state.coinsList} handleSubmit={this.handleSubmit} />
-            <CurrencySelect
-              listOfCurrencies={this.props.listOfCurrencies}
-              handleSelect={this.handleSelect}
-              currencySymbol={this.props.currencySymbol}
-              selectedCurrency={this.props.selectedCurrency}
-              darkMode={this.props.darkMode}
-            />
-            <ThemeSelect handleClick={this.handleClick} darkMode={this.props.darkMode} />
-          </NavOptions>
+          <NavPages />
+          <NavOptions
+          listOfCurrencies={this.props.listOfCurrencies}
+          handleSelect={this.handleSelect}
+          currencySymbol={this.props.currencySymbol}
+          selectedCurrency={this.props.selectedCurrency}
+          darkMode={this.props.darkMode}
+          coinsList={this.state.coinsList}
+          handleSubmit={this.handleSubmit}
+          handleClick={this.handleClick} />
         </TopNav>
         <BottomNav
           coins={this.state.activeCryptoCurrencies}
