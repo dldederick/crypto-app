@@ -7,11 +7,17 @@ export const StyledTopCurrencies = styled.div`
   background-color: ${(props) => props.theme.main};
   border-radius: 10px;
   border-top-left-radius: 0px;
+  flex-wrap: nowrap;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
 
+  @media (max-width: 1000px) {
+    border-top-right-radius: 0px;
+    align-items: start;
+    overflow-x: scroll;
+  }
 `;
 
 export const TopCurrencyHeader = styled.div`
@@ -22,26 +28,47 @@ export const TopCurrencyHeader = styled.div`
   height: 50px;
   border-bottom: 4px #646263 solid;
   white-space: nowrap;
+  
 
   div {
     color: ${(props) => props.theme.text};
   }
-`;
+
+  @media (max-width: 1000px) {
+    width: unset;
+  }
+  `;
 
 export const TopCurrencyList = styled.div`
 width: 95%;
+// overflow-x: scroll;
+// box-sizing: border-box;
+white-space: nowrap;
+
+@media (max-width: 1000px) {
+  width: unset;
+}
 `
 
 export const TopCurrencyCont = styled(Link)`
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  
   align-items: center;
-  width: 100%;
+  // width: 100%;
+  // max-width: 800px;
   height: 50px;
   border-bottom: 1px ${(props) => props.theme.secondary} solid;
-  white-space: nowrap;
+  // white-space: nowrap;
   text-decoration: none;
   color: ${(props) => props.theme.text};
+  // box-sizing: border-box;
+
+  div {
+    // overflow: hidden;
+    // overflow-x: scroll;
+  }
 `;
 
 export const TopIndex = styled.div`
@@ -228,4 +255,8 @@ border-top-left-radius: 10px;
 width: 350px;
 text-align: center;
 height: 40px;
-line-height: 40px;`
+line-height: 40px;
+
+@media (max-width: 1000px) {
+  width: 100%;
+}`

@@ -3,11 +3,15 @@ import Slider from "react-slick";
 
 
 export const CoinsCont1 = styled.div`
-width: calc(100% - 20px);
+width: 90%;
 margin: 0 auto;
 display: flex;
 justify-content: space-between;
-align-items: center;`
+align-items: center;
+
+@media (max-width: 1000px) {
+    width: calc(100% - 20px);
+}`
 
 export const Wrapper1 = styled.div`
 width: 48%;

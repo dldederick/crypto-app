@@ -30,10 +30,16 @@ export const StyledGlobalCoins = styled.div`
 
 export const StyledSlider = styled(Slider)`
 width: 95%;
-border: 1px red solid;
 overflow: hidden;
+line-height: 10px;
 
 div {
-    width: 600px;
+    width: 750px;
+}
+
+@media (max-width: 1000px) {
+    div {
+        width: 600px;
+    }
 }
 `
