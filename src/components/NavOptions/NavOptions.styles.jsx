@@ -23,19 +23,21 @@ height: 45px;
 display: flex;
 justify-content: center;
 align-items: center;
-border: 1px red solid;
 
 @media (min-width: 1001px) {
     display: none;
 }`
 
 export const AltNav = styled.div`
-display: none;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+margin-right: 10px;
 
 @media (max-width: 1000px) {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px red solid;
 }
 `

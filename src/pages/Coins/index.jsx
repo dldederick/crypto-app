@@ -179,6 +179,7 @@ const Coins = (props) => {
           selectedCurrency={props.selectedCurrency}
           currencySymbol={props.currencySymbol}
           darkMode={props.darkMode}
+          isSmallScreen={props.isSmallScreen}
         />
         <TopCryptoCurrencies
           topCryptoCurrencies={topCryptoCurrencies}

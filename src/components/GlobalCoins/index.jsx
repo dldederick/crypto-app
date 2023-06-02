@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledGlobalCoins } from "./GlobalCoins.styles";
+import { StyledGlobalCoins, StyledSlider } from "./GlobalCoins.styles";
 import Slider from "react-slick";
 import { readableNum } from "../../Utils";
 import "slick-carousel/slick/slick.css";
@@ -19,26 +19,27 @@ export default class GlobalCoins extends React.Component {
       dots: false,
       infinite: true,
       slidesToShow: 4,
-      slidesToScroll: 4,
+      slidesToScroll: 1,
       autoplay: true,
-      speed: 30000,
-      autoplaySpeed: 30000,
+      speed: 4000,
+      autoplaySpeed: 0,
       cssEase: "linear",
-      arrows: false
+      arrows: false,
+      useCss: true
     };
 
     return (
       <StyledGlobalCoins>
-        <Slider {...settings}>
+        <StyledSlider {...settings}>
           {Object.entries(globalCoinsData).map(([key, value]) => {
             return (
               <div key={key}>
-                {key}:{this.props.currencySymbol}
+                {key}: {this.props.currencySymbol}
                 {value}
               </div>
             );
           })}
-        </Slider>
+        </StyledSlider>
       </StyledGlobalCoins>
     );
   }

@@ -16,8 +16,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-
-  // const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000)
+  const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000)
 
   const getSupportedCurrencies = async () => {
     try {
@@ -47,11 +46,15 @@ const App = () => {
   }, [selectedCurrency]);
 
   useEffect(() => {
-    // const handleResize = () => {
-    //   setIsSmallScreen(window.innerWidth <= 700);
-    // };
+    console.log(window.innerWidth, 'pageWidth');
+  }, [window.innerWidth])
 
-    // window.addEventListener("resize", handleResize);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 700);
+    };
+
+    window.addEventListener("resize", handleResize);
 
     const storedCurrency = localStorage.getItem("SelectedCurrency");
     if (storedCurrency) {
@@ -65,11 +68,11 @@ const App = () => {
     getSupportedCurrencies();
     const symbol = getSymbolFromCurrency(selectedCurrency);
     setCurrencySymbol(symbol);
-    console.log(selectedCurrency, 'setCurrency');
+    
 
-    // return () => {
-    //   window.removeEventListener("resize", handleResize);
-    // };
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
 
   }, []);
 
@@ -84,7 +87,7 @@ const App = () => {
             handleSelect={handleSelect}
             handleClick={handleClick}
             darkMode={darkMode}
-            // isSmallScreen={isSmallScreen}
+            isSmallScreen={isSmallScreen}
           />
           <Switch>
             <Route
@@ -96,6 +99,7 @@ const App = () => {
                   selectedCurrency={selectedCurrency}
                   currencySymbol={currencySymbol}
                   darkMode={darkMode}
+                  isSmallScreen={isSmallScreen}
                 />
               )}
             ></Route>

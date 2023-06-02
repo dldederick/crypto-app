@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const AppDesign = styled.div`
-min-width: 1000px;
+// min-width: 1000px;
 width: calc(80vw);
 // height: 100vh;
 display: flex;

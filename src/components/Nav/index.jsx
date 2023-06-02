@@ -32,7 +32,7 @@ const Nav = (props) => {
         key.toUpperCase()
       );
       setTotalMarketCap(data.data.total_market_cap[props.selectedCurrency]);
-      setTotalVolume(data.data.total_volume[this.props.selectedCurrency]);
+      setTotalVolume(data.data.total_volume[props.selectedCurrency]);
       setDominance(data.data.market_cap_percentage.btc);
       setIsLoading(false);
     } catch (error) {
@@ -97,6 +97,11 @@ useEffect(() => {
           dominance={dominance}
           currencySymbol={props.currencySymbol}
         />
+        {/* {props.isSmallScreen && (
+          <BottomNav>
+
+          </BottomNav>
+        )} */}
       </StyledNav>
     );
   }
