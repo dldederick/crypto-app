@@ -7,7 +7,8 @@ width: calc(80vw);
 display: flex;
 position: relative;
 border-radius: 10px;
-justify-content: center;`
+justify-content: center;
+`
 
 export const darkTheme = {
     main: "#191B1F",

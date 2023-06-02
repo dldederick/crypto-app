@@ -11,6 +11,7 @@ export const StyledTopCurrencies = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
+
 `;
 
 export const TopCurrencyHeader = styled.div`
@@ -28,7 +29,8 @@ export const TopCurrencyHeader = styled.div`
 `;
 
 export const TopCurrencyList = styled.div`
-width: 95%;`
+width: 95%;
+`
 
 export const TopCurrencyCont = styled(Link)`
   display: flex;

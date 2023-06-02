@@ -18,4 +18,10 @@ export const TopNav = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
-`;
+
+@media (max-width: 1000px) {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}  `;

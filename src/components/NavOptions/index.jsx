@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from "../CurrencySelect";
 import SearchBar from "../SearchBar";
-import { StyledNavOptions } from "./NavOptions.styles";
+import { StyledNavOptions, NavCurrentPage, AltNav } from "./NavOptions.styles";
 
 export default function NavOptions(props) {
-    return (
-      <StyledNavOptions>
-        <SearchBar
-          coinsList={props.coinsList}
-          handleSubmit={props.handleSubmit}
-        />
+  const [currentPage, setCurrentPage] = useState("Overview");
+  return (
+    <StyledNavOptions>
+      <NavCurrentPage>
+        <div>{currentPage}</div>
+      </NavCurrentPage>
+      <SearchBar
+        coinsList={props.coinsList}
+        handleSubmit={props.handleSubmit}
+      />
+      <AltNav>
         <CurrencySelect
           listOfCurrencies={props.listOfCurrencies}
           handleSelect={props.handleSelect}
@@ -22,6 +27,7 @@ export default function NavOptions(props) {
           handleClick={props.handleClick}
           darkMode={props.darkMode}
         />
-      </StyledNavOptions>
-    );
-  }
+      </AltNav>
+    </StyledNavOptions>
+  );
+}

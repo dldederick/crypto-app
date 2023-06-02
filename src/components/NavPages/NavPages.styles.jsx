@@ -22,6 +22,10 @@ export const StyledNavPages = styled.div`
   div:hover {
     background-color: ${(props) => props.theme.secondary};
   }
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const StyledLink = styled(Link)`
