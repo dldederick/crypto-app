@@ -3,6 +3,7 @@ import axios from "axios";
 import NavPages from "../NavPages";
 import NavOptions from "../NavOptions";
 import GlobalCoins from "../GlobalCoins";
+import BottomNav from "../BottomNav";
 import {
   StyledNav,
   TopNav,
@@ -97,11 +98,7 @@ useEffect(() => {
           dominance={dominance}
           currencySymbol={props.currencySymbol}
         />
-        {/* {props.isSmallScreen && (
-          <BottomNav>
-
-          </BottomNav>
-        )} */}
+        <BottomNav />
       </StyledNav>
     );
   }

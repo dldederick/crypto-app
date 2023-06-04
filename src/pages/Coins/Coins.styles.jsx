@@ -6,4 +6,8 @@ border-radius: 10px;
 background-color: ${(props) => props.theme.secondary};
 padding-top: 200px;
 color: ${(props) => props.theme.text};
+
+@media (max-width: 1000px) {
+    padding-bottom: 109px;
+}
 `

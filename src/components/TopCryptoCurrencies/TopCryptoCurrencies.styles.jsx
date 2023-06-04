@@ -41,12 +41,12 @@ export const TopCurrencyHeader = styled.div`
 
 export const TopCurrencyList = styled.div`
 width: 95%;
-// overflow-x: scroll;
-// box-sizing: border-box;
 white-space: nowrap;
 
 @media (max-width: 1000px) {
   width: unset;
+  height: 300px;
+  overflow-y: scroll;
 }
 `
 

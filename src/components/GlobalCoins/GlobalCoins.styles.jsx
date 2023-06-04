@@ -12,7 +12,7 @@ export const StyledGlobalCoins = styled.div`
   color: ${(props) => props.theme.text};
   align-items: center;
   width: 50%;
-  height: 40px;
+  height: 30px;
   margin: 0 auto;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -30,8 +30,9 @@ export const StyledGlobalCoins = styled.div`
 
 export const StyledSlider = styled(Slider)`
 width: 95%;
+height: 30px;
 overflow: hidden;
-line-height: 10px;
+line-height: 30px;
 
 div {
     width: 750px;
