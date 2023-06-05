@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledGlobalCoins, StyledSlider } from "./GlobalCoins.styles";
 import Slider from "react-slick";
-import { readableNum } from "../../Utils";
+import { readableNum } from "../../Utils/math";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

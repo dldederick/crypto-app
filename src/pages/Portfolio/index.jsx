@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
-import { convertToUnixTimestamp } from "../../Utils";
+import { convertToUnixTimestamp } from "../../Utils/math";
 import { StyledPortfolioPage } from "./Portfolio.styles";
 import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
 

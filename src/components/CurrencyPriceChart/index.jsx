@@ -7,7 +7,7 @@ import {
   PointElement
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { formatTimestamp } from "../../Utils";
+import { formatTimestamp } from "../../Utils/math";
 import { Chart1 } from './CurrencyPriceChart.styles'
 
 ChartJS.register(

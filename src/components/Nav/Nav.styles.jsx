@@ -11,7 +11,6 @@ export const StyledNav = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
-  
 `;
 
 export const TopNav = styled.div`

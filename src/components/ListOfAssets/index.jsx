@@ -9,7 +9,7 @@ import {
   AssetPerformance,
   AssetHeader,
 } from "./ListOfAssets.styles/";
-import { readableNum, roundedPercentage } from "../../Utils";
+import { readableNum, roundedPercentage } from "../../Utils/math";
 
 export default function ListOfAssets(props) {
   function textColor(number){

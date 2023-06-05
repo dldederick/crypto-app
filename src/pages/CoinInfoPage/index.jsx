@@ -7,7 +7,7 @@ import {
   readableNum,
   convertDate,
   roundedPercentage,
-} from "../../Utils";
+} from "../../Utils/math";
 import {
   StyledCoinInfo,
   CoinInfoWrapper,

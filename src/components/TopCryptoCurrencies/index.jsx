@@ -1,7 +1,7 @@
 import React from "react";
 import Sparkline from "../Sparklines";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { readableNum, roundedPercentage, capitalize } from "../../Utils";
+import { readableNum, roundedPercentage, capitalize } from "../../Utils/math";
 import {
   StyledTopCurrencies,
   TopCurrencyHeader,

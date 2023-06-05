@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import CurrencyPriceChart from "../../components/CurrencyPriceChart";
 import CurrencyVolumeChart from "../../components/CurrencyVolumeChart";
-import { readableNum } from "../../Utils";
+import { readableNum } from "../../Utils/math";
 import {
   CoinsCont1,
   Wrapper1,

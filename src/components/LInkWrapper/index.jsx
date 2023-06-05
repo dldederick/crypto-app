@@ -1,5 +1,5 @@
 import React from "react";
-import { openInNewTab } from "../../Utils";
+import { openInNewTab } from "../../Utils/math";
 import { StyledLinkWrapper, Link } from "./LinkWrapper.styles";
 
 export default function LinkWrapper(props) {

@@ -1,13 +1,21 @@
 import React from 'react';
-import { StyledBottomNav } from './BottomNav.styles'
+import { StyledBottomNav, OverviewTab, PortfolioTab, SearchTab } from './BottomNav.styles'
 
 export default function BottomNav() {
     return (
         <StyledBottomNav>
-            <div>Overview</div>
-            <div>Portfolio</div>
-            <div>Summary</div>
-            <div>Search</div>
+            <OverviewTab>
+                <div></div>
+                <div>Overview</div>
+            </OverviewTab>
+            <PortfolioTab>
+                <div></div>
+                <div>Portfolio</div>
+            </PortfolioTab>
+            <SearchTab>
+                <div></div>
+                <div>Search</div>
+            </SearchTab>
           </StyledBottomNav>
     )
 }
