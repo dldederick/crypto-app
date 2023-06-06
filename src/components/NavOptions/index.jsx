@@ -5,11 +5,11 @@ import SearchBar from "../SearchBar";
 import { StyledNavOptions, NavCurrentPage, AltNav } from "./NavOptions.styles";
 
 export default function NavOptions(props) {
-  const [currentPage, setCurrentPage] = useState("Overview");
+  
   return (
     <StyledNavOptions>
       <NavCurrentPage>
-        <div>{currentPage}</div>
+        <div>{props.currentPage}</div>
       </NavCurrentPage>
       <SearchBar
         coinsList={props.coinsList}

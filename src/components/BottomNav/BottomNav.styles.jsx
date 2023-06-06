@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const StyledBottomNav = styled.div`
   display: none;
@@ -21,12 +22,14 @@ export const StyledBottomNav = styled.div`
   }
 `;
 
-export const OverviewTab = styled.div`
+export const OverviewTab = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 70px;
+  text-decoration: none;
+  color: white;
 
   div:nth-child(1) {
     width: 25px;
@@ -40,15 +43,18 @@ export const OverviewTab = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
 `;
 
-export const PortfolioTab = styled.div`
+export const PortfolioTab = styled(Link)`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 height: 70px;
+text-decoration: none;
+color: white;
 
 div:nth-child(1) {
   width: 25px;

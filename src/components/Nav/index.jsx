@@ -4,6 +4,7 @@ import NavPages from "../NavPages";
 import NavOptions from "../NavOptions";
 import GlobalCoins from "../GlobalCoins";
 import BottomNav from "../BottomNav";
+import SearchPopUp from '../SearchPopUp'
 import {
   StyledNav,
   TopNav,
@@ -22,6 +23,10 @@ const Nav = (props) => {
   const [ totalVolume, setTotalVolume ] = useState(0);
   const [ coinsList, setCoinsList ] = useState([]);
   const [ everything, setEverything ] = useState([]);
+  const [ currentPage, setCurrentPage] = useState("Overview");
+  const [ searchIsSelected, setSearchIsSelected ] = useState(false)
+
+  // const SearchSelected = currentPage === '';
 
   const getGlobalCryptoCurrencyData = async () => {
     try {
@@ -52,6 +57,10 @@ const Nav = (props) => {
       setHasError(true);
     }
   }
+
+  const handleRemoveSearch = () => {
+    setSearchIsSelected(false)
+  }
   
   const handleClick = () => {
     props.handleClick()
@@ -64,6 +73,14 @@ const Nav = (props) => {
 
   const handleSubmit = (item) => {
     setSearchedCoin(item)
+  }
+
+  const handleBottomNavClick = (value) => {
+    setCurrentPage(value);
+    if (value === ''){
+      setSearchIsSelected(true)
+    }
+    console.log(currentPage, 'currentPage')
   }
 
   useEffect(() => {
@@ -88,7 +105,8 @@ useEffect(() => {
           darkMode={props.darkMode}
           coinsList={coinsList}
           handleSubmit={handleSubmit}
-          handleClick={handleClick} />
+          handleClick={handleClick} 
+          currentPage={currentPage} />
         </TopNav>
         <GlobalCoins
           coins={activeCryptoCurrencies}
@@ -98,7 +116,10 @@ useEffect(() => {
           dominance={dominance}
           currencySymbol={props.currencySymbol}
         />
-        <BottomNav />
+        {searchIsSelected && (
+          <SearchPopUp darkMode={props.darkMode} coinsList={coinsList} handleRemoveSearch={handleRemoveSearch} />
+        )}
+        <BottomNav handleClick={handleBottomNavClick} darkMode={props.darkMode} />
       </StyledNav>
     );
   }
