@@ -34,7 +34,15 @@ const DropDownMenu = (props) => {
   };
   
   useEffect(() => {
+    const handleDocumentClick = (e) => {
+      handleWindowClick(e);
+    };
+    
     document.addEventListener("mousedown", handleWindowClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
   }, [])
 
   console.log(props.isClicked, 'dropDown')

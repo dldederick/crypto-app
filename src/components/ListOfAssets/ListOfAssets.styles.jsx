@@ -34,6 +34,11 @@ border-radius: 10px;
 gap: 10px;
 color: ${(props) => props.theme.text};
 
+// @media (max-width: 1000px) {
+//     padding: 0 10px 0 10px;
+//     margin-right: 10px;
+// }
+
 > div:nth-child(1) {
     width: 50px;
     height: 50px;
@@ -51,6 +56,10 @@ flex-direction: column;
 justify-content: space-between;
 // align-items: center;
 border-radius: 10px;
+
+@media (max-width: 1000px) {
+    overflow-x: scroll;
+}
 
 > div:nth-child(1) {
     width: 100%;
@@ -83,7 +92,7 @@ background-color: ${(props) => props.theme.secondary};
 `
 
 export const AssetMarketPerformance = styled.div`
-width: 100%;
+// width: 100%;
 height: 66%;
 background-color: ${(props) => props.theme.secondary};
 border-radius: 10px;
@@ -91,7 +100,15 @@ border-top-left-radius: 0px;
 display: flex;
 justify-content: space-around;
 align-items: center;
-color: ${(props) => props.theme.text};`
+color: ${(props) => props.theme.text};
+
+@media (max-width: 1000px) {
+    gap: 20px;
+    justify-content: start;
+    padding: 0 20px 0 20px;
+    white-space: nowrap;
+    min-width: fit-content;
+}`
 
 export const AssetPerformance = styled.div`
 width: 100%;
@@ -102,4 +119,12 @@ border-top-left-radius: 0px;
 display: flex;
 justify-content: space-around;
 align-items: center;
-color: ${(props) => props.theme.text};`
+color: ${(props) => props.theme.text};
+
+@media (max-width: 1000px) {
+    gap: 20px;
+    justify-content: start;
+    padding: 0 20px 0 20px;
+    white-space: nowrap;
+    min-width: fit-content;
+}`

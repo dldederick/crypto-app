@@ -80,6 +80,7 @@ export const AssetImageContAlt = styled.div`
     align-items: center;
     background-color: ${(props) => props.theme.secondary};
     border-radius: 10px;
+    padding-top: 5px;
   }
 `;
 
