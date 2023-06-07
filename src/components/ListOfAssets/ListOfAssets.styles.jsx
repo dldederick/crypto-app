@@ -10,6 +10,14 @@ align-items: center;
 gap: 20px;
 background-color: ${(props) => props.theme.main};
 border-radius: 10px;
+
+@media (max-width: 1000px) {
+    justify-content: start;
+    max-height: 620px;
+    width: 90%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
 `
 
 export const ActiveAsset = styled.div`
@@ -20,6 +28,11 @@ justify-content: space-around;
 align-items: center;
 background-color: ${(props) => props.theme.main};
 border-radius: 10px;
+
+@media (max-width: 1000px) {
+    width: 95%;
+    gap: 10px;
+}
 `
 
 export const ListAssetImageCont = styled.div`
@@ -34,10 +47,9 @@ border-radius: 10px;
 gap: 10px;
 color: ${(props) => props.theme.text};
 
-// @media (max-width: 1000px) {
-//     padding: 0 10px 0 10px;
-//     margin-right: 10px;
-// }
+@media (max-width: 1000px) {
+    width: 20%;
+}
 
 > div:nth-child(1) {
     width: 50px;

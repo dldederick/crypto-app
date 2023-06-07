@@ -14,9 +14,10 @@ export const StyledPortfolioPage = styled.div`
   position: relative;
 
   @media (max-width: 1000px) {
-    padding-top: 170px;
+    padding-top: 140px;
     height: 850px;
     padding-bottom: 0;
+    gap: 50px;
   }
 `;
 
