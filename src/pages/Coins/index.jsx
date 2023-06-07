@@ -42,11 +42,8 @@ const Coins = (props) => {
         return 0;
       });
       setTopCryptoCurrencies(topCryptoCurrencies);
-      // console.log(topCryptoCurrencies, 'topCrypto', topCryptoCurrencies[0].id, 'firstTopCrypto')
       setCurrencyDisplayed(topCryptoCurrencies[0].id);
       setIsLoading(false);
-      // getCoinsMarketChart();
-      // console.log(currencyDisplayed, "checking currency");
     } catch (error) {
       console.log(error, "topCoinsError");
       setHasError(true);
@@ -55,16 +52,15 @@ const Coins = (props) => {
   };
 
   const getCoinsMarketChart = async () => {
+    console.log(props.selectedCurrency, 'before marketCharts')
     const currency = props.selectedCurrency;
     const display = currencyDisplayed;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${display}/market_chart?vs_currency=${currency}&days=180&interval=daily`
       );
-      console.log(data, 'data')
       setCoinsMarketDateArray(data.prices.map((item) => item[0]));
       setCoinsMarketPriceArray(data.prices.map((item) => item[1]));
-      // console.log(coinsMarketPriceArray, 'priceArray')
       setCoinsMarketVolumeArray(data.total_volumes.map((item) => item[1]));
       setIsLoading(false);
     } catch (error) {
@@ -103,7 +99,6 @@ const Coins = (props) => {
   
     const updatedSettings = { ...settings, currency, sortBy, sort };
     const setUrl = queryString.stringify(updatedSettings);
-  
     props.history.push(`?${setUrl}`);
   };
   
@@ -115,9 +110,6 @@ const Coins = (props) => {
       const currency = props.selectedCurrency;
       const sortBy = settings.sortBy || "market_cap_desc";
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${sortBy}&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-      );
-      console.log(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${sortBy}&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       setTopCryptoCurrencies([...topCryptoCurrencies, ...data]);
@@ -139,10 +131,6 @@ const Coins = (props) => {
       currency: props.selectedCurrency,
     }));
   }, [props.selectedCurrency]);
-
-  // useEffect(() => {
-  //   getTopCryptoCurrencies();
-  // }, [settings.currency]);
 
   useEffect(() => {
     const settings = queryString.parse(props.location.search);

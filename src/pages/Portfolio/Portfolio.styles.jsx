@@ -12,6 +12,12 @@ export const StyledPortfolioPage = styled.div`
   gap: 200px;
   align-items: center;
   position: relative;
+
+  @media (max-width: 1000px) {
+    padding-top: 170px;
+    height: 850px;
+    padding-bottom: 0;
+  }
 `;
 
 export const NewAssetButton = styled.div`

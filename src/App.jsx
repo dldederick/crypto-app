@@ -65,10 +65,11 @@ const App = () => {
       localStorage.setItem("SelectedCurrency", "usd");
     }
     setIsLoading(true);
-    getSupportedCurrencies();
+    
     const symbol = getSymbolFromCurrency(selectedCurrency);
     setCurrencySymbol(symbol);
-    
+
+    getSupportedCurrencies();
 
     return () => {
       window.removeEventListener("resize", handleResize);

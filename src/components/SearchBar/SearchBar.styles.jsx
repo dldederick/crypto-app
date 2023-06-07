@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.input`
-width: 400px;
+width: 300px;
 height: 45px;
 border: none;
 background: none;
@@ -15,6 +15,7 @@ font-size: 15px;
 outline: none;
 color: ${(props) => props.theme.text};
 position: relative;
+// border: 1px red solid;
 
 &::placeholder {
     color: ${(props) => props.theme.text};

@@ -77,20 +77,9 @@ const Portfolio = (props) => {
     setNewAsset({});
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.assetList.length !== this.state.assetList.length) {
-  //     this.getCoinPriceChange();
-  //   }
-  // }
-
   useEffect(() => {
     getCoinPriceChange();
   }, [assetList.length]);
-
-  // componentDidMount() {
-  //   this.setState({ isLoading: true });
-  //   this.getCryptoCurrencies();
-  // }
 
   useEffect(() => {
     setIsLoading(true);

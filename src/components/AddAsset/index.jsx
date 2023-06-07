@@ -13,6 +13,7 @@ import {
   SearchAssets,
   Assets,
   AssetImage,
+  AssetImageContAlt,
 } from "./AddAsset.styles";
 
 const AddAsset = (props) => {
@@ -96,6 +97,8 @@ const AddAsset = (props) => {
 
   const imageUrl = props.cryptoInfo.filter((item) => item.name === assetName);
 
+  console.log(filteredItems, props, 'props')
+
   return (
 <StyledAddAsset onSubmit={handleSubmit} darkMode={props.darkMode}>
       <AssetInfoCont>
@@ -109,6 +112,13 @@ const AddAsset = (props) => {
             ))}
         </AssetImageCont>
         <AssetInfo>
+          <AssetImageContAlt>{assetName.length > 0 &&
+            imageUrl.map((obj) => (
+              <React.Fragment key={assetName}>
+                <AssetImage image={obj.image}></AssetImage>
+                <div>{assetName}</div>
+              </React.Fragment>
+            ))}</AssetImageContAlt>
           <SelectCoin>
             Enter coin purchased:
             <input
@@ -119,7 +129,7 @@ const AddAsset = (props) => {
             ></input>
           </SelectCoin>
           {showDropDown && (
-            <SearchAssets>
+            <SearchAssets showDropDown={showDropDown}>
               {filteredItems.map((item) => (
                 <Assets key={item} onClick={() => handleSelect(item)}>
                   {item}
