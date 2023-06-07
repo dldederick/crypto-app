@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import CoinDataChart from "../../components/CoinDataChart";
@@ -41,18 +41,24 @@ import {
   ConvertCurrencyTwo,
 } from "./CoinInfoPage.styles";
 
-export default class CoinsInfoPage extends React.Component {
-  state = {
-    coinInfo: {},
-    isLoading: false,
-    hasError: false,
-    periodSelected: 7,
-    coinMarketDateArray: [],
-    coinMarketPriceArray: [],
-    isSelected: "7d",
-  };
+const CoinsInfoPage = (props) => {
 
-  convertStringPeriod(id) {
+  const [ coinInfo, setCoinInfo ] = useState({});
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ hasError, setHasError ] = useState(false);
+  const [ periodSelected, setPeriodSelected ] = useState(7);
+  const [ coinMarketDateArray, setCoinMarketDateArray ] = useState([]);
+  const [ coinMarketPriceArray, setCoinMarketPriceArray ] = useState([]);
+  const [ isSelected, setIsSelected ] = useState('7d');
+
+    const info = coinInfo;
+    const symbol = info.symbol;
+    const currency = props.selectedCurrency;
+    const selectedCoinSymbol = getSymbolFromCurrency(symbol);
+    const selectedCurrencySymbol = getSymbolFromCurrency(currency);
+    const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
+
+  const convertStringPeriod = (id) => {
     if (id === "1d") {
       return 1;
     }
@@ -73,64 +79,69 @@ export default class CoinsInfoPage extends React.Component {
     }
   }
 
-  getCoinInfo = async (id) => {
+  const getCoinInfo = async (id) => {
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${id}?&market_data=true&community_data=true`
       );
-      this.setState({ coinInfo: data, isLoading: false });
+      setCoinInfo(data);
+      setIsLoading(false);
     } catch (error) {
-      this.setState({ hasError: true, isLoading: false });
+      setHasError(true);
+      setIsLoading(false);
     }
   };
 
-  getCoinMarketChart = async () => {
-    const currency = this.props.selectedCurrency;
-    const id = this.props.match.params.coinId;
-    const period = this.state.periodSelected;
+  const getCoinMarketChart = async () => {
+    const currency = props.selectedCurrency;
+    const id = props.match.params.coinId;
+    const period = periodSelected;
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${period}&interval=daily`
       );
-      const coinMarketPriceArray = data.prices.map((item) => item[1]);
-      const coinMarketDateArray = data.prices.map((item) => item[0]);
-      this.setState({
-        coinMarketDateArray,
-        coinMarketPriceArray,
-        isLoading: false,
-      });
+      setCoinMarketPriceArray(data.prices.map((item) => item[1]));
+      setCoinMarketDateArray(data.prices.map((item) => item[0]));
+      setIsLoading(false);
     } catch (error) {
-      this.setState({ hasError: true, isLoading: false });
+      setHasError(true);
+      setIsLoading(false);
     }
   };
 
-  handleClick = (id) => {
-    const newPeriod = this.convertStringPeriod(id);
-    this.setState({ periodSelected: newPeriod, isSelected: id });
+  const handleClick = (id) => {
+    const newPeriod = convertStringPeriod(id);
+    setPeriodSelected(newPeriod);
+    setIsSelected(id);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.periodSelected !== this.state.periodSelected) {
-      this.getCoinMarketChart(this.state.periodSelected);
-    }
-    if (prevProps.match.params.coinId !== this.props.match.params.coinId) {
-      this.getCoinInfo(this.props.match.params.coinId);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.periodSelected !== this.state.periodSelected) {
+  //     this.getCoinMarketChart(this.state.periodSelected);
+  //   }
+  //   if (prevProps.match.params.coinId !== this.props.match.params.coinId) {
+  //     this.getCoinInfo(this.props.match.params.coinId);
+  //   }
+  // }
 
-  componentDidMount() {
-    this.getCoinInfo(this.props.match.params.coinId);
-    this.getCoinMarketChart();
-  }
+  useEffect(() => {
+    getCoinMarketChart(periodSelected)
+  }, [periodSelected]);
 
-  render() {
-    const info = this.state.coinInfo;
-    console.log(info, 'info')
-    const symbol = info.symbol;
-    const currency = this.props.selectedCurrency;
-    const selectedCoinSymbol = getSymbolFromCurrency(symbol);
-    const selectedCurrencySymbol = getSymbolFromCurrency(currency);
-    const timePeriods = ["1d", "7d", "30d", "90d", "1y", "MAX"];
+  useEffect(() => {
+    getCoinInfo(props.match.params.coinId)
+  }, [props.match.params.coinId])
+
+  // componentDidMount() {
+  //   this.getCoinInfo(this.props.match.params.coinId);
+  //   this.getCoinMarketChart();
+  // }
+
+ useEffect(() => {
+  getCoinInfo(props.match.params.coinId);
+  getCoinMarketChart()
+ }, [])
+    
     return (
         <StyledCoinInfo>
           <CoinInfoWrapper>
@@ -285,8 +296,8 @@ export default class CoinsInfoPage extends React.Component {
                   {timePeriods.map((item) => (
                     <Period key={item}>
                       <Circle
-                        onClick={() => this.handleClick(item)}
-                        isSelected={this.state.isSelected}
+                        onClick={() => handleClick(item)}
+                        isSelected={isSelected}
                         item={item}
                       ></Circle>
                       <p>{item}</p>
@@ -295,15 +306,16 @@ export default class CoinsInfoPage extends React.Component {
                 </TimePeriod>
                 <CoinDataChart
                   coinInfo={info}
-                  marketPrices={this.state.coinMarketPriceArray}
-                  marketDates={this.state.coinMarketDateArray}
+                  marketPrices={coinMarketPriceArray}
+                  marketDates={coinMarketDateArray}
                 />
               </CoinInfoCont>
             </SummaryWrapper>
             <DescriptionWrapper>{info.description?.en}</DescriptionWrapper>
-            <LinkWrapper links={info.links} darkMode={this.props.darkMode} />
+            <LinkWrapper links={info.links} darkMode={props.darkMode} />
           </CoinInfoWrapper>
         </StyledCoinInfo>
     );
   }
-}
+
+export default CoinsInfoPage;
