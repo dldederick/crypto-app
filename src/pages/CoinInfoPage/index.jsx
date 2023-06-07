@@ -3,6 +3,7 @@ import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
 import CoinDataChart from "../../components/CoinDataChart";
 import LinkWrapper from "../../components/LinkWrapper";
+import CurrencyConvert from '../../components/CurrencyConvert';
 import {
   readableNum,
   convertDate,
@@ -19,7 +20,6 @@ import {
   CoinSupplyData,
   CoinMarketVolumeData,
   DescriptionWrapper,
-  ConvertCont,
   CoinInfoHeader,
   CoinInfoSummary,
   TimePeriod,
@@ -36,10 +36,9 @@ import {
   CoinMarketVolumePercent,
   CoinAth,
   CoinAtl,
-  ConvertIcon,
-  ConvertCurrencyOne,
-  ConvertCurrencyTwo,
+ 
 } from "./CoinInfoPage.styles";
+import { TopCurrencyCont } from "../../components/TopCryptoCurrencies/TopCryptoCurrencies.styles";
 
 const CoinsInfoPage = (props) => {
 
@@ -145,21 +144,7 @@ const CoinsInfoPage = (props) => {
     return (
         <StyledCoinInfo>
           <CoinInfoWrapper>
-            <ConvertCont>
-              <ConvertCurrencyOne>
-                <div>{symbol?.toUpperCase()}</div>
-                <input
-                  value={`${selectedCoinSymbol}${info.market_data?.current_price[symbol]}`}
-                ></input>
-              </ConvertCurrencyOne>
-              <ConvertIcon></ConvertIcon>
-              <ConvertCurrencyTwo>
-                <input
-                  value={`${selectedCurrencySymbol}${info.market_data?.current_price[currency]}`}
-                ></input>
-                <div>{currency?.toUpperCase()}</div>
-              </ConvertCurrencyTwo>
-            </ConvertCont>
+            <CurrencyConvert info={info} selectedCoinSymbol={selectedCoinSymbol} symbol={symbol} currency={currency} />
             <SummaryWrapper>
               <CoinInfoHeader>
                 <CoinInfoSummary>Coin Summary</CoinInfoSummary>
