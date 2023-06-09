@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StyledSearchPopUp } from "./SearchPopUp.styles";
 import PopUpMatches from "../PopUpMatches";
 
 export default function SearchPopUp(props) {
   const [filteredValue, setFilteredValue] = useState("");
+
+  const searchPopUpRef = useRef(null);
 
   const hasLength = filteredValue.length > '' ? true : false;
 
@@ -21,9 +23,27 @@ export default function SearchPopUp(props) {
     props.handleRemoveSearch()
   }
 
+  const handleWindowClick = (e) => {
+    if (searchPopUpRef.current && !searchPopUpRef.current.contains(e.target)) {
+      handleRemoveSearch();
+    }
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (e) => {
+      handleWindowClick(e);
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, []);
+
   return (
     <StyledSearchPopUp darkMode={props.darkMode}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={searchPopUpRef}>
         <input
           placeholder="Search coins..."
           onChange={handleChange}

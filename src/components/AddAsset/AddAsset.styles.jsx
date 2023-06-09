@@ -17,7 +17,7 @@ export const StyledAddAsset = styled.form`
 
   @media (max-width: 1000px) {
     width: 400px;
-    top: 35%;
+    top: 30%;
   }
 `;
 
