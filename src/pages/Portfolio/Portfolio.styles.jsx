@@ -15,9 +15,10 @@ export const StyledPortfolioPage = styled.div`
 
   @media (max-width: 1000px) {
     padding-top: 140px;
-    height: 850px;
+    height: 100%;
     padding-bottom: 0;
     gap: 50px;
+    box-sizing: border-box;
   }
 `;
 
