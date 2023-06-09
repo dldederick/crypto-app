@@ -16,7 +16,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000)
+  const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000);
 
   const getSupportedCurrencies = async () => {
     try {
@@ -112,6 +112,7 @@ const App = () => {
                   {...props}
                   selectedCurrency={selectedCurrency}
                   darkMode={darkMode}
+                  isSmallScreen={isSmallScreen}
                 />
               )}
             ></Route>

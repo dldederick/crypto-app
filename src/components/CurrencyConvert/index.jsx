@@ -5,18 +5,19 @@ const CurrencyConvert = (props) => {
     return(
         <StyledCurrencyConvert>
               <ConvertCurrencyOne>
-                <div>{symbol?.toUpperCase()}</div>
+                <div>{props.symbol?.toUpperCase()}</div>
                 <input
-                  value={`${selectedCoinSymbol}${info.market_data?.current_price[symbol]}`}
+                  value={`${props.selectedCoinSymbol}${props.info.market_data?.current_price[props.symbol]}`}
                 ></input>
               </ConvertCurrencyOne>
               <ConvertIcon></ConvertIcon>
               <ConvertCurrencyTwo>
                 <input
-                  value={`${selectedCurrencySymbol}${info.market_data?.current_price[currency]}`}
+                  value={`${props.selectedCurrencySymbol}${props.info.market_data?.current_price[props.currency]}`}
                 ></input>
-                <div>{currency?.toUpperCase()}</div>
+                <div>{props.currency?.toUpperCase()}</div>
               </ConvertCurrencyTwo>
             </StyledCurrencyConvert>
     )
 }
+export default CurrencyConvert;

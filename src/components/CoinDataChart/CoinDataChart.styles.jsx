@@ -7,5 +7,9 @@ height: 105%;
 background-color: ${(props) => props.theme.main};
 border-radius: 10px;
 border-top-left-radius: 0px;
-padding: 20px 20px 0px 20px;
-box-sizing: border-box;`
+padding: 20px 0 0px 0;
+box-sizing: border-box;
+
+@media (max-width: 1000px) {
+    height: 200px;
+}`

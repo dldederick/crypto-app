@@ -3,8 +3,18 @@ import styled from "styled-components";
 export const StyledCoinInfo = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
   background-color: ${(props) => props.theme.secondary};
+
+  @media (max-width: 1000px) {
+    // padding-top: 50px;
+    height: auto;
+    // overflow: hidden;
+    overflow-y: scoll;
+    // border: 1px red solid;
+  }
 `;
 
 export const CoinInfoWrapper = styled.div`
@@ -14,129 +24,29 @@ export const CoinInfoWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 50px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    align-items: center;
+    // border: 1px pink solid;
+    overflow-y: scroll;
+    padding-top: 130px;
+    margin-top: 20px;
+  }
 `;
 
 export const SummaryWrapper = styled.div`
   width: 100%;
   display: flex;
-  height: 482px;
+  // height: 482px;
   flex-direction: column;
   border-radius: 10px;
-  overflow: hidden;
-`;
+  // overflow: hidden;
 
-export const CoinCont = styled.div`
-  width: 20%;
-  height: 170px;
-  background: ${(props) => props.theme.secondary};
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: ${(props) => props.theme.text};
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  @media (max-width: 1000px) {
+    width: 80%;
+    height: auto;
   }
-`;
-
-export const CoinImage = styled.div`
-  width: 80px;
-  height: 80px;
-  background-image: url(${(props) => props.image});
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
-
-export const CoinName = styled.div`
-  width: 100%;
-  height: 80px;
-`;
-
-export const CoinLink = styled.div`
-margin: 0 auto;
-  height: 20%;
-  background-image: url('https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png');
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position: left;
-  text-indent 25px;
-`;
-
-export const CoinHighlights = styled.div`
-  width: 20%;
-  height: 170px;
-  background: ${(props) => props.theme.secondary};
-  border-radius: 10px;
-  //   border: 1px blue solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  color: ${(props) => props.theme.text};
-
-  > div:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-`;
-
-export const CoinPriceData = styled.div`
-    display: flex;
-    gap: 20px;
-    color: ${(props) => props.theme.text};
-    
-    > div:nth-child(2) {
-        text-indent: 19px;
-        color: ${(props) => (props.value > 0 ? " #00ff5f" : "#D9123A")};
-        background-image: url(${(props) =>
-          props.value > 0
-            ? "https://i.postimg.cc/bJxz2MGv/Polygon-2.png"
-            : "https://i.postimg.cc/xCqJqzr1/Polygon-3-1.png"});
-        background-position: left;
-        background-repeat: no-repeat;
-        background-size: 10px 4px;  
-    })`;
-
-export const CoinSupplyData = styled.div`
-  width: 20%;
-  height: 170px;
-  background: ${(props) => props.theme.secondary};
-  border-radius: 10px;
-  //   border: 1px orange solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  color: ${(props) => props.theme.text};
-`;
-
-export const CoinMarketVolumeData = styled.div`
-  width: 20%;
-  height: 170px;
-  background: ${(props) => props.theme.secondary};
-  border-radius: 10px;
-  //   border: 1px orange solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  color: ${(props) => props.theme.text};
-`;
-
-export const DescriptionWrapper = styled.div`
-  padding: 50px;
-  background-color: ${(props) => props.theme.main};
-  border-radius: 10px;
-  color: ${(props) => props.theme.text};
 `;
 
 export const CoinInfoHeader = styled.div`
@@ -153,201 +63,30 @@ export const CoinInfoSummary = styled.div`
   text-align: center;
   height: 40px;
   line-height: 40px;
-`;
 
-export const TimePeriod = styled.div`
-  display: flex;
-  background-color: ${(props) => props.theme.main};
-  color: ${(props) => props.theme.text};
-  justify-content: center;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  width: 500px;
-  height: 40px;
-  line-height: 40px;
-  gap: 20px;
-  margin-top: 20px;
-  align-items: center;
-`;
-
-export const CoinInfoCont = styled.div`
-  background-color: ${(props) => props.theme.main};
-  height: 400px;
-  width: 100%;
-  border-radius: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 10px;
-  display: flex;
-  padding-top: 50px;
-  flex-direction: column;
-  //   justify-content: center;
-  align-items: center;
-
-  > div:nth-child(1) {
+  @media (max-width: 1000px) {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
 `;
 
-export const Circle = styled.div`
-  width: 12px;
-  height: 12px;
-  border: 1px solid green;
-  border-radius: 50%;
-  background-color: ${(props) =>
-    props.item === props.isSelected ? "#00ff5f" : "none"};
-`;
-
-export const Period = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  align-items: center;
-`;
-
-export const CoinSupplyPercent = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-`;
-
-export const CoinSupplyBar = styled.div`
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-`;
-
-export const CoinSupplyBars = styled.div`
-  width: 100%;
-  height: 8px;
-  border-radius: 5px;
+export const DescriptionWrapper = styled.div`
+  padding: 50px;
   background-color: ${(props) => props.theme.main};
-
-  > div:nth-child(1) {
-    width: ${(props) => props.supplyPercent}%;
-    height: 100%;
-    border-radius: 5px;
-    background-color: #6699ff;
-  }
-`;
-
-export const CoinMarketVolumePercent = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-`;
-
-export const CoinMarketVolumeBar = styled.div`
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-`;
-
-export const CoinMarketVolumeBars = styled.div`
-  width: 100%;
-  height: 8px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.main};
-
-  > div:nth-child(1) {
-    width: ${(props) => props.supplyPercent}%;
-    height: 100%;
-    border-radius: 5px;
-    background-color: #6699ff;
-  }
-`;
-
-export const CoinAth = styled.div`
-  text-align: center;
-  //   margin: auto 0;
-`;
-
-export const CoinAtl = styled.div`
-  text-align: center;
-  //   margin: auto 0;
-`;
-
-
-
-export const Link2 = styled.div`
-  width: 25%;
-  height: 100%;
   border-radius: 10px;
-  background: #191b1f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: ${(props) => props.theme.text};
 
-  > div:nth-child(1) {
-    width: 20%;
-    height: 100%;
-    background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-  }
-
-  > div:nth-child(2) {
+  @media (max-width: 1000px) {
+    width: 80%;
+    height: 200px;
+    padding: 20px;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    min-width: 60%;
-    text-align: center;
-  }
-
-  > div:nth-child(3) {
-    width: 20%;
-    height: 100%;
-    background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
+    // overflow-y: scroll;
   }
 `;
 
-export const Link3 = styled.div`
-  width: 25%;
-  height: 100%;
-  border-radius: 10px;
-  background: #191b1f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  > div:nth-child(1) {
-    width: 20%;
-    height: 100%;
-    background-image: url("https://i.postimg.cc/Z5G4b0jy/Icon-awesome-link.png");
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  > div:nth-child(2) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    min-width: 60%;
-    text-align: center;
-  }
-
-  > div:nth-child(3) {
-    width: 20%;
-    height: 100%;
-    background-image: url("https://i.postimg.cc/JnzzvCm7/Icon-feather-copy.png");
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-`;
+export const AltCoinDataChart = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+`

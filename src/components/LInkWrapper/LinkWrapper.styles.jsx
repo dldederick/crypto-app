@@ -5,6 +5,14 @@ export const StyledLinkWrapper = styled.div`
   height: 50px;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    // width: auto;
+    // justify-content: center;
+  }
 `;
 
 export const Link = styled.div`
@@ -31,6 +39,10 @@ export const Link = styled.div`
     text-overflow: ellipsis;
     min-width: 60%;
     text-align: center;
+
+    // @media (max-width: 1000px) {
+    //   min-width: 500px;
+    // }
   }
 
   > div:nth-child(3) {

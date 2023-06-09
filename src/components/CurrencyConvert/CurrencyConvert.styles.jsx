@@ -8,6 +8,7 @@ export const StyledCurrencyConvert = styled.div`
   gap: 15px;
   margin: 0 auto;
   align-items: center;
+//   border: 1px red solid;
 `;
 
 export const ConvertIcon = styled.div`
