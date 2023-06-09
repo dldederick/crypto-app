@@ -10,8 +10,8 @@ export const StyledLinkWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    // width: auto;
-    // justify-content: center;
+    width: 80%;
+    height: auto;
   }
 `;
 
@@ -23,6 +23,11 @@ export const Link = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    width: 80%;
+    
+  }
 
   > div:nth-child(1) {
     width: 20%;
@@ -39,10 +44,6 @@ export const Link = styled.div`
     text-overflow: ellipsis;
     min-width: 60%;
     text-align: center;
-
-    // @media (max-width: 1000px) {
-    //   min-width: 500px;
-    // }
   }
 
   > div:nth-child(3) {

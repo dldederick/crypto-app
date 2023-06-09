@@ -9,6 +9,10 @@ export const StyledCurrencyConvert = styled.div`
   margin: 0 auto;
   align-items: center;
 //   border: 1px red solid;
+
+@media (max-width: 1000px) {
+    width: 80%;
+}
 `;
 
 export const ConvertIcon = styled.div`

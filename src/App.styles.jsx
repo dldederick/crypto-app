@@ -6,11 +6,11 @@ display: flex;
 position: relative;
 border-radius: 10px;
 justify-content: center;
-border: 1px blue solid;
+// border: 1px blue solid;
 
 @media (max-width: 1000px) {
   height: 1100px;
-  border: 1px blue solid;
+  // border: 1px blue solid;
 }
 `
 

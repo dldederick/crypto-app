@@ -7,16 +7,17 @@ export const StyledCoinInfo = styled.div`
   // justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.secondary};
+  border-radius: 10px;
 
   @media (max-width: 1000px) {
     padding-top: 170px;
     gap: 50px;
-    height: 850px;
-    // flex-direction: row;
+    height: 100%;
     overflow: hidden;
     overflow-y: scroll;
-    border: 1px red solid;
-    // padding-bottom: 50px;
+    // border: 1px red solid;
+    padding-bottom: 60px;
+    box-sizing: border-box;
   }
 `;
 
@@ -54,7 +55,7 @@ export const SummaryWrapper = styled.div`
 
   @media (max-width: 1000px) {
     width: 80%;
-    height: auto;
+    // height: auto;
   }
 `;
 
@@ -86,11 +87,12 @@ export const DescriptionWrapper = styled.div`
 
   @media (max-width: 1000px) {
     width: 80%;
-    height: 200px;
+    min-height: 192px;
     padding: 20px;
     overflow: hidden;
     overflow-y: scroll;
-    border: 1px red solid;
+    // border: 1px red solid;
+    box-sizing: border-box;
   }
 `;
 
