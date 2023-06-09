@@ -8,7 +8,9 @@ padding-top: 200px;
 color: ${(props) => props.theme.text};
 
 @media (max-width: 1000px) {
+    // padding-top: 170px;
     padding-top: 170px;
-    height: 850px;
+    height: 100%;
+    box-sizing: border-box;
 }
 `

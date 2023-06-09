@@ -237,12 +237,10 @@ export const CoinMarketVolumeBars = styled.div`
 
 export const CoinAth = styled.div`
   text-align: center;
-  //   margin: auto 0;
 `;
 
 export const CoinAtl = styled.div`
   text-align: center;
-  //   margin: auto 0;
 `;
 
 export const Container = styled.div`

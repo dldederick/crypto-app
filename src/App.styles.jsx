@@ -1,13 +1,17 @@
 import styled from "styled-components"
 
 export const AppDesign = styled.div`
-// min-width: 1000px;
 width: calc(80vw);
-// height: 100vh;
 display: flex;
 position: relative;
 border-radius: 10px;
 justify-content: center;
+border: 1px blue solid;
+
+@media (max-width: 1000px) {
+  height: 1100px;
+  border: 1px blue solid;
+}
 `
 
 export const darkTheme = {

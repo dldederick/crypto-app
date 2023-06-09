@@ -45,7 +45,7 @@ white-space: nowrap;
 
 @media (max-width: 1000px) {
   width: unset;
-  height: 300px;
+  height: 400px;
   overflow-y: scroll;
 }
 `

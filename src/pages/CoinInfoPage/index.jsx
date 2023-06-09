@@ -8,7 +8,7 @@ import CoinInfoCont from "../../components/CoinInfoCont";
 import CurrencyConvert from "../../components/CurrencyConvert";
 import {
   StyledCoinInfo,
-  CoinInfoWrapper,
+  // CoinInfoWrapper,
   SummaryWrapper,
   DescriptionWrapper,
   CoinInfoHeader,
@@ -117,7 +117,7 @@ const CoinInfoPage = (props) => {
 
   return (
     <StyledCoinInfo>
-      <CoinInfoWrapper>
+      {/* <CoinInfoWrapper> */}
         <CurrencyConvert
           info={coinInfo}
           selectedCoinSymbol={selectedCoinSymbol}
@@ -153,7 +153,7 @@ const CoinInfoPage = (props) => {
             />
           </AltCoinDataChart>
         )}
-      </CoinInfoWrapper>
+      {/* </CoinInfoWrapper> */}
     </StyledCoinInfo>
   );
 };

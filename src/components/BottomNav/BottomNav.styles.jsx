@@ -20,6 +20,16 @@ export const StyledBottomNav = styled.div`
     z-index: 100;
     border-radius: 10px;
   }
+
+  @media (max-width: 1000px) {
+    width: inherit;
+    bottom: 140px;
+    // border: 1px orange solid;
+    border-radius: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    
+  }
 `;
 
 export const OverviewTab = styled(Link)`

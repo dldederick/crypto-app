@@ -11,6 +11,12 @@ export const StyledNav = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
+
+  @media (max-width: 1000px) {
+    top: 10px;
+    width: inherit;
+    
+  }
 `;
 
 export const TopNav = styled.div`
@@ -25,5 +31,8 @@ export const TopNav = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
 `;
