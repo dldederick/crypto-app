@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const StyledCoinInfoCont = styled.div`
   background-color: ${(props) => props.theme.main};
-  height: 400px;
+//   height: 400px;
   width: 100%;
   border-radius: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 10px;
   display: flex;
-  padding-top: 50px;
+  padding: 20px 0 0 0;
   flex-direction: column;
   //   justify-content: center;
   align-items: center;
@@ -104,6 +104,7 @@ export const CoinHighlights = styled.div`
   align-items: center;
   gap: 30px;
   color: ${(props) => props.theme.text};
+  padding: 0 10px 0 10px;
 
   @media (max-width:1000px) {
     width: 80%;
@@ -146,6 +147,7 @@ export const CoinSupplyData = styled.div`
   align-items: center;
   gap: 20px;
   color: ${(props) => props.theme.text};
+  padding: 0 10px 0 10px;
 
   @media (max-width:1000px) {
     width: 80%;
@@ -165,6 +167,7 @@ export const CoinMarketVolumeData = styled.div`
   align-items: center;
   gap: 20px;
   color: ${(props) => props.theme.text};
+  padding: 0 10px 0 10px;
 
   @media (max-width:1000px) {
     width: 80%;
@@ -180,7 +183,7 @@ export const CoinSupplyPercent = styled.div`
 `;
 
 export const CoinSupplyBar = styled.div`
-  width: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,7 +213,7 @@ export const CoinMarketVolumePercent = styled.div`
 `;
 
 export const CoinMarketVolumeBar = styled.div`
-  width: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -246,5 +249,8 @@ export const Container = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-width: 97%;
-height: 200px;`
+width: 100%;
+height: 200px;
+overflow: hidden;
+border-radius: 10px;
+`

@@ -1,6 +1,6 @@
 import React from "react";
 import CoinDataChart from "../../components/CoinDataChart";
-import TimePeriodSelect from '../TimePeriodSelect';
+import TimePeriodSelect from "../TimePeriodSelect";
 import { readableNum, convertDate, roundedPercentage } from "../../Utils/math";
 import {
   CoinCont,
@@ -20,16 +20,15 @@ import {
   CoinMarketVolumePercent,
   CoinAth,
   CoinAtl,
-  Container
+  Container,
 } from "./CoinInfoCont.styles";
 
 const CoinInfoCont = (props) => {
-  
   const handleClick = (item) => {
     props.handleClick(item);
   };
 
-  console.log(props.isSmallScreen, 'isSmallScreen')
+  console.log(props.isSmallScreen, "isSmallScreen");
 
   return (
     <StyledCoinInfoCont>
@@ -151,13 +150,19 @@ const CoinInfoCont = (props) => {
           </CoinSupplyBar>
         </CoinSupplyData>
       </div>
-      {!props.isSmallScreen ?  (<Container>
-        <TimePeriodSelect isSelected={props.isSelected} handleClick={handleClick} />
-        <CoinDataChart
-    coinInfo={props.info}
-    marketPrices={props.coinMarketPriceArray}
-    marketDates={props.coinMarketDateArray}
-  /></Container>) : null }
+      {!props.isSmallScreen ? (
+        <Container>
+          <TimePeriodSelect
+            isSelected={props.isSelected}
+            handleClick={handleClick}
+          />
+          <CoinDataChart
+            coinInfo={props.info}
+            marketPrices={props.coinMarketPriceArray}
+            marketDates={props.coinMarketDateArray}
+          />
+        </Container>
+      ) : null}
     </StyledCoinInfoCont>
   );
 };
