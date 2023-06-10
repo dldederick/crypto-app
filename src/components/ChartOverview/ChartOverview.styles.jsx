@@ -38,7 +38,6 @@ background-repeat: no-repeat;
 background-position: 50px;
 
 @media (max-width: 1000px) {
-    // margin: 0 auto;
     width: 100%;
 }`
 
@@ -56,7 +55,6 @@ background-repeat: no-repeat;
 background-position: 40px;
 
 @media (max-width: 1000px) {
-    // margin: 0 auto;
     width: 100%;
 }
 `

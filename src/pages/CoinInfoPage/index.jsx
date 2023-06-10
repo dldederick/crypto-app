@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CoinDataChart from "../../components/CoinDataChart";
 import TimePeriodSelect from "../../components/TimePeriodSelect";
-import getSymbolFromCurrency from "currency-symbol-map";
 import LinkWrapper from "../../components/LinkWrapper";
 import CoinInfoCont from "../../components/CoinInfoCont";
 import CurrencyConvert from "../../components/CurrencyConvert";
+import getSymbolFromCurrency from "currency-symbol-map";
 import {
   StyledCoinInfo,
-  // CoinInfoWrapper,
   SummaryWrapper,
   DescriptionWrapper,
   CoinInfoHeader,
@@ -88,15 +87,6 @@ const CoinInfoPage = (props) => {
     setIsSelected(item);
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.periodSelected !== this.state.periodSelected) {
-  //     this.getCoinMarketChart(this.state.periodSelected);
-  //   }
-  //   if (prevProps.match.params.coinId !== this.props.match.params.coinId) {
-  //     this.getCoinInfo(this.props.match.params.coinId);
-  //   }
-  // }
-
   useEffect(() => {
     getCoinMarketChart(periodSelected);
   }, [periodSelected]);
@@ -105,11 +95,6 @@ const CoinInfoPage = (props) => {
     getCoinInfo(props.match.params.coinId);
   }, [props.match.params.coinId]);
 
-  // componentDidMount() {
-  //   this.getCoinInfo(this.props.match.params.coinId);
-  //   this.getCoinMarketChart();
-  // }
-
   useEffect(() => {
     getCoinInfo(props.match.params.coinId);
     getCoinMarketChart();
@@ -117,7 +102,6 @@ const CoinInfoPage = (props) => {
 
   return (
     <StyledCoinInfo>
-      {/* <CoinInfoWrapper> */}
         <CurrencyConvert
           info={coinInfo}
           selectedCoinSymbol={selectedCoinSymbol}
@@ -153,7 +137,6 @@ const CoinInfoPage = (props) => {
             />
           </AltCoinDataChart>
         )}
-      {/* </CoinInfoWrapper> */}
     </StyledCoinInfo>
   );
 };

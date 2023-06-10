@@ -26,10 +26,9 @@ export const AssetInfoCont = styled.div`
   height: 60%;
   display: flex;
   align-items: center;
-  justify-content: space-between;  
+  justify-content: space-between;
 
   @media (max-width: 1000px) {
-    // height: 80%;
     justify-content: center;
   }
 `;
@@ -46,7 +45,6 @@ export const AssetInfo = styled.div`
   @media (max-width: 1000px) {
     width: 90%;
     justify-content: center;
-    // border: 1px red solid;
     gap: 10px;
   }
 `;
@@ -200,7 +198,6 @@ export const PurchaseDate = styled.div`
 
 export const ButtonCont = styled.div`
   width: 100%;
-  // height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -242,15 +239,13 @@ export const SearchAssets = styled.div`
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: ${(props) => props.theme.secondary};
-  
 
   @media (max-width: 1000px) {
-    // border: 1px red solid;
     top: 43%;
-    // height: 200px;
     padding-top: 10px;
     right: 13px;
-    border-bottom-right-radius: ${(props) => props.showDropDown ? '0' : '10px'};
+    border-bottom-right-radius: ${(props) =>
+      props.showDropDown ? "0" : "10px"};
     z-index: 10;
   }
 `;

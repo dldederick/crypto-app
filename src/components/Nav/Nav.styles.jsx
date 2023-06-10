@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const StyledNav = styled.div`
   width: 78%;
-  // height: 100%;
-  // background-color: ${(props) => props.theme.main};
   color: ${(props) => props.theme.text};
   margin: auto;
   position: fixed;
@@ -11,11 +9,9 @@ export const StyledNav = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
-  // border: 1px red solid;
 
   @media (max-width: 1000px) {
     width: inherit;
-    
   }
 `;
 

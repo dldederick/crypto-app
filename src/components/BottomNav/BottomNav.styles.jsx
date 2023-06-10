@@ -24,7 +24,6 @@ export const StyledBottomNav = styled.div`
   @media (max-width: 1000px) {
     width: inherit;
     bottom: 140px;
-    // border: 1px orange solid;
     border-radius: 0;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;

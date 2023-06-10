@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledAssetList = styled.div`
 width: 80%;
-// height: 200px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -66,7 +65,6 @@ height: 80%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-// align-items: center;
 border-radius: 10px;
 
 @media (max-width: 1000px) {
@@ -104,7 +102,6 @@ background-color: ${(props) => props.theme.secondary};
 `
 
 export const AssetMarketPerformance = styled.div`
-// width: 100%;
 height: 66%;
 background-color: ${(props) => props.theme.secondary};
 border-radius: 10px;

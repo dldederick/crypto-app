@@ -3,8 +3,7 @@ import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
 import { convertToUnixTimestamp } from "../../Utils/math";
-import { StyledPortfolioPage } from "./Portfolio.styles";
-import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
+import { StyledPortfolioPage, ZeroAssets, NewAssetButton } from "./Portfolio.styles";
 
 const Portfolio = (props) => {
   const [assetList, setAssetList] = useState([]);

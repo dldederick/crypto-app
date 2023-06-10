@@ -10,7 +10,6 @@ import {
   TopNav,
 } from "./Nav.styles";
 
-
 const Nav = (props) => {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ hasError, setHasError ] = useState(false);

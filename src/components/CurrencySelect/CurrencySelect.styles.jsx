@@ -7,10 +7,8 @@ export const CurrencySelectStyles = styled.div`
   justify-content: center;
   gap: 10px;
   align-items: center;
-  // background-color: #2c2f36;
   border-radius: 5px;
   position: relative;
-  // border: 1px red solid;
 `;
 
 export const CoinSelected = styled.div`

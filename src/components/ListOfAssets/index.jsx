@@ -1,5 +1,5 @@
 import React from "react";
-import getSymbolFromCurrency from "currency-symbol-map";
+import { readableNum, roundedPercentage } from "../../Utils/math";
 import {
   StyledAssetList,
   ActiveAsset,
@@ -9,7 +9,6 @@ import {
   AssetPerformance,
   AssetHeader,
 } from "./ListOfAssets.styles/";
-import { readableNum, roundedPercentage } from "../../Utils/math";
 
 export default function ListOfAssets(props) {
   function textColor(number){

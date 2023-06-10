@@ -4,11 +4,9 @@ export const StyledCurrencyConvert = styled.div`
   width: 50%;
   height: 50px;
   display: flex;
-  // justify-content: space-between;
   gap: 15px;
   margin: 0 auto;
   align-items: center;
-//   border: 1px red solid;
 
 @media (max-width: 1000px) {
     width: 80%;

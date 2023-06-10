@@ -6,10 +6,8 @@ export const StyledPortfolioPage = styled.div`
   border-radius: 10px;
   background-color: ${(props) => props.theme.secondary};
   padding-top: 200px;
-  // padding-bottom: 100px;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   gap: 200px;
   align-items: center;
   position: relative;
@@ -43,5 +41,5 @@ export const ZeroAssets = styled.div`
   border-radius: 10px;
   text-align: center;
   line-height: 50px;
-  color: ${(props) => props.theme.text}
+  color: ${(props) => props.theme.text};
 `;

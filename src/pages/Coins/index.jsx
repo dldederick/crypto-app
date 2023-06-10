@@ -45,14 +45,12 @@ const Coins = (props) => {
       setCurrencyDisplayed(topCryptoCurrencies[0].id);
       setIsLoading(false);
     } catch (error) {
-      console.log(error, "topCoinsError");
       setHasError(true);
       setIsLoading(false);
     }
   };
 
   const getCoinsMarketChart = async () => {
-    console.log(props.selectedCurrency, 'before marketCharts')
     const currency = props.selectedCurrency;
     const display = currencyDisplayed;
     try {
@@ -64,7 +62,6 @@ const Coins = (props) => {
       setCoinsMarketVolumeArray(data.total_volumes.map((item) => item[1]));
       setIsLoading(false);
     } catch (error) {
-      console.log(error, "marketChartsError");
       setHasError(true);
       setIsLoading(false);
     }
@@ -115,7 +112,6 @@ const Coins = (props) => {
       setTopCryptoCurrencies([...topCryptoCurrencies, ...data]);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setHasError(true);
       setIsLoading(false);
     }
@@ -142,7 +138,6 @@ const Coins = (props) => {
   }, [settings]);
 
   useEffect(() => {
-    // console.log(props.selectedCurrency, 'passedCurrency')
     const settings = queryString.parse(props.location.search);
     if (Object.keys(settings).length === 0) {
       props.history.push(
@@ -151,7 +146,6 @@ const Coins = (props) => {
     }
     setIsLoading(true);
     setSettings(settings);
-    // getTopCryptoCurrencies();
   }, []);
 
   const render = isLoading && hasError;
