@@ -10,7 +10,7 @@ export const StyledAddAsset = styled.form`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 60%;
+  top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;

@@ -39,7 +39,7 @@ export const OverviewTab = styled(Link)`
   align-items: center;
   height: 70px;
   text-decoration: none;
-  color: white;
+  color: ${(props) => props.theme.text};
 
   div:nth-child(1) {
     width: 25px;
@@ -64,7 +64,7 @@ justify-content: center;
 align-items: center;
 height: 70px;
 text-decoration: none;
-color: white;
+color: ${(props) => props.theme.text};
 
 div:nth-child(1) {
   width: 25px;

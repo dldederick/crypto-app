@@ -7,13 +7,13 @@ export const StyledNav = styled.div`
   color: ${(props) => props.theme.text};
   margin: auto;
   position: fixed;
-  top: 12px;
+  top: 0px;
   left: 0;
   right: 0;
   z-index: 100;
+  // border: 1px red solid;
 
   @media (max-width: 1000px) {
-    top: 10px;
     width: inherit;
     
   }

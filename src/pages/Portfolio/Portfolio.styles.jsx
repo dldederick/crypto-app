@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const StyledPortfolioPage = styled.div`
   width: 100%;
+  min-height: 1000px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.secondary};
   padding-top: 200px;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   // justify-content: center;

@@ -75,6 +75,8 @@ const Portfolio = (props) => {
     const newList = [...assetList, createAsset];
     setAssetList(newList);
     setNewAsset({});
+    const storedList = JSON.stringify(newList);
+    localStorage.setItem('StoredAssetList', storedList)
   };
 
   useEffect(() => {
@@ -82,6 +84,10 @@ const Portfolio = (props) => {
   }, [assetList.length]);
 
   useEffect(() => {
+    const storedList = localStorage.getItem('StoredAssetList');
+    if(storedList) {
+      setAssetList(JSON.parse(storedList))
+    }
     setIsLoading(true);
     getCryptoCurrencies();
   }, []);

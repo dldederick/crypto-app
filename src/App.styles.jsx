@@ -3,10 +3,15 @@ import styled from "styled-components"
 export const AppDesign = styled.div`
 width: calc(80vw);
 display: flex;
-position: relative;
+// position: relative;
+// top: 0;
 border-radius: 10px;
-justify-content: center;
+// justify-content: center;
 // border: 1px blue solid;
+// position: absolute;
+// left: 0;
+// right: 0;
+margin: auto;
 
 @media (max-width: 1000px) {
   height: 1100px;
