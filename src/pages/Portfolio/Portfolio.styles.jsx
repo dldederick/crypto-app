@@ -34,7 +34,7 @@ export const NewAssetButton = styled.div`
 `;
 
 export const ZeroAssets = styled.div`
-  width: 400px;
+  width: 80%;
   background: ${(props) => props.theme.main};
   margin: 0 auto;
   height: 50px;

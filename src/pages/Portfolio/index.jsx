@@ -30,31 +30,35 @@ const Portfolio = (props) => {
     }
   };
 
-  const getCoinPriceChange = async () => {
-    try {
-      const assetList = await Promise.all(
-        assetList.map(async (obj) => {
-          const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
-          const newDate = Math.floor(Date.now() / 1000);
-          const name = obj.id;
-          const currency = props.selectedCurrency;
-          const { data } = await axios(
-            `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
-          );
-          const firstPrice = data.prices[0][0];
-          const lastPrice = data.prices[data.prices.length - 1][1];
-          const priceChange = lastPrice - firstPrice;
-          const percentageChange = (priceChange / firstPrice) * 100;
-          return { ...obj, percentageChange };
-        })
-      );
-      setAssetList(assetList);
-      setIsLoading(false);
-    } catch (error) {
-      setHasError(true);
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const updateAssetList = async () => {
+      try {
+        const updatedAssetList = await Promise.all(
+          assetList.map(async (obj) => {
+            const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
+            const newDate = Math.floor(Date.now() / 1000);
+            const name = obj.id;
+            const currency = props.selectedCurrency;
+            const { data } = await axios(
+              `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
+            );
+            const firstPrice = data.prices[0][0];
+            const lastPrice = data.prices[data.prices.length - 1][1];
+            const priceChange = lastPrice - firstPrice;
+            const percentageChange = (priceChange / firstPrice) * 100;
+            return { ...obj, percentageChange };
+          })
+        );
+        setAssetList(updatedAssetList);
+        setIsLoading(false);
+      } catch (error) {
+        setHasError(true);
+        setIsLoading(false);
+      }
+    };
+  
+    updateAssetList();
+  }, [assetList]);
 
   const handleNewAsset = () => {
     setAddIsClicked(true);
@@ -78,9 +82,9 @@ const Portfolio = (props) => {
     localStorage.setItem('StoredAssetList', storedList)
   };
 
-  useEffect(() => {
-    getCoinPriceChange();
-  }, [assetList.length]);
+  // useEffect(() => {
+  //   getCoinPriceChange();
+  // }, [assetList.length]);
 
   useEffect(() => {
     const storedList = localStorage.getItem('StoredAssetList');

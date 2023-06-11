@@ -5,14 +5,13 @@ import { readableNum } from "../../Utils/math";
 import { StyledGlobalCoins, StyledSlider } from "./GlobalCoins.styles";
 
 
-export default class GlobalCoins extends React.Component {
-  render() {
+ const GlobalCoins = (props) => {
     const globalCoinsData = {
-      Coins: `${this.props.currencySymbol} ${this.props.coins}`,
-      Exchange: `${this.props.currencySymbol} ${this.props.exchange}`,
-      "Market Cap": `${this.props.currencySymbol} ${readableNum(this.props.marketCap)}`,
-      Volume: `${this.props.currencySymbol} ${readableNum(this.props.volume)}`,
-      "BTC Dominance": `${Math.round(this.props.dominance)}%`,
+      Coins: `${props.currencySymbol} ${props.coins}`,
+      Exchange: `${props.currencySymbol} ${props.exchange}`,
+      "Market Cap": `${props.currencySymbol} ${readableNum(props.marketCap)}`,
+      Volume: `${props.currencySymbol} ${readableNum(props.volume)}`,
+      "BTC Dominance": `${Math.round(props.dominance)}%`,
     };
 
     const settings = {
@@ -42,4 +41,4 @@ export default class GlobalCoins extends React.Component {
       </StyledGlobalCoins>
     );
   }
-}
+export default GlobalCoins;

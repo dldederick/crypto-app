@@ -28,8 +28,6 @@ const CoinInfoCont = (props) => {
     props.handleClick(item);
   };
 
-  console.log(props.isSmallScreen, "isSmallScreen");
-
   return (
     <StyledCoinInfoCont>
       <div>

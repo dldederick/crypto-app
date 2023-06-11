@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const StyledCurrencyConvert = styled.div`
   width: 50%;
@@ -8,9 +8,9 @@ export const StyledCurrencyConvert = styled.div`
   margin: 0 auto;
   align-items: center;
 
-@media (max-width: 1000px) {
+  @media (max-width: 1000px) {
     width: 80%;
-}
+  }
 `;
 
 export const ConvertIcon = styled.div`
@@ -27,7 +27,7 @@ export const ConvertCurrencyOne = styled.div`
   height: 100%;
   display: flex;
 
-  div {
+  > div:nth-child(1) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,10 +39,23 @@ export const ConvertCurrencyOne = styled.div`
     color: #191b1f;
     font-size: boldest;
   }
+`;
+
+export const ConvertFromCont = styled.div`
+width: 70%;
+display: flex;
+
+  div {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background-color: ${(props) => props.theme.main}
+  }
 
   input {
-    width: 70%;
-    height: 100%;
+    width: 80%;
     background-color: ${(props) => props.theme.main};
     color: ${(props) => props.theme.text};
     border-top-right-radius: 10px;
@@ -50,7 +63,7 @@ export const ConvertCurrencyOne = styled.div`
     outline: none;
     border: none;
     font-size: 15px;
-    text-indent: 15px;
+    text-indent: 3px;
   }
 `;
 
@@ -60,20 +73,7 @@ export const ConvertCurrencyTwo = styled.div`
   display: flex;
   border-radius: 10px;
 
-  input {
-    width: 70%;
-    height: 100%;
-    background-color: ${(props) => props.theme.main};
-    color: ${(props) => props.theme.text};
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    outline: none;
-    border: none;
-    font-size: 15px;
-    text-indent: 15px;
-  }
-
-  div {
+  > div:nth-child(2) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,3 +86,28 @@ export const ConvertCurrencyTwo = styled.div`
     font-size: boldest;
   }
 `;
+
+export const ConvertToCont = styled.div`
+width: 70%;
+display: flex;
+
+div {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  background-color: ${(props) => props.theme.main};
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+input {
+  width: 90%;
+  background-color: ${(props) => props.theme.main};
+  color: ${(props) => props.theme.text};
+  outline: none;
+  border: none;
+  font-size: 15px;
+  text-indent: 3px;
+}`;
