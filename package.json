@@ -23,6 +23,8 @@
     "react-native-calendars": "^1.1297.0",
     "react-router-dom": "^5.3.4",
     "react-slick": "^0.29.0",
+    "react-svg": "^16.1.16",
+    "react-svg-loader": "^3.0.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9"
   },

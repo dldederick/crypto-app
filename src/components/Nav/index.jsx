@@ -25,8 +25,6 @@ const Nav = (props) => {
   const [ currentPage, setCurrentPage] = useState("Overview");
   const [ searchIsSelected, setSearchIsSelected ] = useState(false)
 
-  // const SearchSelected = currentPage === '';
-
   const getGlobalCryptoCurrencyData = async () => {
     try {
       const { data } = await axios("https://api.coingecko.com/api/v3/global");
@@ -36,8 +34,8 @@ const Nav = (props) => {
       const currencies = Object.keys(data.data.total_market_cap).map((key) =>
         key.toUpperCase()
       );
-      setTotalMarketCap(data.data.total_market_cap[props.selectedCurrency]);
-      setTotalVolume(data.data.total_volume[props.selectedCurrency]);
+      setTotalMarketCap(data.total_market_cap[props.selectedCurrency]);
+      setTotalVolume(data.total_volume[props.selectedCurrency]);
       setDominance(data.data.market_cap_percentage.btc);
       setIsLoading(false);
     } catch (error) {
