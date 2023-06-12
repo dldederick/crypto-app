@@ -8,7 +8,6 @@ import {
   Wrapper2,
   PriceOverview,
   VolumeOverview,
-  VolumeOverviewWrapper,
   StyledChartSlider
 } from "./ChartOverview.styles";
 
@@ -27,7 +26,6 @@ export default function ChartOverview(props) {
   const coinImage = coinObj[0]?.image;
   const coinSymbol = coinObj[0]?.symbol.toUpperCase();
   const coinName = coinObj[0]?.name;
-  // console.log(coinObj)
 
   const settings = {
     dots: false,
@@ -45,8 +43,9 @@ export default function ChartOverview(props) {
         <StyledChartSlider {...settings}>
             <Wrapper1>
               <PriceOverview img={coinImage}>
-                {coinName} ({coinSymbol}) Price: {currencySymbol}
-                {coinPrice}{" "}
+                <div></div>
+                <div> {coinName} ({coinSymbol}) Price: {currencySymbol}
+                {coinPrice}</div>
               </PriceOverview>
               <CurrencyPriceChart
                 prices={coinsMarketPriceArray}
@@ -54,12 +53,11 @@ export default function ChartOverview(props) {
               />
             </Wrapper1>
             <Wrapper2>
-              <VolumeOverviewWrapper>
-                <VolumeOverview img={coinImage}>
-                  {coinName} ({coinSymbol}) Volume: {currencySymbol}
-                  {coinVolume}{" "}
+                <VolumeOverview  img={coinImage}>
+                  <div></div>
+                  <div>{coinName} ({coinSymbol}) Volume: {currencySymbol}
+                  {coinVolume}</div>
                 </VolumeOverview>
-              </VolumeOverviewWrapper>
               <CurrencyVolumeChart
                 volumes={coinsMarketVolumeArray}
                 dates={coinsMarketDateArray}
@@ -69,22 +67,23 @@ export default function ChartOverview(props) {
       ) : (
         <CoinsCont1>
           <Wrapper1>
-            <PriceOverview img={coinImage}>
-              {coinName} ({coinSymbol}) Price: {currencySymbol}
-              {coinPrice}{" "}
-            </PriceOverview>
+          <PriceOverview img={coinImage}>
+                <div></div>
+                <div> {coinName} ({coinSymbol}) Price: {currencySymbol}
+                {coinPrice}</div>
+              </PriceOverview>
             <CurrencyPriceChart
               prices={coinsMarketPriceArray}
               dates={coinsMarketDateArray}
             />
           </Wrapper1>
           <Wrapper2>
-            <VolumeOverviewWrapper>
-              <VolumeOverview img={coinImage}>
-                {coinName} ({coinSymbol}) Volume: {currencySymbol}
-                {coinVolume}{" "}
-              </VolumeOverview>
-            </VolumeOverviewWrapper>
+            <VolumeOverview img={coinImage}>
+                  <div></div>
+                  <div><span>{coinName} ({coinSymbol})</span>
+                  <span> Volume: {currencySymbol}
+                  {coinVolume}</span></div>
+                </VolumeOverview>
             <CurrencyVolumeChart
               volumes={coinsMarketVolumeArray}
               dates={coinsMarketDateArray}
