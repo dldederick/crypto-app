@@ -5,12 +5,12 @@ export const StyledPortfolioPage = styled.div`
   min-height: 1000px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.secondary};
-  padding-top: 200px;
+  padding-top: 160px;
   display: flex;
   flex-direction: column;
-  gap: 200px;
+  gap: 50px;
   align-items: center;
-  position: relative;
+  // position: relative;
 
   @media (max-width: 1000px) {
     padding-top: 140px;
@@ -34,12 +34,13 @@ export const NewAssetButton = styled.div`
 `;
 
 export const ZeroAssets = styled.div`
-  width: 80%;
+  max-width: 80%;
   background: ${(props) => props.theme.main};
   margin: 0 auto;
   height: 50px;
   border-radius: 10px;
   text-align: center;
   line-height: 50px;
+  padding: 0 10px 0 10px;
   color: ${(props) => props.theme.text};
 `;

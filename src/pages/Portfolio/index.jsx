@@ -30,35 +30,47 @@ const Portfolio = (props) => {
     }
   };
 
-  useEffect(() => {
-    const updateAssetList = async () => {
-      try {
-        const updatedAssetList = await Promise.all(
-          assetList.map(async (obj) => {
-            const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
-            const newDate = Math.floor(Date.now() / 1000);
-            const name = obj.id;
-            const currency = props.selectedCurrency;
-            const { data } = await axios(
-              `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
-            );
-            const firstPrice = data.prices[0][0];
-            const lastPrice = data.prices[data.prices.length - 1][1];
-            const priceChange = lastPrice - firstPrice;
-            const percentageChange = (priceChange / firstPrice) * 100;
-            return { ...obj, percentageChange };
-          })
-        );
-        setAssetList(updatedAssetList);
-        setIsLoading(false);
-      } catch (error) {
-        setHasError(true);
-        setIsLoading(false);
-      }
-    };
+  const updateAssetList = async () => {
+    try {
+      const updatedAssetList = await Promise.all(
+        assetList.map(async (obj) => {
+          const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
+          const newDate = Math.floor(Date.now() / 1000);
+          const name = obj.id;
+          const currency = props.selectedCurrency;
+          const { data } = await axios(
+            `https://api.coingecko.com/api/v3/coins/${name}/market_chart/range?vs_currency=${currency}&from=${purchaseDate}&to=${newDate}`
+          );
+          const firstPrice = data.prices[0][0];
+          const lastPrice = data.prices[data.prices.length - 1][1];
+          const priceChange = lastPrice - firstPrice;
+          const percentageChange = (priceChange / firstPrice) * 100;
+          return { ...obj, percentageChange };
+        })
+      );
   
-    updateAssetList();
-  }, [assetList]);
+      if (newAsset && Object.keys(newAsset).length > 0) {
+        const createAsset = cryptoCurrencies.find(
+          (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
+        );
+        if (createAsset) {
+          const numericValue = newAsset.assetAmount.replace(/\D/g, "");
+          createAsset.assetAmount = numericValue;
+          createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
+          createAsset.assetId = Math.random().toString();
+          updatedAssetList.push(createAsset);
+          const storedList = JSON.stringify(updatedAssetList);
+          localStorage.setItem('StoredAssetList', storedList);
+        }
+      }
+      console.log(updateAssetList, 'updatedList')
+      setAssetList(updatedAssetList);
+      setIsLoading(false);
+    } catch (error) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
 
   const handleNewAsset = () => {
     setAddIsClicked(true);
@@ -69,25 +81,69 @@ const Portfolio = (props) => {
   };
 
   const addAsset = (asset) => {
-    const createAsset = cryptoCurrencies.find(
-      (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
-    );
-    const numericValue = asset.assetAmount.replace(/\D/g, "");
-    createAsset.assetAmount = numericValue;
-    createAsset.assetPurchaseDate = asset.assetPurchaseDate;
-    const newList = [...assetList, createAsset];
-    setAssetList(newList);
-    setNewAsset({});
-    const storedList = JSON.stringify(newList);
-    localStorage.setItem('StoredAssetList', storedList)
+    setNewAsset(asset);
   };
 
+  const handleDelete = (asset) => {
+    console.log(asset, 'id')
+    const updatedList = assetList.filter((obj) => obj.assetId !== asset.assetId);
+    setAssetList(updatedList);
+    const storedList = JSON.stringify(updatedList);
+    localStorage.setItem("StoredAssetList", storedList);
+  };
+  
+
   // useEffect(() => {
-  //   getCoinPriceChange();
-  // }, [assetList.length]);
+  //   if (newAsset && Object.keys(newAsset).length > 0) {
+  //     const createAsset = cryptoCurrencies.find(
+  //       (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
+  //     );
+  //     if (createAsset) {
+  //       const numericValue = newAsset.assetAmount.replace(/\D/g, "");
+  //       createAsset.assetAmount = numericValue;
+  //       createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
+  //       createAsset.id = Date.now().toString();
+  //       const newList = [...assetList, createAsset];
+  //       setAssetList(newList);
+  //       const storedList = JSON.stringify(newList);
+  //       localStorage.setItem('StoredAssetList', storedList);
+  //     }
+  //   }
+  //   if (cryptoCurrencies.length > 0) {
+  //     updateAssetList();
+  //   }
+  //   return () => {
+  //     setNewAsset({});
+  //   };
+  // }, [newAsset, cryptoCurrencies]);
+
+  useEffect(() => {
+    if (cryptoCurrencies.length > 0) {
+      updateAssetList();
+    }
+  }, [cryptoCurrencies]);
+  
+  useEffect(() => {
+    if (newAsset && Object.keys(newAsset).length > 0) {
+      const createAsset = cryptoCurrencies.find(
+        (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
+      );
+      if (createAsset) {
+        const numericValue = newAsset.assetAmount.replace(/\D/g, "");
+        createAsset.assetAmount = numericValue;
+        createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
+        createAsset.assetId = Math.random().toString();
+        const newList = [...assetList, createAsset];
+        setAssetList(newList);
+        const storedList = JSON.stringify(newList);
+        localStorage.setItem("StoredAssetList", storedList);
+      }
+    }
+  }, [newAsset]);
 
   useEffect(() => {
     const storedList = localStorage.getItem('StoredAssetList');
+    console.log(storedList)
     if(storedList) {
       setAssetList(JSON.parse(storedList))
     }
@@ -115,6 +171,7 @@ const Portfolio = (props) => {
             assets={assetList}
             selectedCurrency={props.selectedCurrency}
             currencySymbol={props.currencySymbol}
+            handleDelete={handleDelete}
           />
         )}
       </StyledPortfolioPage>

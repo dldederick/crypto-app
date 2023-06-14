@@ -10,14 +10,14 @@ export const StyledAddAsset = styled.form`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 32%;
+  top: 28%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
 
   @media (max-width: 1000px) {
     width: 400px;
-    top: 30%;
+    top: 26%;
   }
 `;
 

@@ -11,7 +11,6 @@ const CurrencySelect = (props) => {
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-    console.log(isClicked, "selectPage");
   };
 
   const handleSelect = (key) => {
