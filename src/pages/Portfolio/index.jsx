@@ -85,38 +85,12 @@ const Portfolio = (props) => {
   };
 
   const handleDelete = (asset) => {
-    console.log(asset, 'id')
     const updatedList = assetList.filter((obj) => obj.assetId !== asset.assetId);
     setAssetList(updatedList);
     const storedList = JSON.stringify(updatedList);
     localStorage.setItem("StoredAssetList", storedList);
   };
-  
-
-  // useEffect(() => {
-  //   if (newAsset && Object.keys(newAsset).length > 0) {
-  //     const createAsset = cryptoCurrencies.find(
-  //       (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
-  //     );
-  //     if (createAsset) {
-  //       const numericValue = newAsset.assetAmount.replace(/\D/g, "");
-  //       createAsset.assetAmount = numericValue;
-  //       createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
-  //       createAsset.id = Date.now().toString();
-  //       const newList = [...assetList, createAsset];
-  //       setAssetList(newList);
-  //       const storedList = JSON.stringify(newList);
-  //       localStorage.setItem('StoredAssetList', storedList);
-  //     }
-  //   }
-  //   if (cryptoCurrencies.length > 0) {
-  //     updateAssetList();
-  //   }
-  //   return () => {
-  //     setNewAsset({});
-  //   };
-  // }, [newAsset, cryptoCurrencies]);
-
+ 
   useEffect(() => {
     if (cryptoCurrencies.length > 0) {
       updateAssetList();
@@ -143,7 +117,6 @@ const Portfolio = (props) => {
 
   useEffect(() => {
     const storedList = localStorage.getItem('StoredAssetList');
-    console.log(storedList)
     if(storedList) {
       setAssetList(JSON.parse(storedList))
     }

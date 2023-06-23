@@ -14,3 +14,8 @@ color: ${(props) => props.theme.text};
     box-sizing: border-box;
 }
 `
+
+export const LoadingBarCont = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;`

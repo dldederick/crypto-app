@@ -1,10 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
+import LoadingBar from "react-top-loading-bar";
 import queryString from "query-string";
 import ChartOverview from "../../components/ChartOverview";
 import TopCryptoCurrencies from "../../components/TopCryptoCurrencies";
-import { StyledCoinsPage } from "./Coins.styles";
+import { StyledCoinsPage, LoadingBarCont } from "./Coins.styles";
+
+function useLoadingBar(isLoading, loadingBar) {
+  useEffect(() => {
+    if (isLoading) {
+      loadingBar.current.continuousStart();
+    } else {
+      loadingBar.current.complete();
+    }
+  }, [isLoading]);
+}
 
 const Coins = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +31,9 @@ const Coins = (props) => {
 
   const location = useLocation();
   const history = useHistory();
+  const loadingBar = useRef();
+
+  useLoadingBar(isLoading, loadingBar);
 
   const getTopCryptoCurrencies = async () => {
     const currency = props.selectedCurrency;
@@ -88,17 +102,16 @@ const Coins = (props) => {
   const handleClick = (id) => {
     const sortBy = sortNameChange(id);
     const currency = props.selectedCurrency;
-  
+
     let sort = "desc";
     if (settings.sortBy === sortBy && settings.sort === "desc") {
       sort = "asc";
     }
-  
+
     const updatedSettings = { ...settings, currency, sortBy, sort };
     const setUrl = queryString.stringify(updatedSettings);
     props.history.push(`?${setUrl}`);
   };
-  
 
   const handleFetchData = async () => {
     setPage(page + 1);
@@ -119,7 +132,7 @@ const Coins = (props) => {
 
   useEffect(() => {
     getCoinsMarketChart();
-  }, [currencyDisplayed])
+  }, [currencyDisplayed]);
 
   useEffect(() => {
     setSettings((settings) => ({
@@ -151,26 +164,29 @@ const Coins = (props) => {
   const render = isLoading && hasError;
 
   return (
-      <StyledCoinsPage>
-        <ChartOverview
-          currencyDisplayed={currencyDisplayed}
-          topCryptoCurrencies={topCryptoCurrencies}
-          coinsMarketVolumeArray={coinsMarketVolumeArray}
-          coinsMarketDateArray={coinsMarketDateArray}
-          coinsMarketPriceArray={coinsMarketPriceArray}
-          selectedCurrency={props.selectedCurrency}
-          currencySymbol={props.currencySymbol}
-          darkMode={props.darkMode}
-          isSmallScreen={props.isSmallScreen}
-        />
-        <TopCryptoCurrencies
-          topCryptoCurrencies={topCryptoCurrencies}
-          handleClick={handleClick}
-          currencySymbol={props.currencySymbol}
-          handleFetchData={handleFetchData}
-          darkMode={props.darkMode}
-        />
-      </StyledCoinsPage>
+    <StyledCoinsPage>
+      <LoadingBarCont>
+        <LoadingBar color="#f11946" ref={loadingBar} />
+      </LoadingBarCont>
+      <ChartOverview
+        currencyDisplayed={currencyDisplayed}
+        topCryptoCurrencies={topCryptoCurrencies}
+        coinsMarketVolumeArray={coinsMarketVolumeArray}
+        coinsMarketDateArray={coinsMarketDateArray}
+        coinsMarketPriceArray={coinsMarketPriceArray}
+        selectedCurrency={props.selectedCurrency}
+        currencySymbol={props.currencySymbol}
+        darkMode={props.darkMode}
+        isSmallScreen={props.isSmallScreen}
+      />
+      <TopCryptoCurrencies
+        topCryptoCurrencies={topCryptoCurrencies}
+        handleClick={handleClick}
+        currencySymbol={props.currencySymbol}
+        handleFetchData={handleFetchData}
+        darkMode={props.darkMode}
+      />
+    </StyledCoinsPage>
   );
 };
 export default Coins;

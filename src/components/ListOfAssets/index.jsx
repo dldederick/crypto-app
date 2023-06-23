@@ -15,9 +15,7 @@ export default function ListOfAssets(props) {
   function textColor(number){
     return number >= 0 ? {color: '#00ff5f'} : {color: '#D9123A'};
   }
-
-  const key = Math.random().toString();
-
+  
   return (
       <StyledAssetList>
       {props.assets.map((obj) => (
