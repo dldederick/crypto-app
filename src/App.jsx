@@ -1,55 +1,127 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import axios from "axios";
+import Nav from "./components/Nav";
+import Coins from "./pages/Coins";
+import CoinInfoPage from "./pages/CoinInfoPage";
+import Portfolio from "./pages/Portfolio";
+import getSymbolFromCurrency from "currency-symbol-map";
+import { AppDesign, darkTheme, lightTheme } from "./App.styles";
 
-export default function App() {
+const App = () => {
+  const [ listOfCurrencies, setListOfCurrencies ] = useState([]);
+  const [ selectedCurrency, setSelectedCurrency ] = useState("");
+  const [ currencySymbol, setCurrencySymbol ] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ hasError, setHasError ] = useState(false);
+  const [ darkMode, setDarkMode ] = useState(true);
+  const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000);
+
+  const getSupportedCurrencies = async () => {
+    try {
+      const { data } =
+        await axios(`https://api.coingecko.com/api/v3/simple/supported_vs_currencies
+`);
+      setListOfCurrencies(data);
+      setIsLoading(false);
+    } catch (error) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
+
+  const handleSelect = (key) => {
+    setSelectedCurrency(key);
+    localStorage.setItem("SelectedCurrency", key);
+  };
+
+  const handleClick = () => {
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    const symbol = getSymbolFromCurrency(selectedCurrency);
+    setCurrencySymbol(symbol);
+  }, [selectedCurrency]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 700);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    const storedCurrency = localStorage.getItem("SelectedCurrency");
+    if (storedCurrency) {
+      setSelectedCurrency(storedCurrency);
+    } else {
+      setSelectedCurrency("usd");
+      localStorage.setItem("SelectedCurrency", "usd");
+    }
+    setIsLoading(true);
+    
+    const symbol = getSymbolFromCurrency(selectedCurrency);
+    setCurrencySymbol(symbol);
+
+    getSupportedCurrencies();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+  }, []);
+
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Router>
+        <AppDesign>
+          <Nav
+            selectedCurrency={selectedCurrency}
+            currencySymbol={currencySymbol}
+            listOfCurrencies={listOfCurrencies}
+            handleSelect={handleSelect}
+            handleClick={handleClick}
+            darkMode={darkMode}
+            isSmallScreen={isSmallScreen}
+          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Coins
+                  {...props}
+                  selectedCurrency={selectedCurrency}
+                  currencySymbol={currencySymbol}
+                  darkMode={darkMode}
+                  isSmallScreen={isSmallScreen}
+                />
+              )}
+            ></Route>
+            <Route
+              exact
+              path="/coin/:coinId"
+              render={(props) => (
+                <CoinInfoPage
+                  {...props}
+                  selectedCurrency={selectedCurrency}
+                  darkMode={darkMode}
+                  isSmallScreen={isSmallScreen}
+                />
+              )}
+            ></Route>
+            <Route exact path="/portfolio">
+              <Portfolio
+                selectedCurrency={selectedCurrency}
+                currencySymbol={currencySymbol}
+                darkMode={darkMode}
+              />
+            </Route>
+          </Switch>
+        </AppDesign>
+      </Router>
+    </ThemeProvider>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
+};
+export default App;
