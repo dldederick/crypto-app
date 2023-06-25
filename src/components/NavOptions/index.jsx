@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ThemeSelect from "../ThemeSelect";
 import CurrencySelect from "../CurrencySelect";
 import SearchBar from "../SearchBar";
 import { StyledNavOptions, NavCurrentPage, AltNav } from "./NavOptions.styles";
 
 export default function NavOptions(props) {
-  
   return (
     <StyledNavOptions>
       <NavCurrentPage>

@@ -1,5 +1,6 @@
 import React from "react";
-import getSymbolFromCurrency from "currency-symbol-map";
+import { readableNum, roundedPercentage } from "../../Utils/math";
+import { DeleteImg } from "../Images/svg";
 import {
   StyledAssetList,
   ActiveAsset,
@@ -9,23 +10,28 @@ import {
   AssetPerformance,
   AssetHeader,
 } from "./ListOfAssets.styles/";
-import { readableNum, roundedPercentage } from "../../Utils/math";
 
 export default function ListOfAssets(props) {
   function textColor(number){
     return number >= 0 ? {color: '#00ff5f'} : {color: '#D9123A'};
   }
+  
   return (
       <StyledAssetList>
       {props.assets.map((obj) => (
-        <ActiveAsset key={obj.name}>
+        <ActiveAsset key={obj.assetId}>
           <ListAssetImageCont image={obj?.image}>
             <div></div>
             <div>{obj?.name}</div>
           </ListAssetImageCont>
           <ListAssetInfoCont>
             <div>
-              <AssetHeader>Market Performance</AssetHeader>
+              <AssetHeader>
+                <div>Market Performance</div>
+                <div onClick={() => props.handleDelete(obj)}>
+                <DeleteImg  />
+                </div>
+              </AssetHeader>
               <AssetMarketPerformance>
                 <div>
                   Current Price:{" "}

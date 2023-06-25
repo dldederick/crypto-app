@@ -15,7 +15,6 @@ font-size: 15px;
 outline: none;
 color: ${(props) => props.theme.text};
 position: relative;
-// border: 1px red solid;
 
 &::placeholder {
     color: ${(props) => props.theme.text};

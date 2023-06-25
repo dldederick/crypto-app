@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { StyledSearchPopUp } from "./SearchPopUp.styles";
 import PopUpMatches from "../PopUpMatches";
+import { StyledSearchPopUp } from "./SearchPopUp.styles";
 
 export default function SearchPopUp(props) {
   const [filteredValue, setFilteredValue] = useState("");

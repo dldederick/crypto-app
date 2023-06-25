@@ -3,8 +3,7 @@ import axios from "axios";
 import AddAsset from "../../components/AddAsset";
 import ListOfAssets from "../../components/ListOfAssets";
 import { convertToUnixTimestamp } from "../../Utils/math";
-import { StyledPortfolioPage } from "./Portfolio.styles";
-import { ZeroAssets, NewAssetButton } from "./Portfolio.styles";
+import { StyledPortfolioPage, ZeroAssets, NewAssetButton } from "./Portfolio.styles";
 
 const Portfolio = (props) => {
   const [assetList, setAssetList] = useState([]);
@@ -31,9 +30,9 @@ const Portfolio = (props) => {
     }
   };
 
-  const getCoinPriceChange = async () => {
+  const updateAssetList = async () => {
     try {
-      const assetList = await Promise.all(
+      const updatedAssetList = await Promise.all(
         assetList.map(async (obj) => {
           const purchaseDate = convertToUnixTimestamp(obj.assetPurchaseDate);
           const newDate = Math.floor(Date.now() / 1000);
@@ -49,7 +48,23 @@ const Portfolio = (props) => {
           return { ...obj, percentageChange };
         })
       );
-      setAssetList(assetList);
+  
+      if (newAsset && Object.keys(newAsset).length > 0) {
+        const createAsset = cryptoCurrencies.find(
+          (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
+        );
+        if (createAsset) {
+          const numericValue = newAsset.assetAmount.replace(/\D/g, "");
+          createAsset.assetAmount = numericValue;
+          createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
+          createAsset.assetId = Math.random().toString();
+          updatedAssetList.push(createAsset);
+          const storedList = JSON.stringify(updatedAssetList);
+          localStorage.setItem('StoredAssetList', storedList);
+        }
+      }
+      console.log(updateAssetList, 'updatedList')
+      setAssetList(updatedAssetList);
       setIsLoading(false);
     } catch (error) {
       setHasError(true);
@@ -66,22 +81,45 @@ const Portfolio = (props) => {
   };
 
   const addAsset = (asset) => {
-    const createAsset = cryptoCurrencies.find(
-      (obj) => obj.name.toLowerCase() === asset.assetName.toLowerCase()
-    );
-    const numericValue = asset.assetAmount.replace(/\D/g, "");
-    createAsset.assetAmount = numericValue;
-    createAsset.assetPurchaseDate = asset.assetPurchaseDate;
-    const newList = [...assetList, createAsset];
-    setAssetList(newList);
-    setNewAsset({});
+    setNewAsset(asset);
   };
 
+  const handleDelete = (asset) => {
+    const updatedList = assetList.filter((obj) => obj.assetId !== asset.assetId);
+    setAssetList(updatedList);
+    const storedList = JSON.stringify(updatedList);
+    localStorage.setItem("StoredAssetList", storedList);
+  };
+ 
   useEffect(() => {
-    getCoinPriceChange();
-  }, [assetList.length]);
+    if (cryptoCurrencies.length > 0) {
+      updateAssetList();
+    }
+  }, [cryptoCurrencies]);
+  
+  useEffect(() => {
+    if (newAsset && Object.keys(newAsset).length > 0) {
+      const createAsset = cryptoCurrencies.find(
+        (obj) => obj.name.toLowerCase() === newAsset.assetName.toLowerCase()
+      );
+      if (createAsset) {
+        const numericValue = newAsset.assetAmount.replace(/\D/g, "");
+        createAsset.assetAmount = numericValue;
+        createAsset.assetPurchaseDate = newAsset.assetPurchaseDate;
+        createAsset.assetId = Math.random().toString();
+        const newList = [...assetList, createAsset];
+        setAssetList(newList);
+        const storedList = JSON.stringify(newList);
+        localStorage.setItem("StoredAssetList", storedList);
+      }
+    }
+  }, [newAsset]);
 
   useEffect(() => {
+    const storedList = localStorage.getItem('StoredAssetList');
+    if(storedList) {
+      setAssetList(JSON.parse(storedList))
+    }
     setIsLoading(true);
     getCryptoCurrencies();
   }, []);
@@ -106,6 +144,7 @@ const Portfolio = (props) => {
             assets={assetList}
             selectedCurrency={props.selectedCurrency}
             currencySymbol={props.currencySymbol}
+            handleDelete={handleDelete}
           />
         )}
       </StyledPortfolioPage>

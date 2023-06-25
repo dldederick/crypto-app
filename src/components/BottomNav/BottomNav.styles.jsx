@@ -24,7 +24,6 @@ export const StyledBottomNav = styled.div`
   @media (max-width: 1000px) {
     width: inherit;
     bottom: 140px;
-    // border: 1px orange solid;
     border-radius: 0;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -39,7 +38,7 @@ export const OverviewTab = styled(Link)`
   align-items: center;
   height: 70px;
   text-decoration: none;
-  color: white;
+  color: ${(props) => props.theme.text};
 
   div:nth-child(1) {
     width: 25px;
@@ -64,7 +63,7 @@ justify-content: center;
 align-items: center;
 height: 70px;
 text-decoration: none;
-color: white;
+color: ${(props) => props.theme.text};
 
 div:nth-child(1) {
   width: 25px;

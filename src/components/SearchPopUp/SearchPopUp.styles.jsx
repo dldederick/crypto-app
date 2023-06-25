@@ -16,21 +16,18 @@ export const StyledSearchPopUp = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    // background: #646263;
-    background: #191B1F;
+    background: #191b1f;
   }
 
   input {
     height: 40px;
     width: 265px;
-    // background: #1F2128;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 5px;
-    border-bottom-right-radius: ${(props) => (props.hasLength ? '5px' : '0')};
-    border-bottom-left-radius: ${(props) => (props.hasLength ? '5px' : '0')};
+    border-bottom-right-radius: ${(props) => (props.hasLength ? "5px" : "0")};
+    border-bottom-left-radius: ${(props) => (props.hasLength ? "5px" : "0")};
     outline: none;
-    // border-bottom: 1px ${(props) => props.theme.text} solid;
     background-image: ${(props) =>
       props.darkMode
         ? "url(https://i.postimg.cc/ncZpvPtZ/Search.png)"

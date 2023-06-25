@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledTopCurrencies = styled.div`
@@ -28,7 +28,6 @@ export const TopCurrencyHeader = styled.div`
   height: 50px;
   border-bottom: 4px #646263 solid;
   white-space: nowrap;
-  
 
   div {
     color: ${(props) => props.theme.text};
@@ -37,38 +36,28 @@ export const TopCurrencyHeader = styled.div`
   @media (max-width: 1000px) {
     width: unset;
   }
-  `;
+`;
 
 export const TopCurrencyList = styled.div`
-width: 95%;
-white-space: nowrap;
+  width: 95%;
+  white-space: nowrap;
 
-@media (max-width: 1000px) {
-  width: unset;
-  height: 400px;
-  overflow-y: scroll;
-}
-`
+  @media (max-width: 1000px) {
+    width: unset;
+    height: 400px;
+    overflow-y: scroll;
+  }
+`;
 
 export const TopCurrencyCont = styled(Link)`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  
   align-items: center;
-  // width: 100%;
-  // max-width: 800px;
   height: 50px;
   border-bottom: 1px ${(props) => props.theme.secondary} solid;
-  // white-space: nowrap;
   text-decoration: none;
   color: ${(props) => props.theme.text};
-  // box-sizing: border-box;
-
-  div {
-    // overflow: hidden;
-    // overflow-x: scroll;
-  }
 `;
 
 export const TopIndex = styled.div`
@@ -76,7 +65,7 @@ export const TopIndex = styled.div`
 `;
 
 export const TopIndexHeader = styled.div`
-width: 20px;
+  width: 20px;
 `;
 
 export const TopId = styled.div`
@@ -90,7 +79,10 @@ export const TopId = styled.div`
 
 export const TopIdHeader = styled.div`
   width: 200px;
-  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
+  background-image: ${(props) =>
+    props.darkMode
+      ? "url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)"
+      : "url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)"};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -103,7 +95,10 @@ export const TopCurrentPrice = styled.div`
 
 export const TopCurrentPriceHeader = styled.div`
   width: 100px;
-  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
+  background-image: ${(props) =>
+    props.darkMode
+      ? "url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)"
+      : "url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)"};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -156,7 +151,10 @@ export const TopVolumeMarketCap = styled.div`
 export const Top1hHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
+  background-image: ${(props) =>
+    props.darkMode
+      ? "url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)"
+      : "url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)"};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -165,7 +163,10 @@ export const Top1hHeader = styled.div`
 export const Top24hHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
+  background-image: ${(props) =>
+    props.darkMode
+      ? "url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)"
+      : "url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)"};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -174,7 +175,10 @@ export const Top24hHeader = styled.div`
 export const Top7dHeader = styled.div`
   width: 100px;
   text-indent: 19px;
-  background-image: ${(props) => props.darkMode ? 'url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)' : 'url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)'};
+  background-image: ${(props) =>
+    props.darkMode
+      ? "url(https://i.postimg.cc/9fL0nrkP/Sort-arrow-2x.png)"
+      : "url(https://i.postimg.cc/nLm10Nbg/direction-01-2.png)"};
   background-size: 15px 15px;
   background-position: left;
   background-repeat: no-repeat;
@@ -242,21 +246,21 @@ export const VolumeMarketCapPercentageBar = styled.div`
 `;
 
 export const CoinsCont2 = styled.div`
-width: 90%;
-// height: 600px;
-margin: 0 auto;
-margin-top: 80px;
-`
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 80px;
+`;
 
 export const Overview = styled.div`
-background-color: ${(props) => props.theme.main};
-border-top-right-radius: 10px;
-border-top-left-radius: 10px;
-width: 350px;
-text-align: center;
-height: 40px;
-line-height: 40px;
+  background-color: ${(props) => props.theme.main};
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 350px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
 
-@media (max-width: 1000px) {
-  width: 100%;
-}`
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;

@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
-import getSymbolFromCurrency from "currency-symbol-map";
 import { ThemeProvider } from "styled-components";
+import axios from "axios";
 import Nav from "./components/Nav";
 import Coins from "./pages/Coins";
 import CoinInfoPage from "./pages/CoinInfoPage";
 import Portfolio from "./pages/Portfolio";
+import getSymbolFromCurrency from "currency-symbol-map";
 import { AppDesign, darkTheme, lightTheme } from "./App.styles";
 
 const App = () => {
-  const [listOfCurrencies, setListOfCurrencies] = useState([]);
-  const [selectedCurrency, setSelectedCurrency] = useState("");
-  const [currencySymbol, setCurrencySymbol] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [ listOfCurrencies, setListOfCurrencies ] = useState([]);
+  const [ selectedCurrency, setSelectedCurrency ] = useState("");
+  const [ currencySymbol, setCurrencySymbol ] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ hasError, setHasError ] = useState(false);
+  const [ darkMode, setDarkMode ] = useState(true);
   const [ isSmallScreen, setIsSmallScreen ] = useState(window.innerWidth <= 1000);
 
   const getSupportedCurrencies = async () => {
@@ -46,10 +46,6 @@ const App = () => {
   }, [selectedCurrency]);
 
   useEffect(() => {
-    console.log(window.innerWidth, 'pageWidth');
-  }, [window.innerWidth])
-
-  useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 700);
     };
@@ -59,7 +55,6 @@ const App = () => {
     const storedCurrency = localStorage.getItem("SelectedCurrency");
     if (storedCurrency) {
       setSelectedCurrency(storedCurrency);
-      console.log(storedCurrency, "storedCurrency");
     } else {
       setSelectedCurrency("usd");
       localStorage.setItem("SelectedCurrency", "usd");

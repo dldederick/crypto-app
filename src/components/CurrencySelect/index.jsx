@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DropDownMenu from "../DropDownMenu";
 import {
   CurrencySelectStyles,
@@ -12,7 +11,6 @@ const CurrencySelect = (props) => {
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-    console.log(isClicked, "selectPage");
   };
 
   const handleSelect = (key) => {

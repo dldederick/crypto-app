@@ -45,8 +45,6 @@ const DropDownMenu = (props) => {
     };
   }, [])
 
-  console.log(props.isClicked, 'dropDown')
-
     return (
       <StyledDropDown id="drop-down" ref={dropdownRef}>
         <input

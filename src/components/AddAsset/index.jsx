@@ -29,6 +29,7 @@ const AddAsset = (props) => {
   const [assetPurchaseDate, setAssetPurchaseDate] = useState("");
   const [newAsset, setNewAsset] = useState({});
   const [showDropDown, setShowDropDown] = useState(false);
+  const [assetId, setAssetId] = useState('')
 
   const monthInput = useRef(null);
   const dayInput = useRef(null);
@@ -85,7 +86,7 @@ const AddAsset = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newAsset = { assetAmount, assetName, assetPurchaseDate };
+    const newAsset = { assetAmount, assetName, assetPurchaseDate, assetId };
     setNewAsset(newAsset);
     props.addAsset(newAsset);
     props.handleClose();
@@ -96,8 +97,6 @@ const AddAsset = (props) => {
   );
 
   const imageUrl = props.cryptoInfo.filter((item) => item.name === assetName);
-
-  console.log(filteredItems, props, 'props')
 
   return (
 <StyledAddAsset onSubmit={handleSubmit} darkMode={props.darkMode}>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Slider from 'react-slick'
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,7 +16,6 @@ export const StyledGlobalCoins = styled.div`
   margin: 0 auto;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  
 
   div {
     text-align: center;
@@ -29,18 +28,18 @@ export const StyledGlobalCoins = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
-width: 95%;
-height: 30px;
-overflow: hidden;
-line-height: 30px;
+  width: 95%;
+  height: 30px;
+  overflow: hidden;
+  line-height: 30px;
 
-div {
+  div {
     width: 750px;
-}
+  }
 
-@media (max-width: 1000px) {
+  @media (max-width: 1000px) {
     div {
-        width: 600px;
+      width: 600px;
     }
-}
-`
+  }
+`;
